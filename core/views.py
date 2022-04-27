@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.views import View
+
+from core.forms import ContactForm
+from django.utils.translation import gettext_lazy as _
 
 # Create your views here.
 
@@ -17,5 +21,12 @@ def careers(request):
     return render(request, "careers.html")
 
 
-def contact(request):
-    return render(request, "contact.html")
+class ContactView(View):
+    def get(self, request):
+        context = {
+            "title": _("Contact"),
+            "form": ContactForm,
+        }
+        return render(request, "contact.html", context=context)
+
+    
