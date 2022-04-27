@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -26,39 +26,20 @@
                     <div class="col-lg-8">
                         <div class="blog-detail__wrapper">
                             <span class="chip mb-2">
-                                Təcrübə
+                                {{vacancy.type}}
                             </span>
                             <h1 class="blog-detail__title mb-3 mb-sm-5">
-                                Digital Marketing Manager
+                                {{vacancy.title}}
                             </h1>
                             <h2 class="blog-detail__subtitle mb-3">
-                                Haqqında
+                                {% trans 'Haqqında' %}
                             </h2>
                             <p class="blog-detail__text mb-3 mb-sm-5">
-                                Komandamıza qoşulmaq və məqsədlərimizə nail olmaq üçün kreativ ideyalar təqdim etmək
-                                üçün həvəsli rəqəmsal marketinq üzrə təcrübəçi axtarırıq.
+                                {{vacancy.short_description}}
                             </p>
-                            <h2 class="blog-detail__subtitle mb-3">
-                                Məsuliyyətlər
-                            </h2>
                             <p class="blog-detail__text mb-3 mb-sm-5">
-                                Təcrübəçi olaraq, kampaniyaların bütün mərhələlərində komandalarımızla əməkdaşlıq
-                                edəcəksiniz.
+                                {{vacancy.full_description|safe|striptags}}
                             </p>
-                            <h2 class="blog-detail__subtitle mb-3">
-                                Məsuliyyətlər
-                            </h2>
-                            <ul class="">
-                                <li>
-                                    Sürətli templi mühitdə çoxlu tapşırıqlar yerinə yetirmək bacarığı
-                                </li>
-                                <li>
-                                    Gündə ən azı 3 saat hazır olun
-                                </li>
-                                <li>
-                                    Təşəbbüskar olmaq bacarığı
-                                </li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -66,10 +47,11 @@
                             <p class="blog-detail__subtitle mb-4 pb-1">
                                 Müraciət et
                             </p>
-                            <form action="">
+                            <form action="" method="post" id="applicantform" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 <div class="g-input-group">
-                                    <label for="name">Ad və soyad <span>*</span></label>
-                                    <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                    <label for="full_name">Ad və soyad <span>*</span></label>
+                                    <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
                                 </div>
                                 <div class="g-input-group">
                                     <label for="message">Mesaj <span>*</span></label>
@@ -82,11 +64,12 @@
                                         <span class="file-msg">
                                             Sürüşdürün və ya <b>yükləyin</b>
                                         </span>
-                                        <input class="file-input" type="file" multiple>
+                                        <!-- <input id="cv" class="file-input" type="file" multiple> -->
+                                        <input type="file" name="" id="cv">
                                     </div>
                                 </div>
 
-                                <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                                <button id="applicant-submit" type="submit" class="g-btn-fill w-100">Göndər</button>
                             </form>
                         </div>
                     </div>
@@ -99,5 +82,49 @@
 
 {% block js %}
     <script src="{% static 'js/uplod.js' %}"></script>
-
+    <script>
+        applicantform = document.getElementById('applicantform');
+        const ApplicantLogic = {
+            applicantManager(data) {
+                fetch('/api/applicant', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": applicantform.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'cv': data.cv,
+                        'message': data.message,
+                        'vacancy': vacancy
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    });
+            }
+        }
+        applicant_submit = document.getElementById('applicant-submit');
+        applicant_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            full_name = document.getElementById('full_name').value;
+            cv = document.getElementById('cv').value;
+            vacancy = window.location.pathname.split('/')[2];
+            console.log(vacancy);
+            message = document.getElementById('message').value;
+            if (full_name === '' || cv === '' || message === '') {
+                alert('Zəhmət olmasa bütün xanaları doldurun');
+            } else {
+                data = {
+                    'full_name': full_name,
+                    'cv': cv,
+                    'message': message,
+                    'vacancy': vacancy
+                }
+                ApplicantLogic.applicantManager(data);
+            }
+        });
+    </script>
 {% endblock js %}

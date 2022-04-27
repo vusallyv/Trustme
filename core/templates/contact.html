@@ -2,7 +2,7 @@
 {% load static %}
 {% block css %}
 {% endblock css %}
-{% block title %}Trustme{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 {% block content %}
 
     <main>
@@ -26,7 +26,8 @@
                         <h2>Bizimlə əlaqə</h2>
                     </div>
                     <div class="col-xl-10 m-auto">
-                        <form action="" class="w-100">
+                        <form action="" class="w-100" method="post" id="contactform">
+                            {% csrf_token %}
                             <div class="row g-4 justify-content-end">
                                 <div class="col-md-6">
                                     <div class="g-input-group">
@@ -60,7 +61,7 @@
                                         <textarea id="message" name="" placeholder="Mesajınızı yazın" cols="30"
                                             rows="10"></textarea>
                                     </div>
-                                    <button type="submit" class="g-btn w-100 bg-white">Göndər</button>
+                                    <button type="submit" id="contact-submit" class="g-btn w-100 bg-white">Göndər</button>
                                 </div>
                             </div>
                         </form>
@@ -73,4 +74,50 @@
 {% endblock content %}
 {% block js %}
     <script src="{% static 'js/apply-form.js' %}"></script>
+    <script>
+        contactform = document.getElementById('contactform');
+        const ContactLogic = {
+            contactManager(data) {
+                fetch('/api/contact', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": contactform.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'company_name': data.company_name,
+                        'email': data.email,
+                        'phone': data.phone,
+                        'message': data.message,
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                    });
+            }
+        }
+        contact_submit = document.getElementById('contact-submit');
+        contact_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            email = document.getElementById('email').value;
+            full_name = document.getElementById('name').value;
+            company_name = document.getElementById('company-name').value;
+            phone = document.getElementById('phone').value;
+            message = document.getElementById('message').value;
+            if (email === '' || full_name === '' || company_name === '' || phone === '' || message === '') {
+                alert('Zəhmət olmasa bütün xanaları doldurun');
+            } else {
+                data = {
+                    'email': email,
+                    'full_name': full_name,
+                    'company_name': company_name,
+                    'phone': phone,
+                    'message': message,
+                }
+                ContactLogic.contactManager(data);
+            }
+        });
+    </script>
 {% endblock js %}

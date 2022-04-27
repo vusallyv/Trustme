@@ -14,5 +14,4 @@ urlpatterns = [
     path("seo-service", views.seo_service, name = "seo-service"),
     path("services", views.services, name = "services"),
     path("smm-service", views.smm_service, name = "smm-service"),
-    path("vacancy", views.vacancy, name = "vacancy"),
 ]

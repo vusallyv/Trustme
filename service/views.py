@@ -40,7 +40,3 @@ def services(request):
 
 def smm_service(request):
     return render(request, "smm-service.html")
-
-
-def vacancy(request):
-    return render(request, "vacancy.html")
