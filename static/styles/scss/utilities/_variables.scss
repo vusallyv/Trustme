@@ -1,0 +1,17 @@
+$main-color: #E9204F;
+$dark-color: #393E46;
+$dark-purple: #2E1A73;
+$light-gray: #FAFAFA;
+$gray: #898989;
+$gray2: #E0E0E0;
+$gray3: #C4C4C4;
+$green: #B4D51E;
+
+$font-family: "Euclid Circular A";
+$font-types: ("Bold": 700, "Regular": 400, "SemiBold": 600, "ExtraBold": 900, "Medium": 500, "Light": 300, );
+
+$break-points: ("sm": 468, "md": 768, "lg": 1024, "xl": 1200, "xxl": 1440, );
+$desktop-width: map-get($break-points, "xl");
+$desktop-sm-width: map-get($break-points, "lg");
+$tablet-width: map-get($break-points, "md");
+$mobile-width: map-get($break-points, "sm");

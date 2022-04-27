@@ -1,0 +1,13 @@
+.loading-gif {
+    height: rem(80);
+    padding: 10px 0;
+    text-align: center;
+
+    @include breakpoint-max($mobile-width) {
+        height: rem(50);
+    }
+
+    img {
+        height: 100%;
+    }
+}

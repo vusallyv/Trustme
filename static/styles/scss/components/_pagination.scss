@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: rem(18);
+    &__link {
+        color: $dark-color;
+        font-size: rem(14);
+        transition: 0.3s;
+        &--active {
+            color: $main-color;
+            font-weight: 600;
+        }
+        &:hover {
+            color: $main-color;
+        }
+    }
+    .custom-prev-btn {
+        margin-right: rem(22);
+        @include breakpoint-max($mobile-width){
+            margin-right: rem(4);
+        }
+    }
+    .custom-next-btn {
+        margin-left: rem(22);
+        @include breakpoint-max($mobile-width){
+            margin-left: rem(4);
+        }
+    }
+}

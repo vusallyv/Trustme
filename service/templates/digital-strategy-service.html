@@ -1,0 +1,654 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+{% include 'partials/packages.html' %}
+    
+    <main>
+        <section class="pt-sm-5 pt-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        Xidmətlər
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Rəqəmsal Strategiya
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="d-flex">
+                    <ul class="dashboard">
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy1.svg" alt=""> 360° Marketinq xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link dashboard__link--active">
+                                <img src="./static/assets/svg/copy3.svg" alt=""> Rəqəmsal Strategiya Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy4.svg" alt="">SEO Xidməti Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy13.svg" alt="">Veb sayt Xidmətləri
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy5.svg" alt=""> SMM Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy6.svg" alt=""> Local Marketinq Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy7.svg" alt=""> Google Reklamları Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy8.svg" alt="">Tv & Media Planlama Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy9.svg" alt=""> SEO Audit Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy10.svg" alt=""> Dizayn Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy11.svg" alt=""> Brendinq Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy12.svg" alt=""> Reklam filmlərinin çəkilişi Xidməti
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-column ps-lg-4 ms-lg-2">
+                        <div class="section-title mb-4">
+                            <h2>Rəqəmsal Strategiya</h2>
+                        </div>
+                        <div class="fixed-content">
+                            <p class="g-text fixed-content__text">
+                                Bu gün inteqrasiya edilmiş marketinq kommunikasiyasına əsaslanan 360 dərəcə rəqəmsal
+                                marketinq strategiyaları ilə əhəmiyyət qazanmışdır. Bu marketinq strategiyası birbaşa
+                                marketinqdə istifadə olunan kommunikasiya materiallarının brendin digər elementləri
+                                və marketinq qarışığı ilə bir-biri ilə harmoniya birləşdirilməsi prosesidir.
+                                <br><br> Reklam, tanıtım, tədbirlər və marketinqin bütün elementlərini özündə
+                                birləşdirən
+                                360 dərəcə marketinq, müştəri ilə ünsiyyət qurarkən hər kanalda mövcud olmağı
+                                hədəfləyir.
+                                Bunun üçün əsas odur ki, hər kanaldan müştəriyə
+                                toxunsun.
+                                <br><br> Bu tip marketinqdə, markaların istehsal etdiyi məhsul və ya xidmətlərə və
+                                müştərilərin satın alma davranışlarına təsir edəcək strategiyalar həyata keçirilməlidir.
+                                Bu
+                                strategiyalar əvvəllər televiziya, radio və qəzet
+                                kimi materiallardan istifadə etməklə həyata keçirilirdi. Bu gün internetin bir çox
+                                sahədə
+                                istifadəsi ilə əlaqədar olaraq brendlərin ənənəvi marketinq strategiyaları, onlayn və
+                                offline kanalların birlikdə istifadə edildiyi,
+                                müştəri təcrübələrinin paylaşıldığı çox yönlü ünsiyyət üsulları ilə formalaşan 360
+                                dərəcə
+                                marketinq strategiyaları ilə əvəz edilmişdir.
+                            </p>
+                            <button class="fixed-content__more">
+                                Daha çox
+                                <img src="./static/assets/svg/black-down.svg" alt="">
+                            </button>
+                        </div>
+                        <p class="g-title mt-4 pt-2">
+                            Kateqoriyalar
+                        </p>
+                        <div class="accordion mt-3 mt-sm-4 pt-2" id="accordionCategory">
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Korporativ şəxsiyyət dizaynı
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne">
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Loqo dizaynı
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        E-poçt Şablon dizaynı
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree">
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                        Sosial media konsept dizaynı
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4">
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading5">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                        Broşür dizaynı
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5">
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages d-md-block d-none section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start pt-5 mb-4">
+                            <p>ÜSTÜNLÜKLƏR</p>
+                            <h2>Rəqəmsal Strategiyanın üstünlükləri</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper advantages__slide" id="advantages__slide">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <img src="./static/assets/svg/Frame 158.svg" class="advantages-box__icon"
+                                            alt="">
+                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <img src="./static/assets/svg/Frame 158 (1).svg" class="advantages-box__icon"
+                                            alt="">
+                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <img src="./static/assets/svg/Frame 158 (2).svg" class="advantages-box__icon"
+                                            alt="">
+                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <img src="./static/assets/svg/Frame 158.svg" class="advantages-box__icon"
+                                            alt="">
+                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next custom-next-btn advantages-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev custom-prev-btn advantages-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="recommend d-md-none pb-4 bg-white">
+            <div class="g-container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
+                                <p>XİDMƏTLƏR</p>
+                                <h2>Uğurlu İşlər</h2>
+                            </div>
+
+                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                Hamısı
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9">
+                        <div class="swiper recommend__slide">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="./static/assets/img/Frame 64 (1).png" alt="">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages experts pb-4 pb-md-0">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start pt-5 mb-4">
+                            <p>RƏQƏMSAL MARKETİNQ</p>
+                            <h2>Xidmətə cəlb olunan mütəxəssislər</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper advantages__slide" id="experts__slide">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">UX/UI Dizayner</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır. Mükəmməl bir dizaynı
+                                            həqiqətən nəyin yaratdığını anlamaq üçün istifadəçi təcrübəsi (UX) dizaynını
+                                            da anlamaq vacibdir.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">Marketinq Direktor</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır. Mükəmməl bir dizaynı
+                                            həqiqətən nəyin yaratdığını anlamaq üçün istifadəçi təcrübəsi (UX) dizaynını
+                                            da anlamaq vacibdir.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">Rəqəmsal Menecer</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır. Mükəmməl bir dizaynı
+                                            həqiqətən nəyin yaratdığını anlamaq üçün istifadəçi təcrübəsi (UX) dizaynını
+                                            da anlamaq vacibdir.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">UX/UI Dizayner</h3>
+                                        <p class="advantages-box__text">
+                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır. Mükəmməl bir dizaynı
+                                            həqiqətən nəyin yaratdığını anlamaq üçün istifadəçi təcrübəsi (UX) dizaynını
+                                            da anlamaq vacibdir.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-button-next custom-next-btn experts-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev custom-prev-btn experts-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-md-4">
+            <div class="g-container">
+                <div class="price-box">
+                    <div class="price-box__wrapper">
+                        <p class="price-box__title">
+                            Standart Digital Paket
+                        </p>
+                        <p class="price-box__subtitle">
+                            ⋔1000 <span> / ay</span>
+                        </p>
+                        <ul class="price-box__list price-box__list--shadow">
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6 aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                yaradılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin
+                                idarə edilməsi
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6 aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                        </ul>
+                        <button class="price-box__more">
+                            Daha çox
+                            <img src="./static/assets/svg/black-down.svg" alt="">
+                        </button>
+                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#standartPacketModal">
+                            Müraciət et
+                        </button>
+                    </div>
+                    <div class="price-box__wrapper price-box__wrapper--main">
+                        <p class="price-box__title">
+                            Premium Digital Paket
+                            <span class="chip chip--green">
+                                Populyar
+                            </span>
+                        </p>
+                        <p class="price-box__subtitle">
+                            ⋔1500 <span> / ay</span>
+                        </p>
+                        <ul class="price-box__list price-box__list--shadow">
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6
+                                aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                yaradılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin idarə
+                                edilməsi
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6
+                                aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                        </ul>
+                        <button class="price-box__more">
+                            Daha çox
+                            <img src="./static/assets/svg/white-down.svg" alt="">
+                        </button>
+                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#premiumPacketModal">
+                            Müraciət et
+                        </button>
+                    </div>
+                    <div class="price-box__wrapper">
+                        <p class="price-box__title">
+                            Platinum Digital Paket
+                        </p>
+                        <p class="price-box__subtitle">
+                            ⋔3000 <span> / ay</span>
+                        </p>
+                        <ul class="price-box__list price-box__list--shadow">
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6
+                                aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                yaradılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin idarə
+                                edilməsi
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                qurulması (6
+                                aylıq)
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                formalaşdırılması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                            <li class="price-box__item">
+                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                araşdırması
+                            </li>
+                        </ul>
+                        <button class="price-box__more">
+                            Daha çox
+                            <img src="./static/assets/svg/black-down.svg" alt="">
+                        </button>
+                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#platinumPacketModal">
+                            Müraciət et
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+{% block js %}
+    <script src="./static/js/pricebox-more.js"></script>
+    <script src="./static/js/show-more.js"></script>
+    <script src="./static/js/apply-form.js"></script>
+
+    <script src="./static/js/slides/advantages-slide.js"></script>
+    <script src="./static/js/slides/experts-slide.js"></script>
+    <script src="./static/js/slides/recommend-slide.js"></script>
+{% endblock js %}

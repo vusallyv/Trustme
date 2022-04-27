@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="contact pt-4 pt-sm-5">
+            <img src="./static/assets/svg/mob-decor.svg" class="mob-navbar__decor" alt="">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Əlaqə
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="row">
+                    <div class="section-title text-center mb-3 mb-md-5">
+                        <p>ƏLAQƏ</p>
+                        <h2>Bizimlə əlaqə</h2>
+                    </div>
+                    <div class="col-xl-10 m-auto">
+                        <form action="" class="w-100">
+                            <div class="row g-4 justify-content-end">
+                                <div class="col-md-6">
+                                    <div class="g-input-group">
+                                        <label for="name">Ad və soyad <span>*</span></label>
+                                        <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="company-name">Şirkət adı <span>*</span></label>
+                                        <input id="company-name" type="text"
+                                            placeholder="Şirkətinizin adını daxil edin">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="email">Email <span>*</span></label>
+                                        <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                                    </div>
+                                    <div class="g-input-group mb-0">
+                                        <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                                        <div class="d-flex align-items-center">
+                                            <select class="prefix" name="states[]" style="min-width: 85px;">
+                                                <option value='+994'>+994</option>
+                                                <option value='+7'>+7</option>
+                                                <option value='+1'>+1</option>
+                                            </select>
+                                            <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="g-input-group mb-0">
+                                        <label for="message">Mesaj <span>*</span></label>
+                                        <textarea id="message" name="" placeholder="Mesajınızı yazın" cols="30"
+                                            rows="10"></textarea>
+                                    </div>
+                                    <button type="submit" class="g-btn w-100 bg-white">Göndər</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+{% endblock content %}
+{% block js %}
+    <script src="./static/js/apply-form.js"></script>
+{% endblock js %}

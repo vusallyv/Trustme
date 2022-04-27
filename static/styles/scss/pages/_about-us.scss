@@ -1,0 +1,134 @@
+.about-us {
+    background-color: $light-gray;
+    position: relative;
+
+    &__text {
+        background: white;
+        box-shadow: 8px 8px 50px rgba(0, 0, 0, 0.03);
+        border-radius: rem(6);
+        border-top: 10px solid $dark-purple;
+        padding: rem(30);
+
+        p {
+            font-size: rem(14);
+            line-height: rem(21);
+        }
+
+        @include breakpoint-max($mobile-width) {
+            padding: rem(20);
+        }
+    }
+
+    &__title {
+        max-width: rem(413);
+        margin-left: auto;
+
+        p {
+            @include font-size(36, 700);
+            line-height: rem(46);
+            color: $dark-purple;
+        }
+
+        span {
+            font-size: rem(18);
+            color: $dark-purple;
+            display: block;
+            text-align: right;
+            margin-top: rem(10);
+        }
+    }
+
+    &__decor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60%;
+
+        @include breakpoint-max($mobile-width) {
+            display: none;
+        }
+    }
+}
+
+.profile-card {
+    background-color: $light-gray;
+    padding-top: rem(70);
+    padding-bottom: rem(70);
+
+    &__img {
+        height: rem(400);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: rem(6);
+        }
+    }
+
+    &__content {
+        background: #FFFFFF;
+        box-shadow: 8px 8px 50px rgba(0, 0, 0, 0.03);
+        border-radius: rem(6);
+        padding: rem(20) rem(25);
+        transform: translateY(rem(-50));
+        margin: 0 20px;
+    }
+
+    &__title {
+        @include font-size(18, 600);
+    }
+
+    &__position {
+        font-size: rem(13);
+        margin-top: rem(15);
+        margin-bottom: rem(5);
+        display: block;
+    }
+
+    &__description {
+        font-size: rem(13);
+        color: $gray;
+    }
+
+    @include breakpoint-max($tablet-width) {
+        padding-top: rem(20);
+        padding-bottom: rem(40);
+
+        &__img {
+            height: rem(300);
+
+            img {
+                object-position: top;
+            }
+        }
+    }
+
+    @include breakpoint-max($mobile-width) {
+        &__img {
+            height: rem(200);
+        }
+    }
+
+    @include breakpoint-max(576) {
+        &__img {
+            img {
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+
+        &__content {
+            transform: none;
+            margin: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+        .swiper-wrapper{
+            padding-bottom: rem(30);
+        }
+    }
+}

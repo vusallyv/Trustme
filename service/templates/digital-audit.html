@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <div class="section blog-detail pt-4 pt-sm-5 mb-sm-5 mb-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-3 mb-sm-4">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Rəqəmsal Audit
+                        </a>
+                    </li>
+                </ul>
+                <div class="row g-3 gx-lg-5">
+                    <div class="col-lg-8">
+                        <div class="section-title mb-3">
+                            <h2>Rəqəmsal Audit</h2>
+                        </div>
+                        <div class="g-text">
+                            <b>Veb saytınızı qeyd edin, SEO Audit nəticənizi göndərək.</b>
+                            <br>
+                            SEO audit xidməti, veb saytınızın analizi deməkdir. Yəni veb saytınızda hansı boşluqlar
+                            mövcuddur, axtarış nəticələrində çıxmağınız üçün atacağınız addımlar hansılardır və axtarış
+                            motorlarının alqoritmalarına uyğun olaraq hansı dəyişiklikləri icra etməlisinizsə, onları
+                            sizə bildirir.
+                        </div>
+                        <div class="accordion" id="accordionCategory">
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Facebook marketinq
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" >
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        İnstagram marketinq
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    >
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Linkedin marketinq
+                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="headingThree" >
+                                    <div class="accordion-body">
+                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
+                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
+                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
+                                        edirik. Potensial
+                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
+                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="apply-box">
+                            <p class="blog-detail__subtitle mb-4 pb-1">
+                                Müraciət et
+                            </p>
+                            <form action="">
+                                <div class="g-input-group">
+                                    <label for="name">Ad və soyad <span>*</span></label>
+                                    <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                                    <div class="d-flex align-items-center">
+                                        <select class="prefix" name="states[]" style="min-width: 85px;">
+                                            <option value='+994'>+994</option>
+                                            <option value='+7'>+7</option>
+                                            <option value='+1'>+1</option>
+                                        </select>
+                                        <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                                    </div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="email">Email <span>*</span></label>
+                                    <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="website">Vebsayt</label>
+                                    <input id="website" type="url" placeholder="Vebsayt URL daxil edin">
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="Facebook">Facebook</label>
+                                    <input id="Facebook" type="url" placeholder="Facebook URL daxil edin">
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="Instagram">Instagram</label>
+                                    <input id="Instagram" type="url" placeholder="Instagram URL daxil edin">
+                                </div>
+
+                                <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock content %}
+
+{% block js %}
+    <script src="./static/js/apply-form.js"></script>
+{% endblock js %}

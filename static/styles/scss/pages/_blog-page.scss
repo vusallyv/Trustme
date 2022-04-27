@@ -1,0 +1,34 @@
+.blog-page {
+    &__img {
+        height: rem(250);
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+    }
+    &__date{
+        font-size: rem(12);
+        color: $gray;
+        margin-bottom: rem(11);
+    }
+    &__title{
+        @include font-size(36, 700);
+        line-height: rem(45);
+        color: $dark-purple;
+        margin-bottom: rem(8);
+    }
+    &__text{
+        font-size: rem(14);
+        line-height: rem(18);
+        margin-bottom: rem(30);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+}

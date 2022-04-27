@@ -1,0 +1,8 @@
+.faq{
+    &__wrapper {
+        display: flex;
+        @include breakpoint-max($desktop-sm-width) {
+            flex-direction: column;
+        }
+    }
+}

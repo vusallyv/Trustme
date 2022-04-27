@@ -1,0 +1,43 @@
+.portfolio-page {
+    margin-bottom: rem(50);
+
+    @include breakpoint-max($tablet-width) {
+        margin-bottom: rem(40);
+    }
+
+    &__wrapper {
+        display: flex;
+
+        @include breakpoint-max($desktop-sm-width) {
+            flex-direction: column;
+            .pagination {
+                justify-content: center;
+            }
+        }
+    }
+
+    &__title {
+        @include font-size(18, 700);
+        margin-bottom: rem(25);
+
+        @include breakpoint-max($desktop-sm-width) {
+            display: none;
+        }
+    }
+
+    &__item {
+        display: flex;
+        height: rem(280);
+
+        @include breakpoint-max($tablet-width) {
+            height: rem(250);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: rem(4);
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="services pt-4 pt-sm-5">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Xidmətlər
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="section-title mb-3 mb-md-5">
+                    <h2>Xidmətlər</h2>
+                </div>
+
+                <div class="row g-3 g-md-4">
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (4).svg" class="services__icon" alt="">
+                            <h3 class="services__title">360° Marketinq</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:digital-strategy-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (5).svg" class="services__icon" alt="">
+                            <h3 class="services__title">Rəqəmsal Strategiya</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (6).svg" class="services__icon" alt="">
+                            <h3 class="services__title">SEO Xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (7).svg" class="services__icon" alt="">
+                            <h3 class="services__title">Vebsayt Xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:smm-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (8).svg" class="services__icon" alt="">
+                            <h3 class="services__title">SMM Xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (9).svg" class="services__icon" alt="">
+                            <h3 class="services__title">Lokal Marketinq xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/icon (10).svg" class="services__icon" alt="">
+                            <h3 class="services__title">Google Reklamları xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/ico5.svg" class="services__icon" alt="">
+                            <h3 class="services__title">TV & Media Planlama xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/ico4.svg" class="services__icon" alt="">
+                            <h3 class="services__title">SEO Audit xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:design-service' %}" class="services__box">
+                            <img src="./static/assets/svg/ico2.svg" class="services__icon" alt="">
+                            <h3 class="services__title">Dizayn Xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/ico3.svg" class="services__icon" alt="">
+                            <h3 class="services__title">Brendinq Xidməti</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:seo-service' %}" class="services__box">
+                            <img src="./static/assets/svg/ico1.svg" class="services__icon" alt="">
+                            <h3 class="services__title">Reklam Filmlərinin Çəkilişi</h3>
+                            <p class="services__text">
+                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="services__decor">
+                <img src="./static/assets/svg/decor.svg" alt="">
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+
+
+{% block js %}
+{% endblock js %}

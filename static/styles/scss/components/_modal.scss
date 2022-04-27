@@ -1,0 +1,76 @@
+.modal {
+    padding: rem(30);
+    box-shadow: 8px 8px 50px rgba(0, 0, 0, 0.03);
+
+    .btn-close {
+        position: absolute;
+        background: none;
+        right: rem(30);
+        top: rem(12);
+        z-index: 3;
+        filter: brightness(0);
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        img {
+            width: rem(30);
+        }
+    }
+
+    &-content {
+        max-width: rem(410);
+        margin: auto;
+        overflow: auto;
+    }
+
+    &-body {
+        z-index: 2;
+    }
+
+    &-title {
+        @include font-size(18, 700);
+        margin-bottom: rem(30);
+        text-align: center;
+    }
+
+    .g-btn-fill {
+        margin-top: rem(30);
+    }
+
+    @include breakpoint-max($mobile-width) {
+        padding: 0;
+
+        &-dialog {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        &-content {
+            border: 0;
+            height: 100%;
+            border-radius: 0
+        }
+
+        &-body {
+            padding: 0 rem(19);
+        }
+
+        &-title {
+            font-size: rem(24);
+            margin-bottom: rem(24);
+            margin-top: rem(24);
+            text-align: start;
+        }
+
+        form {
+            height: 100%;
+        }
+
+        .btn-close {
+            top: rem(23);
+        }
+    }
+}

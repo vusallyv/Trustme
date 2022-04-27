@@ -1,0 +1,14 @@
+.services-page {
+    &__wrapper{
+        display: flex;
+    }
+    .g-btn-fill {
+        width: rem(250);
+        margin-top: rem(25);
+
+        @include breakpoint-max($mobile-width){
+            width: 100%;
+            margin-top: rem(5);
+        }
+    }
+}
