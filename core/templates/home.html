@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Home{% endblock title %}
@@ -350,75 +350,23 @@
                     <div class="col-xl-2">
                         <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
                             <p>
-                                XİDMƏTLƏR
+                                {% trans 'XİDMƏTLƏR' %}
                             </p>
                             <h2>
-                                Nə təklif edirik?
+                                {% trans 'Nə təklif edirik?' %}
                             </h2>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="row g-4">
+                            {% for service in services %}
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (4).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">360° Marketinq</h4>
+                                <a href="{% url 'service:service-detail' service.slug %}" class="offer">
+                                    <img src="{{service.icon.url}}" class="offer__icon" alt="">
+                                    <h4 class="offer__title">{{service.title}}</h4>
                                 </a>
                             </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:digital-strategy-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (5).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">Rəqəmsal Strategiya
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (6).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">SEO Xidməti
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (7).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">Vebsayt Xidməti
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:smm-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (8).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">SMM Xidməti
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (9).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">Lokal Marketinq
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="{% static 'assets/svg/icon (10).svg' %}" class="offer__icon" alt="">
-                                    <h4 class="offer__title">Google Reklamları
-                                    </h4>
-                                </a>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a href="{% url 'service:services' %}" class="offer-add">
-                                    <div class="offer-add__content">
-                                        <p class="offer-add__count">
-                                            + 2 <br>əlavə
-                                        </p>
-                                        <div class="offer-add__link">
-                                            <img src="{% static 'assets/svg/Vector 108.svg' %}" alt="">
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -439,26 +387,26 @@
                                 <a href="" class="portfolio__main-link">
                                     <img src="{% static 'assets/svg/right.svg' %}" alt="">Vebsayt <br> Xidmətləri
                                 </a>
-                                <a href="{% url 'service:seo-service' %}" class="portfolio__link">SEO Xidmətləri</a>
+                                <a href="" class="portfolio__link">SEO Xidmətləri</a>
                             </div>
                             <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">Hamısı</a>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="portfolio__cards">
-                            <a href="{% url 'service:one-project' %}" class="portfolio__card">
+                            <a href="#" class="portfolio__card">
                                 <img src="{% static 'assets/img/Alison travel portfolio cover (1).png' %}" alt="">
                             </a>
-                            <a href="{% url 'service:one-project' %}" class="portfolio__card">
+                            <a href="#" class="portfolio__card">
                                 <img src="{% static 'assets/img/D&P portfolio cover (1).png' %}" alt="">
                             </a>
-                            <a href="{% url 'service:one-project' %}" class="portfolio__card">
+                            <a href="#" class="portfolio__card">
                                 <img src="{% static 'assets/img/D&P portfolio cover (1) (1).png' %}" alt="">
                             </a>
-                            <a href="{% url 'service:one-project' %}" class="portfolio__card">
+                            <a href="#" class="portfolio__card">
                                 <img src="{% static 'assets/img/Frame 25 (1).png' %}" alt="">
                             </a>
-                            <a href="{% url 'service:one-project' %}" class="portfolio__card">
+                            <a href="#" class="portfolio__card">
                                 <img src="{% static 'assets/img/Alison travel portfolio cover (1) (1).png' %}" alt="">
                             </a>
                             <a href="" class="portfolio-card-add">
@@ -951,66 +899,21 @@
                         <div class="blogs__wrapper">
                             <div class="swiper blogs__slide">
                                 <div class="swiper-wrapper">
+                                    {% for blog in blogs %}
                                     <div class="swiper-slide">
                                         <div class="blogs__box">
-                                            <a href="" class="blogs__link">Sosial mediaya niyə reklam verməliyik?</a>
-                                            <span class="blogs__date">12 İyun, 2021</span>
+                                            <a href="" class="blogs__link">{{blog.title}}</a>
+                                            <span class="blogs__date">{{blog.created_at|date:"d F, Y"}}</span>
                                             <p class="blogs__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
+                                                {{blog.body|truncatechars:100|safe|striptags}}    
                                             </p>
-                                            <a href="" class="blogs__read-more">
-                                                Daha çox
+                                            <a href="{% url 'blog:blog-detail' blog.slug %}" class="blogs__read-more">
+                                                {% trans 'Daha çox' %}
                                                 <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="blogs__box">
-                                            <a href="" class="blogs__link">Sosial mediaya niyə reklam verməliyik?</a>
-                                            <span class="blogs__date">12 İyun, 2021</span>
-                                            <p class="blogs__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <a href="" class="blogs__read-more">
-                                                Daha çox
-                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="blogs__box">
-                                            <a href="" class="blogs__link">Sosial mediaya niyə reklam verməliyik?</a>
-                                            <span class="blogs__date">12 İyun, 2021</span>
-                                            <p class="blogs__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <a href="" class="blogs__read-more">
-                                                Daha çox
-                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="blogs__box">
-                                            <a href="" class="blogs__link">Sosial mediaya niyə reklam verməliyik?</a>
-                                            <span class="blogs__date">12 İyun, 2021</span>
-                                            <p class="blogs__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <a href="" class="blogs__read-more">
-                                                Daha çox
-                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>

@@ -3,13 +3,21 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 from core.forms import ContactForm
 from core.models import Vacancy
+from blog.models import Blog
 from django.utils.translation import gettext_lazy as _
+
+from service.models import Service
 
 # Create your views here.
 
-def home(request):
-    return render(request, "home.html")
-
+class HomeView(View):
+    def get(self, request):
+        context = {
+            'title': _('Home'),
+            'services': Service.objects.all(),
+            'blogs': Blog.objects.all(),
+        }
+        return render(request, "home.html", context=context)
 
 def faq(request):
     return render(request, "faq.html")
