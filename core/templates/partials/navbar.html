@@ -1,10 +1,11 @@
+{% load static %}
 
 <header>
     <nav class="navbar navbar--home">
         <div class="g-container">
             <div class="navbar__desktop-wrapper">
                 <a href="{% url 'core:home'  %}" class="navbar__logo">
-                    <img src="./static/assets/svg/trustme_svg 1.svg" alt="">
+                    <img src="{% static 'assets/svg/trustme_svg 1.svg' %}" alt="">
                 </a>
 
                 <ul class="navbar__list">
@@ -31,7 +32,7 @@
                     <div class="dropdown lang-dropdown">
                         <button class="dropdown-toggle" type="button" id="selectLanguage" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="./static/assets/svg/global.svg" alt="">
+                            <img src="{% static 'assets/svg/global.svg' %}" alt="">
                             <span>
                                 AZE
                                 <svg width="8" height="6" viewBox="0 0 8 6" fill="none"
@@ -51,12 +52,12 @@
 
             <div class="navbar__mobile-wrapper">
                 <button class="navbar__open">
-                    <img src="./static/assets/svg/home-menu-icon.svg" alt="" class="white-item">
-                    <img src="./static/assets/svg/menu-icon.svg" alt="" class="black-item">
+                    <img src="{% static 'assets/svg/home-menu-icon.svg' %}" alt="" class="white-item">
+                    <img src="{% static 'assets/svg/menu-icon.svg' %}" alt="" class="black-item">
                 </button>
                 <a href="{% url 'core:home'  %}" class="navbar__mobile-logo">
-                    <img src="./static/assets/svg/home-mob-menu-logo.svg" alt="" class="white-item">
-                    <img src="./static/assets/svg/trustme_svg 1.svg" alt="" class="black-item">
+                    <img src="{% static 'assets/svg/home-mob-menu-logo.svg' %}" alt="" class="white-item">
+                    <img src="{% static 'assets/svg/trustme_svg 1.svg' %}" alt="" class="black-item">
                 </a>
                 <a href="tel:+994702523315" class="navbar__mobile-call">
                     <i class="fa-solid fa-phone-flip"></i>
@@ -69,10 +70,10 @@
         <div class="g-container h-100">
             <div class="mob-navbar__wrapper">
                 <button class="mob-navbar__close">
-                    <img src="./static/assets/svg/Clear.svg" alt="">
+                    <img src="{% static 'assets/svg/Clear.svg' %}" alt="">
                 </button>
                 <a href="" class="mob-navbar__logo">
-                    <img src="./static/assets/svg/trustme_svg 1.svg" alt="">
+                    <img src="{% static 'assets/svg/trustme_svg 1.svg' %}" alt="">
                 </a>
                 <ul>
                     <li>
@@ -132,6 +133,6 @@
                 </div>
             </div>
         </div>
-        <img src="./static/assets/svg/mob-decor.svg" class="mob-navbar__decor" alt="">
+        <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
     </nav>
 </header>

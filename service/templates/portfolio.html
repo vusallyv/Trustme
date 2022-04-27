@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -26,67 +27,67 @@
                     <ul class="dashboard">
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link dashboard__link--active">
-                                <img src="./static/assets/svg/copy2.svg" alt=""> Hamısı
+                                <img src="{% static 'assets/svg/copy2.svg' %}" alt=""> Hamısı
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy1.svg" alt=""> 360° Marketinq xidməti
+                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> 360° Marketinq xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy3.svg" alt=""> Rəqəmsal Strategiya Xidməti
+                                <img src="{% static 'assets/svg/copy3.svg' %}" alt=""> Rəqəmsal Strategiya Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy4.svg" alt="">SEO Xidməti Xidməti
+                                <img src="{% static 'assets/svg/copy4.svg' %}" alt="">SEO Xidməti Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy13.svg" alt="">Veb sayt Xidmətləri
+                                <img src="{% static 'assets/svg/copy13.svg' %}" alt="">Veb sayt Xidmətləri
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy5.svg" alt=""> SMM Xidməti
+                                <img src="{% static 'assets/svg/copy5.svg' %}" alt=""> SMM Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy6.svg" alt=""> Local Marketinq Xidməti
+                                <img src="{% static 'assets/svg/copy6.svg' %}" alt=""> Local Marketinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy7.svg" alt=""> Google Reklamları Xidməti
+                                <img src="{% static 'assets/svg/copy7.svg' %}" alt=""> Google Reklamları Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy8.svg" alt="">Tv & Media Planlama Xidməti
+                                <img src="{% static 'assets/svg/copy8.svg' %}" alt="">Tv & Media Planlama Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy9.svg" alt=""> SEO Audit Xidməti
+                                <img src="{% static 'assets/svg/copy9.svg' %}" alt=""> SEO Audit Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy10.svg" alt=""> Dizayn Xidməti
+                                <img src="{% static 'assets/svg/copy10.svg' %}" alt=""> Dizayn Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy11.svg" alt=""> Brendinq Xidməti
+                                <img src="{% static 'assets/svg/copy11.svg' %}" alt=""> Brendinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy12.svg" alt=""> Reklam filmlərinin çəkilişi Xidməti
+                                <img src="{% static 'assets/svg/copy12.svg' %}" alt=""> Reklam filmlərinin çəkilişi Xidməti
                             </a>
                         </li>
                     </ul>
@@ -167,32 +168,32 @@
                         <div class="row g-3 g-xl-4 d-sm-flex d-none">
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio1.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio2.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio3.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio3.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio4.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio4.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio1.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio2.png' %}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -200,17 +201,17 @@
                         <div class="row g-3 d-sm-flex d-sm-none">
                             <div class="col-12">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio1.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-12">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio2.png' %}" alt="">
                                 </a>
                             </div>
                             <div class="col-12">
                                 <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
-                                    <img src="./static/assets/img/portfolio3.png" alt="">
+                                    <img src="{% static 'assets/img/portfolio3.png' %}" alt="">
                                 </a>
                             </div>
                         </div>

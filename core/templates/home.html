@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Home{% endblock title %}
@@ -9,7 +10,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    <img src="./static/assets/svg/Clear (1).svg" alt="">
+                    <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
                 </button>
 
                 <div class="modal-body">
@@ -113,7 +114,7 @@
 
                         <button type="submit" class="g-btn-fill w-100">Göndər</button>
                     </form>
-                    <img src="./static/assets/svg/mob-decor.svg" class="mob-navbar__decor" alt="">
+                    <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
                 </div>
             </div>
         </div>
@@ -137,7 +138,7 @@
                     </button>
                 </div>
             </div>
-            <img src="./static/assets/svg/Vector (1).svg" class="banner__decor" alt="">
+            <img src="{% static 'assets/svg/Vector (1).svg' %}" class="banner__decor" alt="">
         </section>
 
         <section class="section-gap">
@@ -157,8 +158,8 @@
                         <div class="row g-4">
                             <div class="col-6 col-lg-3">
                                 <div class="info-box">
-                                    <img src="./static/assets/svg/icon.svg" class="info-box__icon" alt="">
-                                    <img src="./static/assets/svg/mob-4.svg" class="info-box__icon--mob" alt="">
+                                    <img src="{% static 'assets/svg/icon.svg' %}" class="info-box__icon" alt="">
+                                    <img src="{% static 'assets/svg/mob-4.svg' %}" class="info-box__icon--mob" alt="">
                                     <h3 class="info-box__title">360° Marketinq</h3>
                                     <p class="info-box__text">
                                         Ağlınıza gələcək bütün xidmətləri ən peşəkar formada sizə təklif etmək
@@ -168,8 +169,8 @@
                             </div>
                             <div class="col-6 col-lg-3">
                                 <div class="info-box">
-                                    <img src="./static/assets/svg/icon (1).svg" class="info-box__icon" alt="">
-                                    <img src="./static/assets/svg/mob-3.svg" class="info-box__icon--mob" alt="">
+                                    <img src="{% static 'assets/svg/icon (1).svg' %}" class="info-box__icon" alt="">
+                                    <img src="{% static 'assets/svg/mob-3.svg' %}" class="info-box__icon--mob" alt="">
                                     <h3 class="info-box__title">Müsbət ROI</h3>
                                     <p class="info-box__text">
                                         Marketinq yatırımınızdan müsbət gəlir əldə etmək hər zaman ən vacib
@@ -179,8 +180,8 @@
                             </div>
                             <div class="col-6 col-lg-3">
                                 <div class="info-box">
-                                    <img src="./static/assets/svg/icon (2).svg" class="info-box__icon" alt="">
-                                    <img src="./static/assets/svg/mob-2.svg" class="info-box__icon--mob" alt="">
+                                    <img src="{% static 'assets/svg/icon (2).svg' %}" class="info-box__icon" alt="">
+                                    <img src="{% static 'assets/svg/mob-2.svg' %}" class="info-box__icon--mob" alt="">
                                     <h3 class="info-box__title">Peşəkar komanda</h3>
                                     <p class="info-box__text">
                                         Layihə idarəetmə sistemimizin hər nöqtəsində bizimlə birlikdə istirak edə
@@ -190,8 +191,8 @@
                             </div>
                             <div class="col-6 col-lg-3">
                                 <div class="info-box">
-                                    <img src="./static/assets/svg/icon (3).svg" class="info-box__icon" alt="">
-                                    <img src="./static/assets/svg/mob-1.svg" class="info-box__icon--mob" alt="">
+                                    <img src="{% static 'assets/svg/icon (3).svg' %}" class="info-box__icon" alt="">
+                                    <img src="{% static 'assets/svg/mob-1.svg' %}" class="info-box__icon--mob" alt="">
                                     <h3 class="info-box__title">Şəffaf idarəetmə</h3>
                                     <p class="info-box__text">
                                         Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa
@@ -215,127 +216,127 @@
                     </div>
                     <div class="col-lg-10">
                         <div class="loading-gif">
-                            <img src="./static/assets/img/ZZ5H.gif" alt="">
+                            <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
                         </div>
                         <div class="overflow-hidden d-none loading-item">
                             <div id="certifed__slide-desktop" class="certifed__slide">
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Yandex.Metrica-Logo.wine 1.png" alt="">
+                                    <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google-analytics.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Group.png" alt="">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Semrush_logo 1.png" alt="">
+                                    <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google-ads.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Group.png" alt="">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
                                 </div>
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Yandex.Metrica-Logo.wine 1.png" alt="">
-                                </div>
-
-                                <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google-analytics.png" alt="">
+                                    <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Group.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Semrush_logo 1.png" alt="">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google-ads.png" alt="">
+                                    <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/logos_google.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
                                 </div>
 
                                 <div class="certifed__item">
-                                    <img src="./static/assets/img/Group.png" alt="">
+                                    <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="loading-gif d-md-none">
-                    <img src="./static/assets/img/ZZ5H.gif" alt="">
+                    <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
                 </div>
                 <div class="loading-item d-none">
                     <div id="certifed__slide-mobile" class="overflow-hidden d-md-none">
                         <div class="certifed__slide">
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Yandex.Metrica-Logo.wine 1.png" alt="">
+                                <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google-analytics.png" alt="">
+                                <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Group.png" alt="">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Semrush_logo 1.png" alt="">
+                                <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google-ads.png" alt="">
+                                <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google.png" alt="">
+                                <img src="{% static 'assets/img/logos_google.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Group.png" alt="">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
                             </div>
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Yandex.Metrica-Logo.wine 1.png" alt="">
-                            </div>
-    
-                            <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google-analytics.png" alt="">
+                                <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Group.png" alt="">
+                                <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Semrush_logo 1.png" alt="">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google-ads.png" alt="">
+                                <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/logos_google.png" alt="">
+                                <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
                             </div>
     
                             <div class="certifed__item">
-                                <img src="./static/assets/img/Group.png" alt="">
+                                <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
                             </div>
                         </div>
                     </div>
@@ -360,48 +361,48 @@
                         <div class="row g-4">
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (4).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (4).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">360° Marketinq</h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:digital-strategy-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (5).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (5).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">Rəqəmsal Strategiya
                                     </h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (6).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (6).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">SEO Xidməti
                                     </h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (7).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (7).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">Vebsayt Xidməti
                                     </h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:smm-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (8).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (8).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">SMM Xidməti
                                     </h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (9).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (9).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">Lokal Marketinq
                                     </h4>
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a href="{% url 'service:seo-service' %}" class="offer">
-                                    <img src="./static/assets/svg/icon (10).svg" class="offer__icon" alt="">
+                                    <img src="{% static 'assets/svg/icon (10).svg' %}" class="offer__icon" alt="">
                                     <h4 class="offer__title">Google Reklamları
                                     </h4>
                                 </a>
@@ -413,7 +414,7 @@
                                             + 2 <br>əlavə
                                         </p>
                                         <div class="offer-add__link">
-                                            <img src="./static/assets/svg/Vector 108.svg" alt="">
+                                            <img src="{% static 'assets/svg/Vector 108.svg' %}" alt="">
                                         </div>
                                     </div>
                                 </a>
@@ -436,7 +437,7 @@
                             <div class="portfolio__links d-none d-xl-flex">
                                 <a href="{% url 'service:smm-service' %}" class="portfolio__link">SMM Xidmətləri</a>
                                 <a href="" class="portfolio__main-link">
-                                    <img src="./static/assets/svg/right.svg" alt="">Vebsayt <br> Xidmətləri
+                                    <img src="{% static 'assets/svg/right.svg' %}" alt="">Vebsayt <br> Xidmətləri
                                 </a>
                                 <a href="{% url 'service:seo-service' %}" class="portfolio__link">SEO Xidmətləri</a>
                             </div>
@@ -446,25 +447,25 @@
                     <div class="col-xl-10">
                         <div class="portfolio__cards">
                             <a href="{% url 'service:one-project' %}" class="portfolio__card">
-                                <img src="./static/assets/img/Alison travel portfolio cover (1).png" alt="">
+                                <img src="{% static 'assets/img/Alison travel portfolio cover (1).png' %}" alt="">
                             </a>
                             <a href="{% url 'service:one-project' %}" class="portfolio__card">
-                                <img src="./static/assets/img/D&P portfolio cover (1).png" alt="">
+                                <img src="{% static 'assets/img/D&P portfolio cover (1).png' %}" alt="">
                             </a>
                             <a href="{% url 'service:one-project' %}" class="portfolio__card">
-                                <img src="./static/assets/img/D&P portfolio cover (1) (1).png" alt="">
+                                <img src="{% static 'assets/img/D&P portfolio cover (1) (1).png' %}" alt="">
                             </a>
                             <a href="{% url 'service:one-project' %}" class="portfolio__card">
-                                <img src="./static/assets/img/Frame 25 (1).png" alt="">
+                                <img src="{% static 'assets/img/Frame 25 (1).png' %}" alt="">
                             </a>
                             <a href="{% url 'service:one-project' %}" class="portfolio__card">
-                                <img src="./static/assets/img/Alison travel portfolio cover (1) (1).png" alt="">
+                                <img src="{% static 'assets/img/Alison travel portfolio cover (1) (1).png' %}" alt="">
                             </a>
                             <a href="" class="portfolio-card-add">
                                 <div class="portfolio-card-add__content">
                                     <p>daha <br> çox</p>
                                     <div class="portfolio-card-add__link">
-                                        <img src="./static/assets/svg/Vector 108.svg" alt="">
+                                        <img src="{% static 'assets/svg/Vector 108.svg' %}" alt="">
                                     </div>
                                 </div>
                             </a>
@@ -528,17 +529,17 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -549,17 +550,17 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -570,17 +571,17 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -591,17 +592,17 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="./static/assets/img/Frame 26 (2).png" alt="">
+                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
                             </a>
                         </div>
                     </div>
@@ -620,58 +621,58 @@
                     </div>
                     <div class="col-lg-10">
                         <div class="loading-gif">
-                            <img src="./static/assets/img/ZZ5H.gif" alt="">
+                            <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
                         </div>
 
                         <div class="our-clients__slide loading-item d-none">
                             <div class="overflow-hidden">
                                 <div id="clients__slide-desktop" class="our-clients__slide">
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector.png" alt="">
+                                        <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (1).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (2).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (3).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (4).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (5).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector.png" alt="">
+                                        <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (1).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (2).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (3).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (4).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                     </div>
 
                                     <div class="our-clients__item">
-                                        <img src="./static/assets/img/Vector (5).png" alt="">
+                                        <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -684,58 +685,58 @@
         <section class="mob-our-clients section-gap">
             <div class="g-container">
                 <div class="loading-gif d-md-none">
-                    <img src="./static/assets/img/ZZ5H.gif" alt="">
+                    <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
                 </div>
                 <div class="loading-item d-none">
                     <div class="our-clients__slide mb-4">
                         <div class="overflow-hidden">
                             <div id="clients__slide-mobile" class="our-clients__slide">
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector.png" alt="">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (1).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (2).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (3).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (4).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (5).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector.png" alt="">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (1).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (2).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (3).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (4).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (5).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -745,51 +746,51 @@
                         <div class="overflow-hidden">
                             <div id="clients__slide-mobile2" class="our-clients__slide">
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector.png" alt="">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (1).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (2).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (3).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (4).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (5).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector.png" alt="">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (1).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (2).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (3).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (4).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
                                 </div>
     
                                 <div class="our-clients__item">
-                                    <img src="./static/assets/img/Vector (5).png" alt="">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -830,11 +831,11 @@
                                                 trust to Trustme.
                                             </p>
                                             <div class="clients-comments__rating">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -852,11 +853,11 @@
                                                 trust to Trustme.
                                             </p>
                                             <div class="clients-comments__rating">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2 (1).svg" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2 (1).svg' %}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -874,11 +875,11 @@
                                                 trust to Trustme.
                                             </p>
                                             <div class="clients-comments__rating">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -896,11 +897,11 @@
                                                 trust to Trustme.
                                             </p>
                                             <div class="clients-comments__rating">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2.svg" alt="">
-                                                <img src="./static/assets/svg/Star 2 (1).svg" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                <img src="{% static 'assets/svg/Star 2 (1).svg' %}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -961,7 +962,7 @@
                                             </p>
                                             <a href="" class="blogs__read-more">
                                                 Daha çox
-                                                <img src="./static/assets/svg/Vector 106.svg" alt="">
+                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -976,7 +977,7 @@
                                             </p>
                                             <a href="" class="blogs__read-more">
                                                 Daha çox
-                                                <img src="./static/assets/svg/Vector 106.svg" alt="">
+                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -991,7 +992,7 @@
                                             </p>
                                             <a href="" class="blogs__read-more">
                                                 Daha çox
-                                                <img src="./static/assets/svg/Vector 106.svg" alt="">
+                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -1006,7 +1007,7 @@
                                             </p>
                                             <a href="" class="blogs__read-more">
                                                 Daha çox
-                                                <img src="./static/assets/svg/Vector 106.svg" alt="">
+                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -1044,13 +1045,13 @@
 <!-- Additional js -->
 <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/typeit@8.4.0/dist/index.umd.js"></script>
-    <script src="./static/js/typeit.js"></script>
-    <script src="./static/js/rating.js"></script>
-    <script src="./static/js/slides/comments-slide.js"></script>
-    <script src="./static/js/slides/blogs-slide.js"></script>
-    <script src="./static/js/slides/mob-portfolio-slide.js"></script>
-    <script src="./static/js/apply-form.js"></script>
-    <script src="./static/js/loading.js"></script>
+    <script src="{% static 'js/typeit.js' %}"></script>
+    <script src="{% static 'js/rating.js' %}"></script>
+    <script src="{% static 'js/slides/comments-slide.js' %}"></script>
+    <script src="{% static 'js/slides/blogs-slide.js' %}"></script>
+    <script src="{% static 'js/slides/mob-portfolio-slide.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+    <script src="{% static 'js/loading.js' %}"></script>
     
     <script>
         function certifedMobile(boxWidth, time) {

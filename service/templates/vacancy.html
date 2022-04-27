@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -97,6 +98,6 @@
 {% endblock content %}
 
 {% block js %}
-    <script src="./static/js/uplod.js"></script>
+    <script src="{% static 'js/uplod.js' %}"></script>
 
 {% endblock js %}

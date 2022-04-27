@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -90,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <img class="about-us__decor" src="./static/assets/svg/about-us-decor.svg" alt="">
+            <img class="about-us__decor" src="{% static 'assets/svg/about-us-decor.svg' %}" alt="">
         </section>
 
         <section class="about-info">
@@ -98,7 +99,7 @@
                 <div class="row g-3 g-sm-4">
                     <div class="col-sm-6 col-lg-3">
                         <div class="about-info-box">
-                            <img src="./static/assets/svg/Icons (5).svg" class="about-info-box__icon" alt="">
+                            <img src="{% static 'assets/svg/Icons (5).svg' %}" class="about-info-box__icon" alt="">
                             <h3 class="about-info-box__title">360° Marketinq</h3>
                             <p class="about-info-box__text">
                                 Ağlınıza gələcək bütün xidmətləri ən peşəkar formada sizə təklif etmək imkanlarına
@@ -108,7 +109,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="about-info-box">
-                            <img src="./static/assets/svg/Vector 1.svg" class="about-info-box__icon" alt="">
+                            <img src="{% static 'assets/svg/Vector 1.svg' %}" class="about-info-box__icon" alt="">
                             <h3 class="about-info-box__title">Müsbət ROI</h3>
                             <p class="about-info-box__text">
                                 Marketinq yatırımınızdan müsbət gəlir əldə etmək hər zaman ən vacib vəzifəmizdir.
@@ -117,7 +118,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="about-info-box">
-                            <img src="./static/assets/svg/icon (6).svg" class="about-info-box__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (6).svg' %}" class="about-info-box__icon" alt="">
                             <h3 class="about-info-box__title">Peşəkar komanda</h3>
                             <p class="about-info-box__text">
                                 Layihə idarəetmə sistemimizin hər nöqtəsində bizimlə birlikdə istirak edə bilərsiniz.
@@ -126,7 +127,7 @@
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="about-info-box">
-                            <img src="./static/assets/svg/Star 2 (2).svg" class="about-info-box__icon" alt="">
+                            <img src="{% static 'assets/svg/Star 2 (2).svg' %}" class="about-info-box__icon" alt="">
                             <h3 class="about-info-box__title">Şəffaf idarəetmə</h3>
                             <p class="about-info-box__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -147,7 +148,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_0Zx1bDv5BNY.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -165,7 +166,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_KIPqvvTOC1s.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -183,7 +184,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_N7aRuAXT2Ro.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -201,7 +202,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_0Zx1bDv5BNY.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -219,7 +220,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_KIPqvvTOC1s.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -237,7 +238,7 @@
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="./static/assets/img/unsplash_N7aRuAXT2Ro.png" alt="">
+                                <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
@@ -259,7 +260,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_0Zx1bDv5BNY.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -277,7 +278,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_KIPqvvTOC1s.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -295,7 +296,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_N7aRuAXT2Ro.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -313,7 +314,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_0Zx1bDv5BNY.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -331,7 +332,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_KIPqvvTOC1s.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -349,7 +350,7 @@
                         <div class="swiper-slide">
                             <div class="profile-card__wrapper">
                                 <div class="profile-card__img">
-                                    <img src="./static/assets/img/unsplash_N7aRuAXT2Ro.png" alt="">
+                                    <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
                                 </div>
                                 <div class="profile-card__content">
                                     <h4 class="profile-card__title">
@@ -376,5 +377,5 @@
 
 
 {% block js %}
-    <script src="./static/js/slides/profile-cards-slide.js"></script>
+    <script src="{% static 'js/slides/profile-cards-slide.js' %}"></script>
 {% endblock js %}

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -27,62 +28,62 @@
                     <ul class="dashboard">
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy1.svg" alt=""> 360° Marketinq xidməti
+                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> 360° Marketinq xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link dashboard__link--active">
-                                <img src="./static/assets/svg/copy3.svg" alt=""> Rəqəmsal Strategiya Xidməti
+                                <img src="{% static 'assets/svg/copy3.svg' %}" alt=""> Rəqəmsal Strategiya Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy4.svg" alt="">SEO Xidməti Xidməti
+                                <img src="{% static 'assets/svg/copy4.svg' %}" alt="">SEO Xidməti Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy13.svg" alt="">Veb sayt Xidmətləri
+                                <img src="{% static 'assets/svg/copy13.svg' %}" alt="">Veb sayt Xidmətləri
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy5.svg" alt=""> SMM Xidməti
+                                <img src="{% static 'assets/svg/copy5.svg' %}" alt=""> SMM Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy6.svg" alt=""> Local Marketinq Xidməti
+                                <img src="{% static 'assets/svg/copy6.svg' %}" alt=""> Local Marketinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy7.svg" alt=""> Google Reklamları Xidməti
+                                <img src="{% static 'assets/svg/copy7.svg' %}" alt=""> Google Reklamları Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy8.svg" alt="">Tv & Media Planlama Xidməti
+                                <img src="{% static 'assets/svg/copy8.svg' %}" alt="">Tv & Media Planlama Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy9.svg" alt=""> SEO Audit Xidməti
+                                <img src="{% static 'assets/svg/copy9.svg' %}" alt=""> SEO Audit Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy10.svg" alt=""> Dizayn Xidməti
+                                <img src="{% static 'assets/svg/copy10.svg' %}" alt=""> Dizayn Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy11.svg" alt=""> Brendinq Xidməti
+                                <img src="{% static 'assets/svg/copy11.svg' %}" alt=""> Brendinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy12.svg" alt=""> Reklam filmlərinin çəkilişi Xidməti
+                                <img src="{% static 'assets/svg/copy12.svg' %}" alt=""> Reklam filmlərinin çəkilişi Xidməti
                             </a>
                         </li>
                     </ul>
@@ -117,7 +118,7 @@
                             </p>
                             <button class="fixed-content__more">
                                 Daha çox
-                                <img src="./static/assets/svg/black-down.svg" alt="">
+                                <img src="{% static 'assets/svg/black-down.svg' %}" alt="">
                             </button>
                         </div>
                         <p class="g-title mt-4 pt-2">
@@ -129,7 +130,7 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         Korporativ şəxsiyyət dizaynı
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
@@ -149,7 +150,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Loqo dizaynı
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
@@ -169,7 +170,7 @@
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
                                         E-poçt Şablon dizaynı
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseThree" class="accordion-collapse collapse"
@@ -189,7 +190,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                                         Sosial media konsept dizaynı
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4">
@@ -208,7 +209,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                                         Broşür dizaynı
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5">
@@ -243,7 +244,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="advantages-box">
-                                        <img src="./static/assets/svg/Frame 158.svg" class="advantages-box__icon"
+                                        <img src="{% static 'assets/svg/Frame 158.svg' %}" class="advantages-box__icon"
                                             alt="">
                                         <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
                                         <p class="advantages-box__text">
@@ -253,7 +254,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="advantages-box">
-                                        <img src="./static/assets/svg/Frame 158 (1).svg" class="advantages-box__icon"
+                                        <img src="{% static 'assets/svg/Frame 158 (1).svg' %}" class="advantages-box__icon"
                                             alt="">
                                         <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
                                         <p class="advantages-box__text">
@@ -263,7 +264,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="advantages-box">
-                                        <img src="./static/assets/svg/Frame 158 (2).svg" class="advantages-box__icon"
+                                        <img src="{% static 'assets/svg/Frame 158 (2).svg' %}" class="advantages-box__icon"
                                             alt="">
                                         <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
                                         <p class="advantages-box__text">
@@ -273,7 +274,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="advantages-box">
-                                        <img src="./static/assets/svg/Frame 158.svg" class="advantages-box__icon"
+                                        <img src="{% static 'assets/svg/Frame 158.svg' %}" class="advantages-box__icon"
                                             alt="">
                                         <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
                                         <p class="advantages-box__text">
@@ -326,17 +327,17 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 64 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 64 (1).png' %}" alt="">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -435,60 +436,60 @@
                         </p>
                         <ul class="price-box__list price-box__list--shadow">
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
                                 yaradılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin
                                 idarə edilməsi
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                         </ul>
                         <button class="price-box__more">
                             Daha çox
-                            <img src="./static/assets/svg/black-down.svg" alt="">
+                            <img src="{% static 'assets/svg/black-down.svg' %}" alt="">
                         </button>
                         <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#standartPacketModal">
                             Müraciət et
@@ -506,62 +507,62 @@
                         </p>
                         <ul class="price-box__list price-box__list--shadow">
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6
                                 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
                                 yaradılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin idarə
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin idarə
                                 edilməsi
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6
                                 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                         </ul>
                         <button class="price-box__more">
                             Daha çox
-                            <img src="./static/assets/svg/white-down.svg" alt="">
+                            <img src="{% static 'assets/svg/white-down.svg' %}" alt="">
                         </button>
                         <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#premiumPacketModal">
                             Müraciət et
@@ -576,62 +577,62 @@
                         </p>
                         <ul class="price-box__list price-box__list--shadow">
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6
                                 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznesə özəl kontentin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
                                 yaradılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Sosial şəbəkələrin idarə
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin idarə
                                 edilməsi
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Montion post (4)
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Rəqəmsal strategiyanın
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
                                 qurulması (6
                                 aylıq)
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Brend stilinin
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
                                 formalaşdırılması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                             <li class="price-box__item">
-                                <img src="./static/assets/svg/Frame 134.svg" alt=""> Biznes üçün bazar
+                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
                                 araşdırması
                             </li>
                         </ul>
                         <button class="price-box__more">
                             Daha çox
-                            <img src="./static/assets/svg/black-down.svg" alt="">
+                            <img src="{% static 'assets/svg/black-down.svg' %}" alt="">
                         </button>
                         <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#platinumPacketModal">
                             Müraciət et
@@ -644,11 +645,11 @@
 
 {% endblock content %}
 {% block js %}
-    <script src="./static/js/pricebox-more.js"></script>
-    <script src="./static/js/show-more.js"></script>
-    <script src="./static/js/apply-form.js"></script>
+    <script src="{% static 'js/pricebox-more.js' %}"></script>
+    <script src="{% static 'js/show-more.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
 
-    <script src="./static/js/slides/advantages-slide.js"></script>
-    <script src="./static/js/slides/experts-slide.js"></script>
-    <script src="./static/js/slides/recommend-slide.js"></script>
+    <script src="{% static 'js/slides/advantages-slide.js' %}"></script>
+    <script src="{% static 'js/slides/experts-slide.js' %}"></script>
+    <script src="{% static 'js/slides/recommend-slide.js' %}"></script>
 {% endblock js %}

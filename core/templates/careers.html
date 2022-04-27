@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -141,7 +142,7 @@
                 </ul>
             </div>
             <div class="services__decor">
-                <img src="./static/assets/svg/decor.svg" alt="">
+                <img src="{% static 'assets/svg/decor.svg' %}" alt="">
             </div>
         </section>
     </main>

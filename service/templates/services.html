@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -25,7 +26,7 @@
                 <div class="row g-3 g-md-4">
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (4).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (4).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">360° Marketinq</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -34,7 +35,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:digital-strategy-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (5).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (5).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Rəqəmsal Strategiya</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -43,7 +44,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (6).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (6).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">SEO Xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -52,7 +53,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (7).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (7).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Vebsayt Xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -61,7 +62,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:smm-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (8).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (8).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">SMM Xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -70,7 +71,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (9).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (9).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Lokal Marketinq xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -79,7 +80,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/icon (10).svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/icon (10).svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Google Reklamları xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -88,7 +89,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/ico5.svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/ico5.svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">TV & Media Planlama xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -97,7 +98,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/ico4.svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/ico4.svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">SEO Audit xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -106,7 +107,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:design-service' %}" class="services__box">
-                            <img src="./static/assets/svg/ico2.svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/ico2.svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Dizayn Xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -115,7 +116,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/ico3.svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/ico3.svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Brendinq Xidməti</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -124,7 +125,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a href="{% url 'service:seo-service' %}" class="services__box">
-                            <img src="./static/assets/svg/ico1.svg" class="services__icon" alt="">
+                            <img src="{% static 'assets/svg/ico1.svg' %}" class="services__icon" alt="">
                             <h3 class="services__title">Reklam Filmlərinin Çəkilişi</h3>
                             <p class="services__text">
                                 Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
@@ -134,7 +135,7 @@
                 </div>
             </div>
             <div class="services__decor">
-                <img src="./static/assets/svg/decor.svg" alt="">
+                <img src="{% static 'assets/svg/decor.svg' %}" alt="">
             </div>
         </section>
     </main>

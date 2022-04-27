@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Home{% endblock title %}
@@ -23,62 +24,62 @@
                     <ul class="dashboard">
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy1.svg" alt=""> 360° Marketinq xidməti
+                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> 360° Marketinq xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy3.svg" alt=""> Rəqəmsal Strategiya Xidməti
+                                <img src="{% static 'assets/svg/copy3.svg' %}" alt=""> Rəqəmsal Strategiya Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy4.svg" alt="">SEO Xidməti Xidməti
+                                <img src="{% static 'assets/svg/copy4.svg' %}" alt="">SEO Xidməti Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link dashboard__link--active">
-                                <img src="./static/assets/svg/copy13.svg" alt="">Veb sayt Xidmətləri
+                                <img src="{% static 'assets/svg/copy13.svg' %}" alt="">Veb sayt Xidmətləri
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy5.svg" alt=""> SMM Xidməti
+                                <img src="{% static 'assets/svg/copy5.svg' %}" alt=""> SMM Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy6.svg" alt=""> Local Marketinq Xidməti
+                                <img src="{% static 'assets/svg/copy6.svg' %}" alt=""> Local Marketinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy7.svg" alt=""> Google Reklamları Xidməti
+                                <img src="{% static 'assets/svg/copy7.svg' %}" alt=""> Google Reklamları Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy8.svg" alt="">Tv & Media Planlama Xidməti
+                                <img src="{% static 'assets/svg/copy8.svg' %}" alt="">Tv & Media Planlama Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy9.svg" alt=""> SEO Audit Xidməti
+                                <img src="{% static 'assets/svg/copy9.svg' %}" alt=""> SEO Audit Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy10.svg" alt=""> Dizayn Xidməti
+                                <img src="{% static 'assets/svg/copy10.svg' %}" alt=""> Dizayn Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy11.svg" alt=""> Brendinq Xidməti
+                                <img src="{% static 'assets/svg/copy11.svg' %}" alt=""> Brendinq Xidməti
                             </a>
                         </li>
                         <li class="dashboard__item">
                             <a href="" class="dashboard__link">
-                                <img src="./static/assets/svg/copy12.svg" alt=""> Reklam filmlərinin çəkilişi Xidməti
+                                <img src="{% static 'assets/svg/copy12.svg' %}" alt=""> Reklam filmlərinin çəkilişi Xidməti
                             </a>
                         </li>
                     </ul>
@@ -158,7 +159,7 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         Korporativ şəxsiyyət dizaynının loqo dizaynından fərqi nədir?
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
@@ -178,7 +179,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         Loqo dizaynı neçə müddətə başa gəlir?
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -199,7 +200,7 @@
                                         data-bs-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
                                         E-poçt Şablon dizaynı edirsiniz?
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapseThree" class="accordion-collapse collapse"
@@ -219,7 +220,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                                         Sosial media konsept dizaynının qiyməti nə qədərdir?
-                                        <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
                                 <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
