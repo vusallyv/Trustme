@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -6,10 +7,10 @@
 
     <main>
         <section class="brief">
-            <img src="./static/assets/svg/brief-1-decor.svg" class="brief__decor" id="brief-1-decor" alt="">
-            <img src="./static/assets/svg/brief-2-decor.svg" class="brief__decor" id="brief-2-decor" alt="">
-            <img src="./static/assets/svg/brief-3-decor.svg" class="brief__decor" id="brief-3-decor" alt="">
-            <img src="./static/assets/svg/brief-mobile-decor.svg" class="brief__mob-decor" alt="">
+            <img src="{% static 'assets/svg/brief-1-decor.svg' %}" class="brief__decor" id="brief-1-decor" alt="">
+            <img src="{% static 'assets/svg/brief-2-decor.svg' %}" class="brief__decor" id="brief-2-decor" alt="">
+            <img src="{% static 'assets/svg/brief-3-decor.svg' %}" class="brief__decor" id="brief-3-decor" alt="">
+            <img src="{% static 'assets/svg/brief-mobile-decor.svg' %}" class="brief__mob-decor" alt="">
             <div class="g-container">
                 <ul class="g-breadcrumb">
                     <li class="g-breadcrumb__item">
@@ -30,7 +31,7 @@
 
                 <div class="brief-top">
                     <button class="brief__back-btn">
-                        <img src="./static/assets/svg/Arrow Left.svg" alt="">
+                        <img src="{% static 'assets/svg/Arrow Left.svg' %}" alt="">
                     </button>
                     <p class="brief-top__title">
                         Brief göndər
@@ -113,7 +114,7 @@
                                             <option></option>
                                             <option value="SMM Xidmətləri">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +175,7 @@
                                             <option></option>
                                             <option value="Test">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
                                         <label for="">Vebsayt növü <span>*</span></label>
@@ -182,7 +183,7 @@
                                             <option></option>
                                             <option value="Test">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
                                         <label for="">Dil seçimi <span>*</span></label>
@@ -197,7 +198,7 @@
                                             <option value="İspan">İspan</option>
                                             <option value="İtalyan">İtalyan</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -206,21 +207,21 @@
                                         <select class="select2-design" name="state">
                                             <option value="Test">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
                                         <label for="">Tələblər <span>*</span></label>
                                         <select class="select2-demands" name="state">
                                             <option value="Test">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
                                         <label for="">Fotolar <span>*</span></label>
                                         <select class="select2-photos" name="state">
                                             <option value="Test">Test</option>
                                         </select>
-                                        <img src="./static/assets/svg/select-down.svg" class="select-icon" alt="">
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +238,7 @@
 {% endblock content %}
 {% block js %}
 
-    <script src="./static/js/brief-select.js"></script>
-    <script src="./static/js/brief-tab.js"></script>
-    <script src="./static/js/apply-form.js"></script>
+    <script src="{% static 'js/brief-select.js' %}"></script>
+    <script src="{% static 'js/brief-tab.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
 {% endblock js %}

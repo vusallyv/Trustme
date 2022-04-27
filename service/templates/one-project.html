@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -52,7 +53,7 @@
                     </div>
                     <div class="col-lg-6 order-lg-2 order-first">
                         <div class="project-about__img">
-                            <img src="./static/assets/img/Frame 88.png" alt="">
+                            <img src="{% static 'assets/img/Frame 88.png' %}" alt="">
                         </div>
                     </div>
                 </div>
@@ -60,7 +61,7 @@
         </section>
 
         <section class="process">
-            <img src="./static/assets/svg/Line 4.svg" class="process__line d-lg-flex d-none" alt="">
+            <img src="{% static 'assets/svg/Line 4.svg' %}" class="process__line d-lg-flex d-none" alt="">
 
             <div class="g-container">
                 <h4 class="g-title--purple mb-3">
@@ -70,7 +71,7 @@
                 <div class="process__wrapper d-lg-flex d-none">
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process1.svg" alt="">
+                            <img src="{% static 'assets/svg/process1.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -83,7 +84,7 @@
                     </div>
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process2.svg" alt="">
+                            <img src="{% static 'assets/svg/process2.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -96,7 +97,7 @@
                     </div>
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process3.svg" alt="">
+                            <img src="{% static 'assets/svg/process3.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -109,7 +110,7 @@
                     </div>
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process4.svg" alt="">
+                            <img src="{% static 'assets/svg/process4.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -122,7 +123,7 @@
                     </div>
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process5.svg" alt="">
+                            <img src="{% static 'assets/svg/process5.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -135,7 +136,7 @@
                     </div>
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="./static/assets/svg/process6.svg" alt="">
+                            <img src="{% static 'assets/svg/process6.svg' %}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
@@ -153,7 +154,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process1.svg" alt="">
+                                    <img src="{% static 'assets/svg/process1.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -168,7 +169,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process2.svg" alt="">
+                                    <img src="{% static 'assets/svg/process2.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -183,7 +184,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process3.svg" alt="">
+                                    <img src="{% static 'assets/svg/process3.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -198,7 +199,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process4.svg" alt="">
+                                    <img src="{% static 'assets/svg/process4.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -213,7 +214,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process5.svg" alt="">
+                                    <img src="{% static 'assets/svg/process5.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -228,7 +229,7 @@
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="./static/assets/svg/process6.svg" alt="">
+                                    <img src="{% static 'assets/svg/process6.svg' %}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
@@ -260,7 +261,7 @@
                                             data-bs-target="#collapseOne" aria-expanded="true"
                                             aria-controls="collapseOne">
                                             Facebook marketinq
-                                            <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                         </button>
                                     </div>
                                     <div id="collapseOne" class="accordion-collapse collapse show"
@@ -281,7 +282,7 @@
                                             data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                             aria-expanded="false" aria-controls="collapseTwo">
                                             İnstagram marketinq
-                                            <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                         </button>
                                     </div>
                                     <div id="collapseTwo" class="accordion-collapse collapse"
@@ -302,7 +303,7 @@
                                             data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                             aria-expanded="false" aria-controls="collapseThree">
                                             Linkedin marketinq
-                                            <img src="./static/assets/svg/acc-icon.svg" alt="">
+                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                         </button>
                                     </div>
                                     <div id="collapseThree" class="accordion-collapse collapse"
@@ -325,17 +326,17 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <div class="result-slide__img">
-                                        <img src="./static/assets/img/Image.png" alt="">
+                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="result-slide__img">
-                                        <img src="./static/assets/img/Image.png" alt="">
+                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="result-slide__img">
-                                        <img src="./static/assets/img/Image.png" alt="">
+                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -424,17 +425,17 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 64 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 64 (1).png' %}" alt="">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
                                     </a>
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="" class="recommend__item">
-                                        <img src="./static/assets/img/Frame 26 (1).png" alt="">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -449,8 +450,8 @@
 
 {% block js %}
 
-    <script src="./static/js/slides/results-slide.js"></script>
-    <script src="./static/js/slides/proccess-slide.js"></script>
-    <script src="./static/js/slides/recommend-slide.js"></script>
-    <script src="./static/js/apply-form.js"></script>
+    <script src="{% static 'js/slides/results-slide.js' %}"></script>
+    <script src="{% static 'js/slides/proccess-slide.js' %}"></script>
+    <script src="{% static 'js/slides/recommend-slide.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
 {% endblock js %}
