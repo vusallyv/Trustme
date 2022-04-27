@@ -1,0 +1,51 @@
+.accordion {
+    &-item {
+        border: none;
+        &:last-of-type {
+            .accordion-button {
+                border-bottom: 0;
+            }
+            .accordion-body {
+                border-bottom: 0;
+            }
+        }
+    }
+    &-button {
+        @include font-size(14, 600);
+        color: $dark-color;
+        border-bottom: rem(0.5) solid $gray2;
+        padding: rem(25) 0;
+        justify-content: space-between;
+        gap: rem(20);
+        transition: 0.3s;
+        &::after {
+            content: none;
+        }
+        &:focus {
+            border-color: $gray2;
+            box-shadow: none;
+        }
+
+        @include breakpoint-max($mobile-width) {
+            padding: rem(20) 0;
+        }
+    }
+    &-button:not(.collapsed) {
+        color: $dark-color;
+        background-color: transparent;
+        box-shadow: none;
+        border: 0;
+        padding-bottom: 0;
+    }
+    &-body {
+        padding: 0;
+        padding: rem(25) 0;
+        border-bottom: rem(0.5) solid $gray2;
+        font-size: rem(14);
+        line-height: rem(21);
+
+        @include breakpoint-max($mobile-width) {
+            line-height: rem(18);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.g-breadcrumb {
+    display: flex;
+    gap: rem(22);
+    &__item {
+        position: relative;
+        font-size: rem(14);
+        color: #C9C9C9;
+        white-space: nowrap;
+        
+        &::after {
+            content: ">";
+            position: absolute;
+            right: rem(-12);
+        }
+        &:last-of-type {
+            white-space: initial;
+            &::after {
+                content: none;
+            }
+        }
+        &--active {
+            a {
+                color: $dark-color;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                transition: 0.3s;
+
+                &:hover{
+                    color: $main-color;
+                }
+            }
+        }
+    }
+}

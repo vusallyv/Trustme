@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="portfolio-page pt-4 pt-sm-5">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Portfolio
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="section-title mb-3">
+                    <h2>Portfolio</h2>
+                </div>
+
+                <div class="portfolio-page__wrapper">
+                    <ul class="dashboard">
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link dashboard__link--active">
+                                <img src="./static/assets/svg/copy2.svg" alt=""> Hamısı
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy1.svg" alt=""> 360° Marketinq xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy3.svg" alt=""> Rəqəmsal Strategiya Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy4.svg" alt="">SEO Xidməti Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy13.svg" alt="">Veb sayt Xidmətləri
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy5.svg" alt=""> SMM Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy6.svg" alt=""> Local Marketinq Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy7.svg" alt=""> Google Reklamları Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy8.svg" alt="">Tv & Media Planlama Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy9.svg" alt=""> SEO Audit Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy10.svg" alt=""> Dizayn Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy11.svg" alt=""> Brendinq Xidməti
+                            </a>
+                        </li>
+                        <li class="dashboard__item">
+                            <a href="" class="dashboard__link">
+                                <img src="./static/assets/svg/copy12.svg" alt=""> Reklam filmlərinin çəkilişi Xidməti
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="categories-tab">
+                        <li class="categories-tab__item categories-tab__item--active">
+                            <a href="">
+                                Hamısı
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                360° Marketinq xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Rəqəmsal Strategiya Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                SEO Xidməti Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Veb sayt Xidmətləri
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                SMM Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Local Marketinq Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Google Reklamları Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Tv & Media Planlama Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                SEO Audit Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Dizayn Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Brendinq Xidməti
+                            </a>
+                        </li>
+                        <li class="categories-tab__item">
+                            <a href="">
+                                Reklam filmlərinin çəkilişi Xidməti
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex flex-column">
+                        <h4 class="portfolio-page__title">
+                            Vebsayt işlərimiz
+                        </h4>
+
+                        <div class="row g-3 g-xl-4 d-sm-flex d-none">
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio3.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio4.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 d-sm-flex d-sm-none">
+                            <div class="col-12">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio2.png" alt="">
+                                </a>
+                            </div>
+                            <div class="col-12">
+                                <a href="{% url 'service:one-project' %}" class="portfolio-page__item">
+                                    <img src="./static/assets/img/portfolio3.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+
+                        <ul class="pagination mt-3 mt-sm-4">
+                            <li>
+                                <a href="" class="custom-prev-btn disabled">
+                                    <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li class="pagination__item">
+                                <a href="" class="pagination__link pagination__link--active">
+                                    1
+                                </a>
+                            </li>
+                            <li class="pagination__item">
+                                <a href="" class="pagination__link">
+                                    2
+                                </a>
+                            </li>
+                            <li class="pagination__item">
+                                <a href="" class="pagination__link">
+                                    3
+                                </a>
+                            </li>
+                            <li class="pagination__item">
+                                <a href="" class="pagination__link">
+                                    4
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" class="custom-next-btn">
+                                    <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                            stroke="white" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}
+{% block js %}
+{% endblock js %}

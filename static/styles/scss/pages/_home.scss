@@ -1,0 +1,622 @@
+.banner {
+    background-color: $dark-purple;
+    height: rem(420);
+    position: relative;
+    overflow: hidden;
+
+    @include breakpoint-max($tablet-width) {
+        height: rem(325);
+    }
+
+    &__content {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        max-width: rem(500);
+
+        @include breakpoint-max($tablet-width) {
+            margin: auto;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        @include font-size(52, 700);
+        line-height: rem(65);
+        color: white;
+        white-space: nowrap;
+        z-index: 1;
+
+        @include breakpoint-max($tablet-width) {
+            font-size: rem(32);
+            line-height: rem(40);
+            text-align: center;
+            white-space: initial;
+        }
+    }
+
+    &__text {
+        font-size: rem(15);
+        line-height: rem(22.5);
+        color: $gray2;
+        margin-top: rem(15);
+        margin-bottom: rem(40);
+        z-index: 1;
+
+        @include breakpoint-max($tablet-width) {
+            text-align: center;
+            font-size: rem(14);
+            line-height: rem(18);
+            margin-top: rem(10);
+            margin-bottom: rem(40);
+        }
+    }
+
+    &__decor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+
+        @include breakpoint-max($tablet-width) {
+            width: 100%;
+            right: -25%;
+        }
+    }
+
+    .g-btn-fill {
+        z-index: 1;
+    }
+
+    @include breakpoint-max($tablet-width) {
+        .g-btn-fill {
+            width: rem(184);
+            height: rem(50);
+            font-size: rem(20);
+            line-height: rem(25);
+        }
+    }
+}
+
+.certifed {
+    background-color: $light-gray;
+
+    &__title {
+        font-size: rem(18);
+        white-space: nowrap;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: rem(-24);
+            top: 50%;
+            transform: translateY(-50%);
+            height: rem(40);
+            width: rem(1);
+            background-color: $gray3;
+
+            @include breakpoint-max($desktop-sm-width) {
+                &::after {
+                    content: none;
+                }
+            }
+        }
+
+        @include breakpoint-max(991) {
+            display: none;
+        }
+    }
+
+    &__slide {
+        position: relative;
+        height: rem(80);
+
+        @include breakpoint-max($desktop-sm-width) {
+            height: rem(70);
+        }
+    }
+
+    &__item {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            max-height: rem(30);
+            max-width: rem(100);
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
+.portfolio {
+    background-color: $light-gray;
+
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(20);
+        height: rem(484);
+    }
+
+    &__card {
+        &:nth-child(1) {
+            height: rem(216);
+        }
+
+        &:nth-child(2) {
+            height: rem(250);
+        }
+
+        &:nth-child(3) {
+            height: rem(300);
+        }
+
+        &:nth-child(4) {
+            height: rem(216);
+            transform: translateY(rem(-89));
+        }
+
+        &:nth-child(5) {
+            height: rem(180);
+            transform: translateY(rem(-52));
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: rem(2);
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        margin-top: rem(65);
+        margin-bottom: rem(65);
+    }
+
+    &__link {
+        color: $gray;
+        transition: 0.3s;
+
+        &:hover {
+            color: $dark-color;
+        }
+    }
+
+    &__main-link {
+        display: flex;
+        align-items: center;
+        gap: rem(14);
+        @include font-size(18, 600);
+        padding-left: rem(5);
+        color: $dark-color;
+        margin-top: rem(20);
+        margin-bottom: rem(20);
+
+        img {
+            transition: 0.3s;
+        }
+
+        &:hover {
+            img {
+                transform: translateX(rem(3));
+            }
+        }
+    }
+
+    &-card-add {
+        height: rem(128);
+        background-color: $main-color;
+        display: flex;
+        align-items: flex-end;
+        padding: rem(20);
+
+        &__content {
+            width: 100%;
+
+            p {
+                color: white;
+            }
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__link {
+            background: #B7183D;
+            border-radius: rem(4);
+            width: rem(30);
+            height: rem(30);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                transition: 0.3s;
+            }
+
+            &:hover {
+                img {
+                    transform: translateX(rem(3))
+                }
+            }
+        }
+    }
+}
+
+.mob-portfolio {
+    &__slide {
+        display: none;
+        padding-bottom: rem(35);
+        position: relative;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    &__img {
+        max-width: rem(343);
+        width: 100%;
+        height: rem(200);
+        margin: auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.categories-tab {
+    display: none;
+    flex-wrap: nowrap;
+    gap: rem(30);
+    padding-bottom: rem(15);
+    margin-bottom: rem(15);
+    border: none;
+    overflow-x: auto;
+
+    @include breakpoint-max($desktop-sm-width) {
+        display: flex;
+    }
+
+    @include breakpoint-max($mobile-width) {
+        margin-bottom: 0;
+    }
+
+    &__item {
+
+        button,
+        a {
+            color: $gray3;
+            font-size: rem(16);
+            white-space: nowrap;
+
+            &.active {
+                color: $main-color;
+                font-weight: 600;
+            }
+        }
+
+        &--active {
+
+            button,
+            a {
+                color: $main-color;
+                font-weight: 600;
+            }
+        }
+    }
+
+    @include breakpoint-min($mobile-width) {
+        &::-webkit-scrollbar {
+            height: 0.4rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $gray;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $gray2;
+        }
+    }
+}
+
+.our-clients {
+    @include breakpoint-max(991) {
+        display: none;
+    }
+
+    &__title {
+        font-size: rem(18);
+        white-space: nowrap;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: rem(-24);
+            transform: translateY(-50%);
+            height: rem(40);
+            width: rem(1);
+            background-color: $gray3;
+        }
+
+        @include breakpoint-max(991) {
+            display: none;
+        }
+    }
+
+    &__slide {
+        position: relative;
+        height: rem(80);
+    }
+
+    &__item {
+        position: absolute;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: rem(30);
+            width: rem(110);
+            object-fit: contain;
+            filter: grayscale(100%);
+
+            &:hover {
+                filter: none;
+            }
+        }
+    }
+}
+
+.mob-our-clients {
+    padding: rem(15) 0;
+    background-color: $light-gray;
+    display: none;
+
+    @include breakpoint-max(991) {
+        display: block;
+    }
+
+    .our-clients__slide {
+        height: rem(40);
+    }
+}
+
+.clients-comments {
+    .section-title {
+        margin-bottom: rem(70);
+
+        @include breakpoint-max($desktop-width) {
+            margin-bottom: rem(17);
+        }
+    }
+
+    .comment-btn-desktop {
+        width: rem(136);
+
+        @include breakpoint-max($desktop-width) {
+            display: none;
+        }
+    }
+
+    .comment-btn-mob {
+        display: none;
+
+        @include breakpoint-max($desktop-width) {
+            display: block;
+            margin: auto;
+            margin-top: rem(20);
+            width: rem(250);
+        }
+
+        @include breakpoint-max($mobile-width) {
+            width: 100%;
+        }
+    }
+
+    &__slide {
+        max-width: rem(800);
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        @include breakpoint-max(1350) {
+            max-width: rem(700);
+        }
+
+        @include breakpoint-max($desktop-width) {
+            max-width: 100%;
+            padding-bottom: rem(30);
+
+            .swiper-pagination {
+                display: block;
+            }
+        }
+    }
+
+    &__wrapper {
+        position: relative;
+        overflow: hidden;
+
+        .swiper-button-prev {
+            left: rem(10);
+        }
+
+        @include breakpoint-max($desktop-width) {
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+    }
+
+    &__box {
+        background: $light-gray;
+        border-radius: rem(4);
+        padding: rem(25);
+        margin: auto;
+    }
+
+    &__position {
+        font-size: rem(12);
+        margin-top: rem(2);
+        margin-bottom: rem(30);
+        display: block;
+    }
+
+    &__text {
+        font-size: rem(14);
+        line-height: rem(18);
+    }
+
+    &__rating {
+        display: flex;
+        align-items: center;
+        gap: rem(7);
+        margin-top: rem(30);
+
+        img {
+            width: rem(16);
+        }
+    }
+}
+
+.blogs {
+    background-color: $light-gray;
+    padding: 50px 0;
+
+    .section-title {
+        margin-bottom: rem(70);
+
+        @include breakpoint-max($desktop-width) {
+            margin-bottom: rem(17);
+        }
+    }
+
+    .g-btn {
+        width: rem(136);
+
+        @include breakpoint-max($desktop-width) {
+            display: none;
+        }
+    }
+
+    &__slide {
+        max-width: rem(800);
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        @include breakpoint-max(1350) {
+            max-width: rem(700);
+        }
+
+        @include breakpoint-max($desktop-width) {
+            max-width: 100%;
+            padding-bottom: rem(30);
+
+            .swiper-pagination {
+                display: block;
+            }
+        }
+    }
+
+    &__wrapper {
+        position: relative;
+        overflow: hidden;
+
+        .swiper-button-prev {
+            left: rem(10);
+        }
+
+        @include breakpoint-max($desktop-width) {
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+        }
+    }
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: rem(4);
+        padding: rem(25);
+        margin: auto;
+    }
+
+    &__link {
+        color: $dark-purple;
+        font-weight: 600;
+        margin-bottom: rem(5);
+
+        &:hover {
+            color: $dark-purple;
+        }
+    }
+
+    &__date {
+        font-size: rem(12);
+    }
+
+    &__text {
+        font-size: rem(14);
+        line-height: rem(18);
+        margin-top: rem(28);
+        margin-bottom: rem(28);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+    }
+
+    &__read-more {
+        display: flex;
+        align-items: center;
+        gap: rem(12);
+        width: fit-content;
+        color: $main-color;
+        font-size: rem(14);
+
+        img {
+            transition: 0.2s;
+        }
+
+        &:hover {
+            color: $main-color;
+
+            img {
+                transform: translateX(rem(4));
+            }
+        }
+    }
+}

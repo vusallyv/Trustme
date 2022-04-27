@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="blog-detail pt-4 pt-sm-5 mb-4 mb-sm-5">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-4">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        Kariyera
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Digital Marketing Manager
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="row g-3">
+                    <div class="col-lg-8">
+                        <div class="blog-detail__wrapper">
+                            <span class="chip mb-2">
+                                Təcrübə
+                            </span>
+                            <h1 class="blog-detail__title mb-3 mb-sm-5">
+                                Digital Marketing Manager
+                            </h1>
+                            <h2 class="blog-detail__subtitle mb-3">
+                                Haqqında
+                            </h2>
+                            <p class="blog-detail__text mb-3 mb-sm-5">
+                                Komandamıza qoşulmaq və məqsədlərimizə nail olmaq üçün kreativ ideyalar təqdim etmək
+                                üçün həvəsli rəqəmsal marketinq üzrə təcrübəçi axtarırıq.
+                            </p>
+                            <h2 class="blog-detail__subtitle mb-3">
+                                Məsuliyyətlər
+                            </h2>
+                            <p class="blog-detail__text mb-3 mb-sm-5">
+                                Təcrübəçi olaraq, kampaniyaların bütün mərhələlərində komandalarımızla əməkdaşlıq
+                                edəcəksiniz.
+                            </p>
+                            <h2 class="blog-detail__subtitle mb-3">
+                                Məsuliyyətlər
+                            </h2>
+                            <ul class="">
+                                <li>
+                                    Sürətli templi mühitdə çoxlu tapşırıqlar yerinə yetirmək bacarığı
+                                </li>
+                                <li>
+                                    Gündə ən azı 3 saat hazır olun
+                                </li>
+                                <li>
+                                    Təşəbbüskar olmaq bacarığı
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="apply-box">
+                            <p class="blog-detail__subtitle mb-4 pb-1">
+                                Müraciət et
+                            </p>
+                            <form action="">
+                                <div class="g-input-group">
+                                    <label for="name">Ad və soyad <span>*</span></label>
+                                    <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="message">Mesaj <span>*</span></label>
+                                    <textarea id="message" name="" placeholder="Mesajınızı yazın" cols="30"
+                                        rows="10"></textarea>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="message">CV <span>*</span></label>
+                                    <div class="file-drop-area">
+                                        <span class="file-msg">
+                                            Sürüşdürün və ya <b>yükləyin</b>
+                                        </span>
+                                        <input class="file-input" type="file" multiple>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+{% endblock content %}
+
+{% block js %}
+    <script src="./static/js/uplod.js"></script>
+
+{% endblock js %}

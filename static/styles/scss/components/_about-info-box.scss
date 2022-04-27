@@ -1,0 +1,58 @@
+.about-info{
+    @include breakpoint-max(576){
+        background-color: $light-gray;
+    }
+
+    &-box {
+        padding: rem(50) 0;
+        background: white;
+        border-radius: rem(4);
+        height: 100%;
+    
+        @include breakpoint-max(991) {
+            text-align: center;
+        }
+    
+        @include breakpoint-max($mobile-width) {
+            padding: rem(20);
+        }
+    
+        &__icon {
+            width: rem(40);
+            height: rem(40);
+            @include breakpoint-max($mobile-width) {
+                width: rem(25);
+                height: rem(25);
+            }
+        }
+    
+        &__title {
+            font-weight: 600;
+            margin-top: rem(25);
+            margin-bottom: rem(15);
+    
+            @include breakpoint-max($mobile-width) {
+                text-align: center;
+                margin-top: rem(10);
+                margin-bottom: rem(10);
+            }
+        }
+    
+        &__text {
+            font-size: rem(14);
+            color: $gray;
+            margin-top: rem(13);
+            max-width: rem(220);
+    
+            @include breakpoint-max(991) {
+                margin: auto;
+                max-width: rem(220);
+            }
+
+            @include breakpoint-max(576) {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
