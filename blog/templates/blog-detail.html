@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -17,7 +17,7 @@
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
-                            Sosial mediaya niyə reklam verməliyik?
+                            {{blog.title}}
                         </a>
                     </li>
                 </ul>
@@ -32,10 +32,10 @@
                             <div class="d-flex justify-content-between mb-4">
                                 <div class="d-flex flex-column">
                                     <p class="blog-detail__owner">
-                                        Məhəmməd İbadlı
+                                        {{blog.author}}
                                     </p>
                                     <span class="blog-detail__date">
-                                        12 İyun, 2021
+                                        {{blog.created_at|date:"d F, Y"}}
                                     </span>
                                 </div>
 
@@ -45,73 +45,10 @@
                                 </a>
                             </div>
                             <h1 class="blog-detail__title mt-sm-4 mt-3">
-                                Sosial mediaya niyə reklam verməliyik?
+                                {{blog.title}}
                             </h1>
                             <p class="g-text mt-sm-4 mt-3">
-                                Reklam və marketinq; Məhsul və xidmətləri, daha geniş kütləyə çatdırmaq və satış həcmini
-                                artırmaq üçün həyata keçirilən fəaliyyətə verilən addır. Rəqəmsal media reklamları isə
-                                internet ortamında marketinq fəaliyyətini ifadə edir. Sosial media reklamları,
-                                internetdəki
-                                sosial media platformalarını istifadə edərək tanıtımı edilən fəaliyyətin hamısına
-                                deyilir.
-                                Günümüzdə internet və sosial platformaları istifadə edən istifadəçi sayı bir xeyli
-                                artmışdı.
-                                Bu səbəblə markaları tanıtmaq və daha çox kütləyə çatmaq istəyən biznes sahibləri, bu
-                                platformalarda daha çox yer almağa diqqət göstərirlər. Biznesmenlər bu məqsədlə də
-                                məhsullarının reklamlarını müxtəlif sosial media platformaları vasitəsilə həyata
-                                keçirir.
-                                <br><br>
-                                Sosial media, hal-hazırda demək olar ki, bütün internet istifadəçilərinin bir növ
-                                istifadə
-                                etdiyi platformaların ümumi adıdır. Fərqli funksiyalara sahib olan sosial əlaqə
-                                platformaları istifadə edə bilər və bu platformaların hamısında ödənişli reklam verə
-                                bilərsiniz. Amma diqqət etməli olduğumuz əsas məsələ, reklamın, effektiv ola bilməsi
-                                üçün
-                                bəzi standartlara uyğun olması və doğru planlanması lazımdır. Sosial media reklamları
-                                ancaq
-                                bu şəkildə effektiv ola bilər.
-                            </p>
-                            <h2 class="blog-detail__subtitle mt-sm-4 mt-3">
-                                Sosial media reklamları verərkən nələrə diqqət etməliyik?
-                            </h2>
-                            <p class="g-text mt-sm-4 mt-3">
-                                İlk öncə düzgün hədəf təyin edilməlidir. Daha sonra təyin edilən hədəfin əlçatan hala
-                                gəlməsi lazımdır. Bundan əlavə sosial media reklamları fərqli kanallarda yer alır.
-                                Instagram, Twitter, Facebook, Tik-Tok və s. kimi sosial media platformalarında düzənsiz
-                                və
-                                necə gəldi paylaşım etmək yerinə, məhsula və ya markaya görə paylaşım etmək, planlı
-                                reklam
-                                kampaniyaları həyata keçirmək və bunları optimizasiya etmək daha məqsədə uyğun
-                                olacaqdır. Bu
-                                nöqtədə atılacaq ilk addım doğru-düzgün platformanı seçmək lazımdır.
-                            </p>
-                            <h2 class="blog-detail__subtitle mb-sm-4 mb-3 mt-sm-4 mt-3">
-                                Sosial media platforması nəyə görə seçilməlidir?
-                            </h2>
-
-                            <ul>
-                                <li>
-                                    Niyə reklam vermək istədiyimiz,
-                                </li>
-                                <li>
-                                    Məhsulları və ya markanın çatmasını istədiyimiz hədəf,
-                                </li>
-                                <li>
-                                    Reklamların hansı ərazilərdə yayımlanmasını istəməyimiz,
-                                </li>
-                                <li>
-                                    Veriləcək reklam üçün ayrılmış büdcə
-                                </li>
-                            </ul>
-                            <p class="g-text mt-sm-4 mt-3">
-                                Göz önündə tutularaq, reklamın harada yer alacağı təyin edilir. Sosial media platforması
-                                təyin edildikdən sonra reklamlarda fərqli vizual məzmun və videolar istifadə edilərək,
-                                qarşılıqlı əlaqə artırılmış olur. Eyni zamanda sadə və orijinal reklamlarla efektiv və
-                                təsiredici kontent sayəsində, qarşılıqlı əlaqə daha da artır. Digər mühüm məqam isə
-                                hədəf
-                                auditoriyasına çatmaq və məlumat sahibi olması üçün marka, məhsul və ya xidmətin müəyyən
-                                aralıqlarla reklam edilməsi lazımdır.
-                            </p>
+                                {{blog.body|safe}}</p>
                         </div>
                     </div>
 
@@ -121,48 +58,28 @@
                         </p>
 
                         <div class="blog-detail__recommend">
+                            {% for blog in recommended_blogs %}
                             <div class="blog-card">
                                 <div class="blog-card__img">
-                                    <img src="{% static 'assets/img/unsplash_WUmb_eBrpjs.png' %}" alt="">
+                                    <img src="{{blog.image.url}}" alt="">
                                 </div>
                                 <div class="blog-card__body">
                                     <a href="" class="blog-card__title">
-                                        Instagramın biznesizinizin inkişafında rolu
+                                        {{blog.title}}
                                     </a>
                                     <span class="blog-card__date">
-                                        12 İyun, 2021
+                                        {{blog.created_at|date:"d F, Y"}}
                                     </span>
                                     <p class="blog-card__text">
-                                        Reklam və marketinq; Məhsul və xidmətləri, daha geniş kütləyə çatdırmaq və satış
-                                        həcmini artırmaq üçün həyata keçirilən fəaliyyətə verilən addır...
+                                        {{blog.body|truncatewords:10|safe|striptags}}
                                     </p>
                                     <a href="" class="blog-card__more">
-                                        Daha çox
+                                        {% trans 'Daha çox' %}
                                         <img src="{% static 'assets/svg/Vector 106 (1).svg' %}" alt="">
                                     </a>
                                 </div>
                             </div>
-                            <div class="blog-card">
-                                <div class="blog-card__img">
-                                    <img src="{% static 'assets/img/unsplash_KW3m50XRhjk.png' %}" alt="">
-                                </div>
-                                <div class="blog-card__body">
-                                    <a href="" class="blog-card__title">
-                                        Rəqəmsal marketinq tarixi
-                                    </a>
-                                    <span class="blog-card__date">
-                                        12 İyun, 2021
-                                    </span>
-                                    <p class="blog-card__text">
-                                        Reklam və marketinq; Məhsul və xidmətləri, daha geniş kütləyə çatdırmaq və satış
-                                        həcmini artırmaq üçün həyata keçirilən fəaliyyətə verilən addır...
-                                    </p>
-                                    <a href="" class="blog-card__more">
-                                        Daha çox
-                                        <img src="{% static 'assets/svg/Vector 106 (1).svg' %}" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
