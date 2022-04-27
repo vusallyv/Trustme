@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -20,258 +20,68 @@
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
-                            SEO xidməti
+                            {{service.title}}
                         </a>
                     </li>
                 </ul>
                 <div class="d-flex">
                     <ul class="dashboard">
+                        {% for ser in services %}
                         <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> 360° Marketinq xidməti
+                            <a href="{% url 'service:service-detail' ser.slug %}" class="dashboard__link 
+                            {% if ser.slug == service.slug %} dashboard__link--active {% endif %}">
+                                <img src="{{service.icon.url}}" alt="">{{service.title}}
                             </a>
                         </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy3.svg' %}" alt=""> Rəqəmsal Strategiya Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link dashboard__link--active">
-                                <img src="{% static 'assets/svg/copy4.svg' %}" alt="">SEO Xidməti Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy13.svg' %}" alt="">Veb sayt Xidmətləri
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy5.svg' %}" alt=""> SMM Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy6.svg' %}" alt=""> Local Marketinq Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy7.svg' %}" alt=""> Google Reklamları Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy8.svg' %}" alt="">Tv & Media Planlama Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy9.svg' %}" alt=""> SEO Audit Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy10.svg' %}" alt=""> Dizayn Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy11.svg' %}" alt=""> Brendinq Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy12.svg' %}" alt=""> Reklam filmlərinin çəkilişi Xidməti
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
 
                     <div class="d-flex flex-column ps-lg-4 ms-lg-2">
                         <div class="section-title mb-4">
-                            <h2>SEO xidməti</h2>
+                            <h2>{{service.title}}</h2>
                         </div>
                         <p class="g-text">
-                            SEO xidməti barədə məlumatdan öncə, "SEO nədir" sualına cavab vermək istərdik. SEO
-                            termininin ingiliscə açıqlaması "Search Engine Optimization" olub, ana dlimizdə mənası,
-                            axtarış motorlarının optimallaşdırılmasıdır. Daha sadə dildə desək, veb saytınızın
-                            istifadəçilərin axtarış zamanı yazdığı açar sözlərə uyğun axtarış nəticələrində tapılması və
-                            ilk sıralarda çıxması üçün edilən bir əməliyyatdır.
-                            <br><br>
-                            SEO xidmətinin əsas məqsədi veb saytınızın, istifadəçilərin axtardıqları açar sözlərə uyğun
-                            ilk sıralarda çıxması və veb saytınıza trafikin artırılmasıdır. Əgər veb saytınızın uyğun
-                            açar sözlərdə ilk sıralarda çıxmasını istəyirsinizsə, mütləq ya SEO komandası qurmalı ya da
-                            kənardan SEO xidmeti almalısınız. Unutmayın ki, dünyada sürətlə gedən rəqəmsallaşma, sizin
-                            öz biznesinizi həm rəqəmsala daşımağa, həm funksional veb sayta sahib olmağa, həm də SEO xi
-                            <br><br>
-                            Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz edirik.
-                            Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli istiqamətində xüsusi
-                            strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi rahatlıqla axtarış zamanı tapması
-                            üçün uyğun açar sözləri araşdırırıq və tətbiq edirik. SEO xidməti olaraq xidmətlərimiz üç
-                            istiqamətdə davam edir:
+                            {{service.full_description|safe}}
                         </p>
-                        <div class="g-img mt-3 mt-md-4">
-                            <img src="{% static 'assets/img/Image.png' %}" alt="">
-                        </div>
                         <p class="g-title mt-3 mt-md-4">
-                            Kateqoriyalar
+                            {% trans 'Kateqoriyalar' %}
                         </p>
                         <div class="accordion mt-3 mt-md-4" id="accordionCategory">
+                            {% for category in service.categories.all %}
+                            {% if forloop.first %}
                             <div class="accordion-item">
-                                <div class="accordion-header" id="headingOne">
+                                <div class="accordion-header" id="heading{{category.id}}">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        SEO xidməti zamanı nə edirik?
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="true" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
                                         <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingOne">
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse show"
+                                    aria-labelledby="heading{{category.id}}">
                                     <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                        <div class="g-img mt-3 mt-md-4">
-                                            <img src="{% static 'assets/img/Image.png' %}" alt="">
-                                        </div>
+                                        {{category.answer|safe}}
                                     </div>
                                 </div>
                             </div>
+                            {% else %}
                             <div class="accordion-item">
-                                <div class="accordion-header" id="headingTwo">
+                                <div class="accordion-header" id="heading{{category.id}}">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        On-page SEO xidməti
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="false" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
                                         <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{category.id}}">
                                     <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
+                                        {{category.answer|safe}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        Texniki SEO xidməti
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingThree">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading-4">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                                        SEO xidməti zamanı SEO alətlərindən istifadə
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="heading-4">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading-5">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-                                        SEO xidməti, veb saytınızdan reklamsız qazanc əldə etməyinizə kömək edir.
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="heading-5">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading-6">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
-                                        SEO xidməti yol xəritəsi
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse-6" class="accordion-collapse collapse" aria-labelledby="heading-6">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading-7">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
-                                        SEO xidmeti zamanı atacağımız addımlar:
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse-7" class="accordion-collapse collapse" aria-labelledby="heading-7">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading-8">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse-8" aria-expanded="false" aria-controls="collapse-8">
-                                        SEO xidməti zamanı SEO alətlərindən istifadə
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse-8" class="accordion-collapse collapse" aria-labelledby="heading-8">
-                                    <div class="accordion-body">
-                                        Bizdən SEO xidmeti sifariş etdikdə, ilk öncə veb saytınızı audit və analiz
-                                        edirik. Saytınızda mövcud olan boşluqları aşkar edərək, onların həlli
-                                        istiqamətində xüsusi strategiya hazırlayırıq. Daha sonra müştərilərinizin sizi
-                                        rahatlıqla axtarış zamanı tapması üçün uyğun açar sözləri araşdırırıq və tətbiq
-                                        edirik. SEO xidməti olaraq xidmətlərimiz üç istiqamətdə davam edir:
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
+                            {% endfor %}
                         </div>
-                        <!-- <a href="{% url 'service:brief' %}" class="g-btn-fill">
-                            Sifariş et
-                        </a> -->
                     </div>
                 </div>
             </div>
@@ -477,59 +287,74 @@
                 </div>
             </div>
         </section>
+        
+        <section class="recommend">
+            <div class="g-container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
+                                <p>XİDMƏTLƏR</p>
+                                <h2>Uğurlu İşlər</h2>
+                            </div>
 
+                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                Hamısı
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9">
+                        <div class="swiper recommend__slide">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="{% static 'assets/img/Frame 64 (1).png' %}" alt="">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
+                                    </a>
+                                </div>
+                                <div class="swiper-slide">
+                                    <a href="" class="recommend__item">
+                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% if service.advantages.count > 0 %}
         <section class="advantages d-none d-xl-block">
             <div class="g-container">
                 <div class="row">
                     <div class="col-xl-2">
                         <div class="section-title text-center text-xl-start pt-5 mb-4">
-                            <p>ÜSTÜNLÜKLƏR</p>
-                            <h2>SEO-un üstünlükləri</h2>
+                            <p>{% trans 'ÜSTÜNLÜKLƏR' %}</p>
+                            <h2>{% trans 'SEO-un üstünlükləri' %}</h2>
                         </div>
                     </div>
                     <div class="col-xl-10 position-relative">
                         <div class="swiper advantages__slide" id="advantages__slide">
                             <div class="swiper-wrapper">
+                                {% for advantage in service.advantages.all %}
                                 <div class="swiper-slide">
                                     <div class="advantages-box">
-                                        <img src="{% static 'assets/svg/Frame 158.svg' %}" class="advantages-box__icon"
+                                        <img src="{{advantage.icon.url}}" class="advantages-box__icon"
                                             alt="">
-                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
+                                        <h3 class="advantages-box__title">{{advantage.title}}</h3>
                                         <p class="advantages-box__text">
-                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
+                                            {{advantage.description|safe}}
                                         </p>
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="advantages-box">
-                                        <img src="{% static 'assets/svg/Frame 158 (1).svg' %}" class="advantages-box__icon"
-                                            alt="">
-                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
-                                        <p class="advantages-box__text">
-                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="advantages-box">
-                                        <img src="{% static 'assets/svg/Frame 158 (2).svg' %}" class="advantages-box__icon"
-                                            alt="">
-                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
-                                        <p class="advantages-box__text">
-                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="advantages-box">
-                                        <img src="{% static 'assets/svg/Frame 158.svg' %}" class="advantages-box__icon"
-                                            alt="">
-                                        <h3 class="advantages-box__title">Müştərilərin artırılması</h3>
-                                        <p class="advantages-box__text">
-                                            UI dizaynı bütün dizayn prosesində yalnız bir addımdır.
-                                        </p>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="swiper-button-next custom-next-btn advantages-next-btn">
@@ -552,6 +377,55 @@
                 </div>
             </div>
         </section>
+        {% endif %}
+        
+        {% if service.specialists.count > 0 %}
+        <section class="advantages experts pb-4 pb-md-0">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start pt-5 mb-4">
+                            <p>{{service.title}}</p>
+                            <h2>{% trans 'Xidmətə cəlb olunan mütəxəssislər' %}</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper advantages__slide" id="experts__slide">
+                            <div class="swiper-wrapper">
+                                {% for specialist in service.specialists.all %}
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">{{specialist.name}}</h3>
+                                        <p class="advantages-box__text">
+                                            {{specialist.description|safe|striptags}}
+                                        </p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-button-next custom-next-btn experts-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev custom-prev-btn experts-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
 
         <section class="mt-md-4">
             <div class="g-container">
@@ -778,5 +652,6 @@
     <script src="{% static 'js/slides/advantages-slide.js' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>
     <script src="{% static 'js/pricebox-more.js' %}"></script>
+    <script src="{% static 'js/slides/experts-slide.js' %}"></script>
     <script src="{% static 'js/slides/recommend-slide.js' %}"></script>
 {% endblock js %}

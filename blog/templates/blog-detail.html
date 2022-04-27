@@ -23,7 +23,7 @@
                 </ul>
 
                 <div class="blog-detail__img">
-                    <img src="{% static 'assets/img/unsplash_tMI2_-r5Nfo.png' %}" alt="">
+                    <img src="{{blog.image.url}}" alt="">
                 </div>
 
                 <div class="row g-3">
@@ -64,7 +64,7 @@
                                     <img src="{{blog.image.url}}" alt="">
                                 </div>
                                 <div class="blog-card__body">
-                                    <a href="" class="blog-card__title">
+                                    <a href="{% url 'blog:blog-detail' blog.slug %}" class="blog-card__title">
                                         {{blog.title}}
                                     </a>
                                     <span class="blog-card__date">
@@ -73,7 +73,7 @@
                                     <p class="blog-card__text">
                                         {{blog.body|truncatewords:10|safe|striptags}}
                                     </p>
-                                    <a href="" class="blog-card__more">
+                                    <a href="{% url 'blog:blog-detail' blog.slug %}" class="blog-card__more">
                                         {% trans 'Daha çox' %}
                                         <img src="{% static 'assets/svg/Vector 106 (1).svg' %}" alt="">
                                     </a>
