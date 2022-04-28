@@ -383,7 +383,7 @@
                                 <h2>İşlərimiz</h2>
                             </div>
                             <div class="portfolio__links d-none d-xl-flex">
-                                <a href="{% url 'service:smm-service' %}" class="portfolio__link">SMM Xidmətləri</a>
+                                <a href="" class="portfolio__link">SMM Xidmətləri</a>
                                 <a href="" class="portfolio__main-link">
                                     <img src="{% static 'assets/svg/right.svg' %}" alt="">Vebsayt <br> Xidmətləri
                                 </a>
@@ -882,7 +882,7 @@
                 </div>
             </div>
         </section>
-
+        {% if blogs.count > 0 %}
         <section class="blogs section-gap">
             <div class="g-container">
                 <div class="row">
@@ -940,6 +940,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
     </main>
 
 {% endblock content %}

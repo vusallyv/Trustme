@@ -12,7 +12,8 @@ class BlogListView(ListView):
     model = Blog
     paginate_by = 3
     context_object_name = 'blogs'
-    queryset = Blog.objects.exclude(id=Blog.objects.last().id)
+    queryset = Blog.objects.exclude(id=Blog.objects.last(
+    ).id) if Blog.objects.last() else None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,5 +30,6 @@ class BlogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
-        context['recommended_blogs'] = Blog.objects.exclude(id=self.object.id)[:3]
+        context['recommended_blogs'] = Blog.objects.exclude(id=self.object.id)[
+            :3]
         return context

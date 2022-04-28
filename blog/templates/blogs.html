@@ -6,6 +6,7 @@
 {% block content %}
 
     <main>
+        {% if last_blog %}
         <section class="blog-gape pt-4 pt-sm-5">
             <div class="g-container">
                 <ul class="g-breadcrumb mb-md-4 pb-3">
@@ -46,6 +47,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
 
         <section class="section-gap">
             <div class="g-container">
