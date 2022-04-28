@@ -96,11 +96,6 @@ class ServiceProject(BaseModel):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-
     class Meta:
         verbose_name = _('Service Project')
         verbose_name_plural = _('Service Projects')
@@ -111,6 +106,7 @@ class ServicePacket(BaseModel):
     description = RichTextField(verbose_name=_('Description'))
     price = models.IntegerField(verbose_name=_('Price'))
     price_per = models.CharField(max_length=200, verbose_name=_('Price per'))
+    is_main = models.BooleanField(default=False, verbose_name=_('Is main'))
 
     def __str__(self):
         return self.title
@@ -145,7 +141,21 @@ class Service(BaseModel):
         verbose_name = 'service'
         verbose_name_plural = 'services'
 
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug = slugify(self.title)
-        super(Service, self).save(*args, **kwargs)
+
+class PacketApplicant(BaseModel):
+    full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
+    email = models.EmailField(max_length=255, verbose_name=_('Email'))
+    company_name = models.CharField(
+        max_length=255, verbose_name=_('Company name'))
+    packet = models.ForeignKey(
+        ServicePacket, on_delete=models.CASCADE, verbose_name=_('Packet'))
+    service = models.ForeignKey(
+        Service, on_delete=models.CASCADE, verbose_name=_('Service'))
+
+    class Meta:
+        db_table = 'packet_applicant'
+        verbose_name = _('Packet Applicant')
+        verbose_name_plural = _('Packet Applicants')
+
+    def __str__(self):
+        return self.full_name

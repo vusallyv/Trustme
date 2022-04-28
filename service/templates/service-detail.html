@@ -5,7 +5,7 @@
 {% block title %}Trustme{% endblock title %}
 {% block content %}
 
-   
+
 {% include 'partials/packages.html' %}
 
     <main>
@@ -427,223 +427,45 @@
         </section>
         {% endif %}
 
+        {% if service.packets.count > 0 %}
         <section class="mt-md-4">
             <div class="g-container">
                 <div class="price-box">
-                    <div class="price-box__wrapper">
+                    {% for packet in service.packets.all|dictsort:"is_main" %}
+                    <div class="price-box__wrapper {% if packet.is_main %} price-box__wrapper--main {% endif %}">
                         <p class="price-box__title">
-                            Standart Digital Paket
-                        </p>
-                        <p class="price-box__subtitle">
-                            ⋔1000 <span> / ay</span>
-                        </p>
-                        <ul class="price-box__list price-box__list--shadow">
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6 aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
-                                yaradılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin
-                                idarə edilməsi
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6 aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                        </ul>
-                        <button class="price-box__more">
-                            Daha çox
-                            <img src="{% static 'assets/svg/black-down.svg' %}" alt="">
-                        </button>
-                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#standartPacketModal">
-                            Müraciət et
-                        </button>
-                    </div>
-                    <div class="price-box__wrapper price-box__wrapper--main">
-                        <p class="price-box__title">
-                            Premium Digital Paket
+                            {{packet.title}}
+                            {% if packet.is_main %} 
                             <span class="chip chip--green">
                                 Populyar
                             </span>
+                            {% endif %}
                         </p>
                         <p class="price-box__subtitle">
-                            ⋔1500 <span> / ay</span>
+                            ⋔{{packet.price}} <span> / {{packet.price_per}}</span>
                         </p>
                         <ul class="price-box__list price-box__list--shadow">
+                            
                             <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6
-                                aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
-                                yaradılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin idarə
-                                edilməsi
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6
-                                aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
+                                 {{packet.description|safe}}
                             </li>
                         </ul>
                         <button class="price-box__more">
-                            Daha çox
-                            <img src="{% static 'assets/svg/white-down.svg' %}" alt="">
+                            {% trans 'Daha çox' %}
+                            
+                            <img src="{% if packet.is_main %}{% static 'assets/svg/white-down.svg' %}{% else %}{% static 'assets/svg/black-down.svg' %}{% endif %}" alt="">
+                            
                         </button>
-                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#premiumPacketModal">
-                            Müraciət et
-                        </button>
-                    </div>
-                    <div class="price-box__wrapper">
-                        <p class="price-box__title">
-                            Platinum Digital Paket
-                        </p>
-                        <p class="price-box__subtitle">
-                            ⋔3000 <span> / ay</span>
-                        </p>
-                        <ul class="price-box__list price-box__list--shadow">
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6
-                                aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznesə özəl kontentin
-                                yaradılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Sosial şəbəkələrin idarə
-                                edilməsi
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Montion post (4)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Rəqəmsal strategiyanın
-                                qurulması (6
-                                aylıq)
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Brend stilinin
-                                formalaşdırılması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                            <li class="price-box__item">
-                                <img src="{% static 'assets/svg/Frame 134.svg' %}" alt=""> Biznes üçün bazar
-                                araşdırması
-                            </li>
-                        </ul>
-                        <button class="price-box__more">
-                            Daha çox
-                            <img src="{% static 'assets/svg/black-down.svg' %}" alt="">
-                        </button>
-                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#platinumPacketModal">
-                            Müraciət et
+                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#packetID{{packet.id}}">
+                            {% trans 'Müraciət et' %}
                         </button>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+        {% endif %}
+
     </main>
 {% endblock content %}
 {% block js %}

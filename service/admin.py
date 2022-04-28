@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from service.models import ServiceCategory, ServiceAdvantage, ServiceSpecialist, ServiceProject, ServicePacket, Service, ProjectImage, ProjectResult, ProjectProcess
+from service.models import PacketApplicant, ServiceCategory, ServiceAdvantage, ServiceSpecialist, ServiceProject, ServicePacket, Service, ProjectImage, ProjectResult, ProjectProcess
 
 
 class ServiceCategoryAdmin(admin.ModelAdmin):
@@ -43,6 +43,10 @@ class ProjectProcessAdmin(admin.ModelAdmin):
     list_display = ['title', ]
 
 
+class PacketApplicantAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(ServiceCategory, ServiceCategoryAdmin)
 admin.site.register(ServiceAdvantage, ServiceAdvantageAdmin)
 admin.site.register(ServiceSpecialist, ServiceSpecialistAdmin)
@@ -52,3 +56,4 @@ admin.site.register(Service, ServiceAdmin)
 admin.site.register(ProjectImage, ProjectImageAdmin)
 admin.site.register(ProjectResult, ProjectResultAdmin)
 admin.site.register(ProjectProcess, ProjectProcessAdmin)
+admin.site.register(PacketApplicant, PacketApplicantAdmin)
