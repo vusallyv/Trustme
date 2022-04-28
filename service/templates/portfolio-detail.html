@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
-{% block title %}Trustme{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 {% block content %}
 
     {% include 'partials/apply-modal.html' %}
@@ -30,30 +30,16 @@
                     <div class="col-lg-6">
                         <div class="project-about__content">
                             <h4 class="g-title--purple mb-3">
-                                Haqqında
+                                {% trans 'Haqqında' %}
                             </h4>
                             <p class="g-text mb-4">
-                                Trustme Digital Marketinq agentliyi, uzun illərin təcrübəsinə əsaslanaraq rəqəmsal
-                                marketinq və brendinq çərçivəsində bir çox fərqli sahələrdə fərqli markalara xidmət
-                                etmişdir. Rəqəmsal bir agentlik olaraq əsas məqsədimiz, müştərilərimizin hədəf
-                                auditoriyasının
-                                düzgün anlamaq və istəklərini qarşılamaq, bunun nəticəsində müştərilərimizin satışlarını
-                                artırmaqdır. Bu istiqamətdə ilk addım, müştərimizin markasının ehtiyaclarını
-                                müəyyənləşdirməkdir.
+                                {{portfolio.description|safe}}
                             </p>
-                            <h4 class="g-title--purple mb-3">
-                                Hədəf
-                            </h4>
-                            <ul class="g-list">
-                                <li>Trustme Digital Marketinq agentliyi, uzun illərin təcrübəsinə</li>
-                                <li>Uzun illərin təcrübəsinə</li>
-                                <li>Trustme Digital Marketinq</li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 order-lg-2 order-first">
                         <div class="project-about__img">
-                            <img src="{% static 'assets/img/Frame 88.png' %}" alt="">
+                            <img src="{{portfolio.image.url}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -65,182 +51,46 @@
 
             <div class="g-container">
                 <h4 class="g-title--purple mb-3">
-                    Proses
+                    {% trans 'Proses' %}
                 </h4>
 
                 <div class="process__wrapper d-lg-flex d-none">
+                    {% for pr in portfolio.process.all %}
                     <div class="process__box">
                         <div class="process__icon">
-                            <img src="{% static 'assets/svg/process1.svg' %}" alt="">
+                            <img src="{{pr.icon.url}}" alt="">
                         </div>
                         <div class="process__right">
                             <p class="process__title">
-                                Brief
+                                {{pr.title}}
                             </p>
                             <span class="process__subtitle">
-                                2 həftə
+                                {{pr.period}}
                             </span>
                         </div>
                     </div>
-                    <div class="process__box">
-                        <div class="process__icon">
-                            <img src="{% static 'assets/svg/process2.svg' %}" alt="">
-                        </div>
-                        <div class="process__right">
-                            <p class="process__title">
-                                UX Dizayn
-                            </p>
-                            <span class="process__subtitle">
-                                2 həftə
-                            </span>
-                        </div>
-                    </div>
-                    <div class="process__box">
-                        <div class="process__icon">
-                            <img src="{% static 'assets/svg/process3.svg' %}" alt="">
-                        </div>
-                        <div class="process__right">
-                            <p class="process__title">
-                                UI Dizayn
-                            </p>
-                            <span class="process__subtitle">
-                                1 həftə
-                            </span>
-                        </div>
-                    </div>
-                    <div class="process__box">
-                        <div class="process__icon">
-                            <img src="{% static 'assets/svg/process4.svg' %}" alt="">
-                        </div>
-                        <div class="process__right">
-                            <p class="process__title">
-                                Front-end kodlaşdırma
-                            </p>
-                            <span class="process__subtitle">
-                                1 həftə
-                            </span>
-                        </div>
-                    </div>
-                    <div class="process__box">
-                        <div class="process__icon">
-                            <img src="{% static 'assets/svg/process5.svg' %}" alt="">
-                        </div>
-                        <div class="process__right">
-                            <p class="process__title">
-                                Backend kodlaşdırma
-                            </p>
-                            <span class="process__subtitle">
-                                1 həftə
-                            </span>
-                        </div>
-                    </div>
-                    <div class="process__box">
-                        <div class="process__icon">
-                            <img src="{% static 'assets/svg/process6.svg' %}" alt="">
-                        </div>
-                        <div class="process__right">
-                            <p class="process__title">
-                                Test
-                            </p>
-                            <span class="process__subtitle">
-                                1 həftə
-                            </span>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <div class="swiper process__slide d-lg-none">
                     <div class="swiper-wrapper">
+                        {% for pr in portfolio.process.all %}
                         <div class="swiper-slide">
                             <div class="process__box">
                                 <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process1.svg' %}" alt="">
+                                    <img src="{{pr.icon.url}}" alt="">
                                 </div>
                                 <div class="process__right">
                                     <p class="process__title">
-                                        Brief
+                                        {{pr.title}}
                                     </p>
                                     <span class="process__subtitle">
-                                        2 həftə
+                                        {{pr.period}}
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="process__box">
-                                <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process2.svg' %}" alt="">
-                                </div>
-                                <div class="process__right">
-                                    <p class="process__title">
-                                        UX Dizayn
-                                    </p>
-                                    <span class="process__subtitle">
-                                        2 həftə
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="process__box">
-                                <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process3.svg' %}" alt="">
-                                </div>
-                                <div class="process__right">
-                                    <p class="process__title">
-                                        UI Dizayn
-                                    </p>
-                                    <span class="process__subtitle">
-                                        1 həftə
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="process__box">
-                                <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process4.svg' %}" alt="">
-                                </div>
-                                <div class="process__right">
-                                    <p class="process__title">
-                                        Front-end kodlaşdırma
-                                    </p>
-                                    <span class="process__subtitle">
-                                        1 həftə
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="process__box">
-                                <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process5.svg' %}" alt="">
-                                </div>
-                                <div class="process__right">
-                                    <p class="process__title">
-                                        Backend kodlaşdırma
-                                    </p>
-                                    <span class="process__subtitle">
-                                        1 həftə
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="process__box">
-                                <div class="process__icon">
-                                    <img src="{% static 'assets/svg/process6.svg' %}" alt="">
-                                </div>
-                                <div class="process__right">
-                                    <p class="process__title">
-                                        Test
-                                    </p>
-                                    <span class="process__subtitle">
-                                        1 həftə
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -252,93 +102,59 @@
                     <div class="col-lg-6">
                         <div class="project-about__content">
                             <h4 class="g-title--purple mb-3">
-                                Nəticə
+                                {% trans 'Nəticə' %}
                             </h4>
                             <div class="accordion" id="accordionResult">
+                                {% for result in portfolio.results.all %}
+                                {% if forloop.first %}
                                 <div class="accordion-item">
-                                    <div class="accordion-header" id="headingOne">
+                                    <div class="accordion-header" id="heading{{result.id}}">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Facebook marketinq
+                                            data-bs-target="#collapse{{result.id}}" aria-expanded="true"
+                                            aria-controls="collapse{{result.id}}">
+                                            {{result.title}}
                                             <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                         </button>
                                     </div>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingOne">
+                                    <div id="collapse{{result.id}}" class="accordion-collapse collapse show"
+                                        aria-labelledby="heading{{result.id}}">
                                         <div class="accordion-body">
-                                            Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı
-                                            bir loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə
-                                            edir. Biz, hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi
-                                            dizayn təqdim edirik. Potensial
-                                            müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə
-                                            görünürlük vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                            {{result.description|safe}}
                                         </div>
                                     </div>
                                 </div>
+                                {% else %}
                                 <div class="accordion-item">
-                                    <div class="accordion-header" id="headingTwo">
+                                    <div class="accordion-header" id="heading{{result.id}}">
                                         <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                            İnstagram marketinq
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{result.id}}"
+                                            aria-expanded="false" aria-controls="collapse{{result.id}}">
+                                            {{result.title}}
                                             <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                         </button>
                                     </div>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        aria-labelledby="headingTwo">
+                                    <div id="collapse{{result.id}}" class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{result.id}}">
                                         <div class="accordion-body">
-                                            Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı
-                                            bir loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə
-                                            edir. Biz, hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi
-                                            dizayn təqdim edirik. Potensial
-                                            müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə
-                                            görünürlük vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                           {{result.description|safe}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <div class="accordion-header" id="headingThree">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree">
-                                            Linkedin marketinq
-                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                        </button>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        aria-labelledby="headingThree">
-                                        <div class="accordion-body">
-                                            Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı
-                                            bir loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə
-                                            edir. Biz, hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi
-                                            dizayn təqdim edirik. Potensial
-                                            müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə
-                                            görünürlük vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="swiper result-slide">
                             <div class="swiper-wrapper">
+                                {% for image in portfolio.images.all %}
                                 <div class="swiper-slide">
                                     <div class="result-slide__img">
-                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
+                                        <img src="{{image.image.url}}" alt="">
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="result-slide__img">
-                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="result-slide__img">
-                                        <img src="{% static 'assets/img/Image.png' %}" alt="">
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -403,41 +219,32 @@
             </div>
         </section>
 
+        {% if recommended_projects.count > 0 %}
         <section class="recommend">
             <div class="g-container">
                 <div class="row justify-content-between">
                     <div class="col-xl-2">
                         <div class="d-flex flex-column">
                             <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
-                                <p>PORTFOLİO</p>
-                                <h2>Həmçinin
-                                    bax</h2>
+                                <p>{% trans 'PORTFOLİO' %}</p>
+                                <h2>{% trans 'Həmçinin bax' %}</h2>
                             </div>
 
-                            <a href="" class="g-btn d-none d-xl-flex">
-                                Hamısı
+                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                {% trans 'Hamısı' %}
                             </a>
                         </div>
                     </div>
-
                     <div class="col-xl-9">
                         <div class="swiper recommend__slide">
                             <div class="swiper-wrapper">
+                                {% for project in recommended_projects %}
                                 <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 64 (1).png' %}" alt="">
+                                    <a href="{% url 'service:portfolio-detail' project.slug %}" class="recommend__item">
+                                        <img src="{{project.image.url}}" alt="">
                                     </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
-                                    </a>
-                                </div>
+                                {% endfor %}
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -445,6 +252,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
     </main>
 {% endblock content %}
 

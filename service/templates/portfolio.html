@@ -26,13 +26,13 @@
                 <div class="portfolio-page__wrapper">
                     <ul class="dashboard">
                         <li class="dashboard__item">
-                            <a href="{% url 'service:portfolio' %}" class="dashboard__link  {% if not service_param %}  dashboard__link--active {% endif %}">
+                            <a href="{% url 'service:portfolio' %}" class="dashboard__link  {% if not request.GET.service %}  dashboard__link--active {% endif %}">
                                 <img src="{% static 'assets/svg/copy2.svg' %}" alt=""> Hamısı
                             </a>
                         </li>
                         {% for service in services %}
                         <li class="dashboard__item">
-                            <a href="?service={{ service.slug }}" class="dashboard__link {% if service_param == service.slug %}dashboard__link--active{% endif %}">
+                            <a href="?service={{ service.slug }}" class="dashboard__link {% if request.GET.service == service.slug %}dashboard__link--active{% endif %}">
                                 <img src="{{service.icon.url}}" alt=""> {{service.title}}
                             </a>
                         </li>
@@ -116,7 +116,7 @@
                             {% for portfolio in portfolios %}
                             <div class="col-6">
                                 <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
-                                    <img src="{% static 'assets/img/portfolio1.png' %}" alt="">
+                                    <img src="{{portfolio.image.url}}" alt="">
                                 </a>
                             </div>
                             {% endfor %}
@@ -125,8 +125,8 @@
                         <div class="row g-3 d-sm-flex d-sm-none">
                             {% for portfolio in portfolios %}
                             <div class="col-12">
-                                <a href="#" class="portfolio-page__item">
-                                    <img src="{% static 'assets/img/portfolio1.png' %}" alt="">
+                                <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
+                                    <img src="{{portfolio.image.url}}" alt="">
                                 </a>
                             </div>
                             {% endfor %}
@@ -136,7 +136,7 @@
                         <ul class="pagination mt-4 mb-4 mb-sm-5 justify-content-center">
                             {% if page_obj.has_previous %}
                             <li>
-                                <a href="?page={{ page_obj.previous_page_number }}" class="custom-prev-btn">
+                                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.service %}&service={{ request.GET.service }}{% endif %}" class="custom-prev-btn">
                                     <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -166,7 +166,7 @@
                             </li>
                             {% else %}
                             <li class="pagination__item">
-                                <a href="?page={{ i }}" class="pagination__link">
+                                <a href="?page={{ i }}{% if request.GET.service %}&service={{ request.GET.service }}{% endif %}" class="pagination__link">
                                     {{i}}
                                 </a>
                             </li>
@@ -174,7 +174,7 @@
                             {% endfor %}
                             {% if page_obj.has_next %}
                             <li>
-                                <a href="?page={{ page_obj.next_page_number }}" class="custom-next-btn">
+                                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.service %}&service={{ request.GET.service }}{% endif %}" class="custom-next-btn">
                                     <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

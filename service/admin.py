@@ -2,27 +2,27 @@ from django.contrib import admin
 
 # Register your models here.
 
-from service.models import Category, Advantage, Specialist, Project, Packet, Service
+from service.models import ServiceCategory, ServiceAdvantage, ServiceSpecialist, ServiceProject, ServicePacket, Service, ProjectImage, ProjectResult, ProjectProcess
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class ServiceCategoryAdmin(admin.ModelAdmin):
     list_display = ['question', 'answer']
 
 
-class AdvantageAdmin(admin.ModelAdmin):
+class ServiceAdvantageAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
 
 
-class SpecialistAdmin(admin.ModelAdmin):
+class ServiceSpecialistAdmin(admin.ModelAdmin):
     list_display = ['name', 'description']
 
 
-class ProjectAdmin(admin.ModelAdmin):
+class ServiceProjectAdmin(admin.ModelAdmin):
     list_display = ['title', 'url', 'description', 'image']
     exclude = ['slug']
 
 
-class PacketAdmin(admin.ModelAdmin):
+class ServicePacketAdmin(admin.ModelAdmin):
     list_display = ['title', 'description']
 
 
@@ -31,9 +31,24 @@ class ServiceAdmin(admin.ModelAdmin):
     exclude = ['slug']
 
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Advantage, AdvantageAdmin)
-admin.site.register(Specialist, SpecialistAdmin)
-admin.site.register(Project, ProjectAdmin)
-admin.site.register(Packet, PacketAdmin)
+class ProjectImageAdmin(admin.ModelAdmin):
+    pass
+
+
+class ProjectResultAdmin(admin.ModelAdmin):
+    list_display = ['title', ]
+
+
+class ProjectProcessAdmin(admin.ModelAdmin):
+    list_display = ['title', ]
+
+
+admin.site.register(ServiceCategory, ServiceCategoryAdmin)
+admin.site.register(ServiceAdvantage, ServiceAdvantageAdmin)
+admin.site.register(ServiceSpecialist, ServiceSpecialistAdmin)
+admin.site.register(ServiceProject, ServiceProjectAdmin)
+admin.site.register(ServicePacket, ServicePacketAdmin)
 admin.site.register(Service, ServiceAdmin)
+admin.site.register(ProjectImage, ProjectImageAdmin)
+admin.site.register(ProjectResult, ProjectResultAdmin)
+admin.site.register(ProjectProcess, ProjectProcessAdmin)

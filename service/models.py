@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from trustme_backend.utils.base_model import BaseModel
 
 
-class Category(BaseModel):
+class ServiceCategory(BaseModel):
     question = models.CharField(max_length=200, verbose_name=_('Question'))
     answer = RichTextField(verbose_name=_('Answer'))
 
@@ -14,11 +14,11 @@ class Category(BaseModel):
         return self.question
 
     class Meta:
-        verbose_name = _('Category')
-        verbose_name_plural = _('Categories')
+        verbose_name = _('Service Category')
+        verbose_name_plural = _('Service Categories')
 
 
-class Advantage(BaseModel):
+class ServiceAdvantage(BaseModel):
     icon = models.ImageField(upload_to='advantages/', verbose_name=_('Icon'))
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
@@ -27,11 +27,11 @@ class Advantage(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = _('Advantage')
-        verbose_name_plural = _('Advantages')
+        verbose_name = _('Service Advantage')
+        verbose_name_plural = _('Service Advantages')
 
 
-class Specialist(BaseModel):
+class ServiceSpecialist(BaseModel):
     name = models.CharField(max_length=200, verbose_name=_('Name'))
     description = RichTextField(verbose_name=_('Description'))
 
@@ -39,17 +39,59 @@ class Specialist(BaseModel):
         return self.name
 
     class Meta:
-        verbose_name = _('Specialist')
-        verbose_name_plural = _('Specialists')
+        verbose_name = _('Service Specialist')
+        verbose_name_plural = _('Service Specialists')
 
 
-class Project(BaseModel):
+class ProjectResult(BaseModel):
+    title = models.CharField(max_length=200, verbose_name=_('Title'))
+    description = RichTextField(verbose_name=_('Description'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Project Result')
+        verbose_name_plural = _('Project Results')
+
+
+class ProjectProcess(BaseModel):
+    title = models.CharField(max_length=200, verbose_name=_('Title'))
+    period = models.CharField(max_length=200, verbose_name=_('Period'))
+    icon = models.ImageField(upload_to='process/', verbose_name=_('Icon'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Project Process')
+        verbose_name_plural = _('Project Processes')
+
+
+class ProjectImage(BaseModel):
+    image = models.ImageField(upload_to='projects/', verbose_name=_('Image'))
+
+    def __str__(self):
+        return f"{self.image}"
+
+    class Meta:
+        verbose_name = _('Project Image')
+        verbose_name_plural = _('Project Images')
+
+
+class ServiceProject(BaseModel):
     url = models.URLField(verbose_name=_('URL'))
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
     image = models.ImageField(upload_to='projects/', verbose_name=_('Image'))
     slug = models.SlugField(max_length=200, unique=True,
                             verbose_name=_('Slug'))
+    process = models.ManyToManyField(
+        ProjectProcess, related_name='project_process', verbose_name=_('Process'))
+    results = models.ManyToManyField(
+        ProjectResult, related_name='project_results', verbose_name=_('Results'))
+    images = models.ManyToManyField(
+        ProjectImage, related_name='project_images', verbose_name=_('Images'))
 
     def __str__(self):
         return self.title
@@ -60,11 +102,11 @@ class Project(BaseModel):
         super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = _('Project')
-        verbose_name_plural = _('Projects')
+        verbose_name = _('Service Project')
+        verbose_name_plural = _('Service Projects')
 
 
-class Packet(BaseModel):
+class ServicePacket(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
     price = models.IntegerField(verbose_name=_('Price'))
@@ -74,8 +116,8 @@ class Packet(BaseModel):
         return self.title
 
     class Meta:
-        verbose_name = _('Packet')
-        verbose_name_plural = _('Packets')
+        verbose_name = _('Service Packet')
+        verbose_name_plural = _('Service Packets')
 
 
 class Service(BaseModel):
@@ -84,15 +126,15 @@ class Service(BaseModel):
     full_description = RichTextField(null=True)
     icon = models.ImageField(null=True)
     categories = models.ManyToManyField(
-        Category, related_name='services_categories', blank=True)
+        ServiceCategory, related_name='services_categories', blank=True)
     advantages = models.ManyToManyField(
-        Advantage, related_name='services_advantages', blank=True)
+        ServiceAdvantage, related_name='services_advantages', blank=True)
     specialists = models.ManyToManyField(
-        Specialist, related_name='services_specialists', blank=True)
+        ServiceSpecialist, related_name='services_specialists', blank=True)
     projects = models.ManyToManyField(
-        Project, related_name='services_projects', blank=True)
+        ServiceProject, related_name='services_projects', blank=True)
     packets = models.ManyToManyField(
-        Packet, related_name='services_packets', blank=True)
+        ServicePacket, related_name='services_packets', blank=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     def __str__(self):
