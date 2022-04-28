@@ -1,6 +1,8 @@
-{% load static %}
+{% load static get_packets i18n %}
+{% get_packets_of_service request as packets %}
 <!-- Standart Package  Modal -->
- <div class="modal fade" id="standartPacketModal" tabindex="-1" aria-hidden="true">
+{% for packet in packets %}
+ <div class="modal fade" id="packetID{{packet.id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal">
@@ -11,23 +13,37 @@
                 <p class="modal-title">
                     Müraciət et
                 </p>
-                <div class="price-box-apply mb-3">
-                    <p class="price-box-apply__title mt-0">
-                        Rəqəmsal Strategiya
+                {% if packet.is_main %}
+                <div class="price-box-apply price-box-apply--main mb-3">
+                    <span class="chip chip--green">
+                        {% trans 'Populyar' %}
+                    </span>
+                    <p class="price-box-apply__title">
+                        {{packet.title}}
                     </p>
                     <p class="price-box-apply__subtitle">
-                        Standart Digital Paket/⋔1000/ay
+                        {{packet.title}}/⋔{{packet.price}}/{{packet.price_per}}
                     </p>
                 </div>
-
-                <form action="" class="w-100">
+                {% else %}
+                <div class="price-box-apply mb-3">
+                    <p class="price-box-apply__title mt-0">
+                        {{packet.title}}
+                    </p>
+                    <p class="price-box-apply__subtitle">
+                        {{packet.title}}/⋔{{packet.price}}/{{packet.price_per}}
+                    </p>
+                </div>
+                {% endif %}
+                <form action="" class="w-100 apply-for-packet" method="post" data-packet="{{packet.id}}">
+                    {% csrf_token %}
                     <div class="g-input-group">
-                        <label for="name">Ad və soyad <span>*</span></label>
-                        <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                        <label for="full_name">Ad və soyad <span>*</span></label>
+                        <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
                     </div>
                     <div class="g-input-group">
-                        <label for="company-name">Şirkət adı <span>*</span></label>
-                        <input id="company-name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                        <label for="company_name">Şirkət adı <span>*</span></label>
+                        <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
                     </div>
                     <div class="g-input-group">
                         <label for="email">Email <span>*</span></label>
@@ -46,124 +62,53 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                    <button type="submit" class="g-btn-fill w-100 apply-for-packet-submit">Göndər</button>
                 </form>
                 <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
             </div>
         </div>
     </div>
 </div>
+{% endfor %}
 
-<!-- Premium Package  Modal -->
-<div class="modal fade" id="premiumPacketModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal">
-                <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
-            </button>
-
-            <div class="modal-body">
-                <p class="modal-title">
-                    Müraciət et
-                </p>
-                <div class="price-box-apply price-box-apply--main mb-3">
-                    <span class="chip chip--green">
-                        Populyar
-                    </span>
-                    <p class="price-box-apply__title">
-                        Rəqəmsal Strategiya
-                    </p>
-                    <p class="price-box-apply__subtitle">
-                        Premium Digital Paket/⋔1500/ay
-                    </p>
-                </div>
-
-                <form action="" class="w-100">
-                    <div class="g-input-group">
-                        <label for="name">Ad və soyad <span>*</span></label>
-                        <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
-                    </div>
-                    <div class="g-input-group">
-                        <label for="company-name">Şirkət adı <span>*</span></label>
-                        <input id="company-name" type="text" placeholder="Şirkətinizin adını daxil edin">
-                    </div>
-                    <div class="g-input-group">
-                        <label for="email">Email <span>*</span></label>
-                        <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
-                    </div>
-                    <div class="g-input-group mb-0">
-                        <div class="g-input-group mb-0">
-                            <label for="phone">Əlaqə nömrəsi <span>*</span></label>
-                            <div class="d-flex align-items-center">
-                                <select class="prefix-premiumPacket" name="states[]">
-                                    <option value='+994'>+994</option>
-                                    <option value='+7'>+7</option>
-                                    <option value='+1'>+1</option>
-                                </select>
-                                <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="g-btn-fill w-100">Göndər</button>
-                </form>
-                <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Platinum Package  Modal -->
-<div class="modal fade" id="platinumPacketModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal">
-                <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
-            </button>
-
-            <div class="modal-body">
-                <p class="modal-title">
-                    Müraciət et
-                </p>
-
-                <div class="price-box-apply mb-3">
-                    <p class="price-box-apply__title">
-                        Rəqəmsal Strategiya
-                    </p>
-                    <p class="price-box-apply__subtitle">
-                        Platinum Digital Paket/⋔3000/ay
-                    </p>
-                </div>
-
-                <form action="" class="w-100">
-                    <div class="g-input-group">
-                        <label for="name">Ad və soyad <span>*</span></label>
-                        <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
-                    </div>
-                    <div class="g-input-group">
-                        <label for="company-name">Şirkət adı <span>*</span></label>
-                        <input id="company-name" type="text" placeholder="Şirkətinizin adını daxil edin">
-                    </div>
-                    <div class="g-input-group">
-                        <label for="email">Email <span>*</span></label>
-                        <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
-                    </div>
-                    <div class="g-input-group mb-0">
-                        <div class="g-input-group mb-0">
-                            <label for="phone">Əlaqə nömrəsi <span>*</span></label>
-                            <div class="d-flex align-items-center">
-                                <select class="prefix-platinumPacket" name="states[]">
-                                    <option value='+994'>+994</option>
-                                    <option value='+7'>+7</option>
-                                    <option value='+1'>+1</option>
-                                </select>
-                                <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="g-btn-fill w-100">Göndər</button>
-                </form>
-                <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    apply_for_packet = document.getElementsByClassName('apply-for-packet');
+    const ContactLogic = {
+        contactManager(data) {
+            fetch('/api/packet-applicant', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": data.CSRFToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'company_name': data.company_name,
+                    'email': data.email,
+                    'phone': data.phone,
+                    'service': window.location.pathname.split('/')[2],
+                    'packet': data.packet,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                });
+        }
+    }
+    apply_for_packet_submit = document.getElementsByClassName('apply-for-packet-submit');
+    for (let i = 0; i < apply_for_packet_submit.length; i++) {
+        apply_for_packet_submit[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            data = {
+                'email': apply_for_packet[i].email.value,
+                'full_name': apply_for_packet[i].full_name.value,
+                'company_name': apply_for_packet[i].company_name.value,
+                'phone': apply_for_packet[i].phone.value,
+                'packet': apply_for_packet[i].dataset.packet,
+                'CSRFToken': apply_for_packet[i].csrfmiddlewaretoken.value,
+            }
+            ContactLogic.contactManager(data);
+        });
+    }
+</script>
