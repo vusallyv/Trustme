@@ -42,6 +42,17 @@ class ServiceSpecialist(BaseModel):
         verbose_name = _('Service Specialist')
         verbose_name_plural = _('Service Specialists')
 
+class ProjectStatistic(BaseModel):
+    name = models.CharField(max_length=200, verbose_name=_('Name'))
+    description = RichTextField(verbose_name=_('Description'))
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Project Statistic')
+        verbose_name_plural = _('Project Statistics')
+
 
 class ProjectResult(BaseModel):
     title = models.CharField(max_length=200, verbose_name=_('Title'))
@@ -83,7 +94,7 @@ class ServiceProject(BaseModel):
     url = models.URLField(verbose_name=_('URL'))
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
-    image = models.ImageField(upload_to='projects/', verbose_name=_('Image'))
+    cover_image = models.ImageField(upload_to='projects/', verbose_name=_('Cover Image'))
     slug = models.SlugField(max_length=200, unique=True,
                             verbose_name=_('Slug'))
     process = models.ManyToManyField(
@@ -92,6 +103,8 @@ class ServiceProject(BaseModel):
         ProjectResult, related_name='project_results', verbose_name=_('Results'))
     images = models.ManyToManyField(
         ProjectImage, related_name='project_images', verbose_name=_('Images'))
+    statistics = models.ManyToManyField(
+        ProjectStatistic, related_name='project_statistics', verbose_name=_('Statistics'))
 
     def __str__(self):
         return self.title
@@ -156,6 +169,26 @@ class PacketApplicant(BaseModel):
         db_table = 'packet_applicant'
         verbose_name = _('Packet Applicant')
         verbose_name_plural = _('Packet Applicants')
+
+    def __str__(self):
+        return self.full_name
+
+
+class ServiceApplicant(BaseModel):
+    full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
+    email = models.EmailField(max_length=255, verbose_name=_('Email'))
+    company_name = models.CharField(
+        max_length=255, verbose_name=_('Company name'))
+    phone_prefix = models.CharField(
+        max_length=255, verbose_name=_('Phone prefix'))
+    phone = models.CharField(max_length=255, verbose_name=_('Phone'))
+    service = models.ForeignKey(
+        Service, on_delete=models.CASCADE, verbose_name=_('Service'))
+
+    class Meta:
+        db_table = 'service_applicant'
+        verbose_name = _('Service Applicant')
+        verbose_name_plural = _('Service Applicants')
 
     def __str__(self):
         return self.full_name

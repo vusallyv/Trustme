@@ -116,7 +116,7 @@
                             {% for portfolio in portfolios %}
                             <div class="col-6">
                                 <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
-                                    <img src="{{portfolio.image.url}}" alt="">
+                                    <img src="{{portfolio.cover_image.url}}" alt="">
                                 </a>
                             </div>
                             {% endfor %}
@@ -126,7 +126,7 @@
                             {% for portfolio in portfolios %}
                             <div class="col-12">
                                 <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
-                                    <img src="{{portfolio.image.url}}" alt="">
+                                    <img src="{{portfolio.cover_image.url}}" alt="">
                                 </a>
                             </div>
                             {% endfor %}

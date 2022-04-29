@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static i18n %}
+{% load static generate_testimonial_list i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Home{% endblock title %}
@@ -15,20 +15,21 @@
 
                 <div class="modal-body">
                     <p class="modal-title">
-                        Rəy bildir
+                        {% trans 'Rəy bildir' %}
                     </p>
-                    <form action="" class="w-100">
+                    <form action="" class="w-100" method="post" id="comment-form">
+                        {% csrf_token %}
                         <div class="g-input-group">
-                            <label for="name">Ad və soyad <span>*</span></label>
-                            <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                            <label for="full_name">Ad və soyad <span>*</span></label>
+                            <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
                         </div>
                         <div class="g-input-group">
-                            <label for="company-name">Şirkət adı <span>*</span></label>
-                            <input id="company-name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                            <label for="company_name">Şirkət adı <span>*</span></label>
+                            <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
                         </div>
                         <div class="g-input-group">
-                            <label for="email">Çalışdığınız vəzifə <span>*</span></label>
-                            <input id="email" type="text" placeholder="Çalışdığınız vəzifəni daxil edin">
+                            <label for="position">Çalışdığınız vəzifə <span>*</span></label>
+                            <input id="position" type="text" placeholder="Çalışdığınız vəzifəni daxil edin">
                         </div>
                         <div class="g-input-group">
                             <label for="message">Rəy <span>*</span></label>
@@ -103,7 +104,7 @@
                                 </div>
 
                                 <div class="star-rating__score">
-                                    <p>
+                                    <p id="testimonial-star">
                                         <span class="star-rating__number"></span> / 5
                                     </p>
                                     <p class="star-rating__result">Super</p>
@@ -112,7 +113,7 @@
 
                         </div>
 
-                        <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                        <button id="comment-form-submit" type="submit" class="g-btn-fill w-100">Göndər</button>
                     </form>
                     <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
                 </div>
@@ -141,70 +142,40 @@
             <img src="{% static 'assets/svg/Vector (1).svg' %}" class="banner__decor" alt="">
         </section>
 
+        {% if about_us %}
         <section class="section-gap">
             <div class="g-container">
                 <div class="row">
                     <div class="col-xl-2">
                         <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
                             <p>
-                                HAQQIMIZDA
+                                {{about_us.title}}
                             </p>
                             <h2>
-                                Niyə biz?
+                                {% trans 'Niyə biz?' %}
                             </h2>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="row g-4">
+                            {% for info in about_us.about_us_info.all %}
                             <div class="col-6 col-lg-3">
                                 <div class="info-box">
-                                    <img src="{% static 'assets/svg/icon.svg' %}" class="info-box__icon" alt="">
-                                    <img src="{% static 'assets/svg/mob-4.svg' %}" class="info-box__icon--mob" alt="">
-                                    <h3 class="info-box__title">360° Marketinq</h3>
+                                    <img src="{{info.icon.url}}" class="info-box__icon" alt="">
+                                    <img src="{{info.icon.url}}" class="info-box__icon--mob" alt="">
+                                    <h3 class="info-box__title">{{info.title}}</h3>
                                     <p class="info-box__text">
-                                        Ağlınıza gələcək bütün xidmətləri ən peşəkar formada sizə təklif etmək
-                                        imkanlarına sahibik.
+                                        {{info.description|safe}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="info-box">
-                                    <img src="{% static 'assets/svg/icon (1).svg' %}" class="info-box__icon" alt="">
-                                    <img src="{% static 'assets/svg/mob-3.svg' %}" class="info-box__icon--mob" alt="">
-                                    <h3 class="info-box__title">Müsbət ROI</h3>
-                                    <p class="info-box__text">
-                                        Marketinq yatırımınızdan müsbət gəlir əldə etmək hər zaman ən vacib
-                                        vəzifəmizdir.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="info-box">
-                                    <img src="{% static 'assets/svg/icon (2).svg' %}" class="info-box__icon" alt="">
-                                    <img src="{% static 'assets/svg/mob-2.svg' %}" class="info-box__icon--mob" alt="">
-                                    <h3 class="info-box__title">Peşəkar komanda</h3>
-                                    <p class="info-box__text">
-                                        Layihə idarəetmə sistemimizin hər nöqtəsində bizimlə birlikdə istirak edə
-                                        bilərsiniz.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-3">
-                                <div class="info-box">
-                                    <img src="{% static 'assets/svg/icon (3).svg' %}" class="info-box__icon" alt="">
-                                    <img src="{% static 'assets/svg/mob-1.svg' %}" class="info-box__icon--mob" alt="">
-                                    <h3 class="info-box__title">Şəffaf idarəetmə</h3>
-                                    <p class="info-box__text">
-                                        Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa
-                                        bilərsiniz.
-                                    </p>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        {% endif %}
 
         <section class="certifed section-gap">
             <div class="g-container position-relative">
@@ -344,6 +315,7 @@
             </div>
         </section>
 
+        {% if services %}
         <section class="section-gap">
             <div class="g-container">
                 <div class="row">
@@ -372,46 +344,42 @@
                 </div>
             </div>
         </section>
+        {% endif %}
 
+        {% if services_categories and projects %}
         <section class="portfolio section-gap d-none d-md-block">
             <div class="g-container">
                 <div class="row align-items-center">
                     <div class="col-xl-2">
                         <div class="d-flex flex-xl-column justify-content-center justify-content-xl-start">
                             <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
-                                <p>PORTFOLİO</p>
-                                <h2>İşlərimiz</h2>
+                                <p>{% trans 'PORTFOLİO' %}</p>
+                                <h2>{% trans 'İşlərimiz' %}</h2>
                             </div>
                             <div class="portfolio__links d-none d-xl-flex">
-                                <a href="" class="portfolio__link">SMM Xidmətləri</a>
+                                {% for category in services_categories %}
+                                {% if not forloop.first and not forloop.last %}
                                 <a href="" class="portfolio__main-link">
-                                    <img src="{% static 'assets/svg/right.svg' %}" alt="">Vebsayt <br> Xidmətləri
+                                    <img src="{% static 'assets/svg/right.svg' %}" alt="">{{category.title}}
                                 </a>
-                                <a href="" class="portfolio__link">SEO Xidmətləri</a>
+                                {% else %}
+                                <a href="{% url 'service:portfolio' %}?service={{category.slug}}" class="portfolio__link">{{category.title}}</a>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                             <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">Hamısı</a>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="portfolio__cards">
-                            <a href="#" class="portfolio__card">
-                                <img src="{% static 'assets/img/Alison travel portfolio cover (1).png' %}" alt="">
+                            {% for project in projects %}
+                            <a href="{% url 'service:portfolio-detail' project.slug %}" class="portfolio__card">
+                                <img src="{{project.cover_image.url}}" alt="">
                             </a>
-                            <a href="#" class="portfolio__card">
-                                <img src="{% static 'assets/img/D&P portfolio cover (1).png' %}" alt="">
-                            </a>
-                            <a href="#" class="portfolio__card">
-                                <img src="{% static 'assets/img/D&P portfolio cover (1) (1).png' %}" alt="">
-                            </a>
-                            <a href="#" class="portfolio__card">
-                                <img src="{% static 'assets/img/Frame 25 (1).png' %}" alt="">
-                            </a>
-                            <a href="#" class="portfolio__card">
-                                <img src="{% static 'assets/img/Alison travel portfolio cover (1) (1).png' %}" alt="">
-                            </a>
-                            <a href="" class="portfolio-card-add">
+                            {% endfor %}
+                            <a href="{% url 'service:portfolio' %}" class="portfolio-card-add">
                                 <div class="portfolio-card-add__content">
-                                    <p>daha <br> çox</p>
+                                    <p>{% trans 'daha <br> çox' %}</p>
                                     <div class="portfolio-card-add__link">
                                         <img src="{% static 'assets/svg/Vector 108.svg' %}" alt="">
                                     </div>
@@ -422,149 +390,50 @@
                 </div>
             </div>
         </section>
+        {% endif %}
 
+        {% if services_categories_for_mobile %}
         <section class="mob-portfolio section-gap d-md-none">
             <div class="g-container">
                 <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
-                    <p>PORTFOLİO</p>
-                    <h2>İşlərimiz</h2>
+                    <p>{% trans 'PORTFOLİO' %}</p>
+                    <h2>{% trans 'İşlərimiz' %}</h2>
                 </div>
 
                 <ul class="nav nav-tabs categories-tab">
+                    {% for category in services_categories_for_mobile %}
                     <li class="categories-tab__item">
-                        <button class="active" data-bs-toggle="tab" data-bs-target="#SMM">
-                            SMM Xidməti
+                        <button class="active" data-bs-toggle="tab" data-bs-target="#{{category.title}}">
+                            {{category.title}}
                         </button>
                     </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="#Vebsayt">
-                            Vebsayt Xidməti
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="#Rəqəmsal">
-                            Rəqəmsal Strategiya
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="#SEO">
-                            SEO Xidməti
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="">
-                            Local Marketinq Xidməti
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="">
-                            Google Reklamları Xidməti
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="">
-                            Tv & Media Planlama Xidməti
-                        </button>
-                    </li>
-                    <li class="categories-tab__item">
-                        <button data-bs-toggle="tab" data-bs-target="">
-                            SEO Audit Xidməti
-                        </button>
-                    </li>
+                    {% endfor %}
                 </ul>
 
-                <div id="SMM" class="tab-pane fade show active swiper mob-portfolio__slide">
+                {% for category in services_categories_for_mobile %}
+                <div id="{{category.title}}" class="tab-pane fade show active swiper mob-portfolio__slide">
                     <div class="swiper-wrapper">
+                        {% for project in category.projects.all %}
                         <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
+                            <a href="{% url 'service:portfolio-detail' project.slug %}" class="mob-portfolio__img">
+                                <img src="{{project.cover_image.url}}" alt="">
                             </a>
                         </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-
-                <div id="Vebsayt" class="tab-pane fade swiper mob-portfolio__slide">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-                <div id="Rəqəmsal" class="tab-pane fade swiper mob-portfolio__slide">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-                <div id="SEO" class="tab-pane fade swiper mob-portfolio__slide">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio' %}" class="mob-portfolio__img">
-                                <img src="{% static 'assets/img/Frame 26 (2).png' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
+                {% endfor %}
             </div>
         </section>
+        {% endif %}
 
         <section class="our-clients section-gap">
             <div class="g-container">
                 <div class="row">
                     <div class="col-lg-2">
                         <p class="our-clients__title">
-                            OUR CLIENTS
+                            {% trans 'OUR CLIENTS' %}
                         </p>
                     </div>
                     <div class="col-lg-10">
@@ -746,113 +615,50 @@
                 </div>
             </div>
         </section>
-
+        
+        {% if testimonials.count > -1 %}
         <section class="clients-comments section-gap">
             <div class="g-container">
                 <div class="row">
                     <div class="col-xl-2">
                         <div class="d-flex flex-column">
                             <div class="section-title text-center text-xl-start">
-                                <p>RƏYLƏR</p>
-                                <h2>Müştəri fikirləri</h2>
+                                <p>{% trans 'RƏYLƏR' %}</p>
+                                <h2>{% trans 'Müştəri fikirləri' %}</h2>
                             </div>
                             <button class="g-btn comment-btn-desktop" data-bs-toggle="modal"
-                                data-bs-target="#commentModal">Rəy
-                                bildir</button>
+                                data-bs-target="#commentModal">{% trans 'Rəy bildir' %}</button>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="clients-comments__wrapper">
                             <div class="swiper clients-comments__slide">
                                 <div class="swiper-wrapper">
+                                    {% for testimonial in testimonials %}
                                     <div class="swiper-slide">
                                         <div class="clients-comments__box">
                                             <p class="clients-comments__name">
-                                                Mahir Cümşüdov
+                                                {{testimonial.full_name}}
                                             </p>
                                             <span class="clients-comments__position">
-                                                <b>Mycell</b> | Marketing Manager
+                                                <b>{{testimonial.company_name}}</b> | {{testimonial.position}}
                                             </span>
                                             <p class="clients-comments__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
+                                                {{testimonial.comment|safe}}
                                             </p>
                                             <div class="clients-comments__rating">
+                                                {% generate_testimonial_list testimonial.star as testimonial_list %}
+                                                {% for star in testimonial_list %}
+                                                {% if star %}
                                                 <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="clients-comments__box">
-                                            <p class="clients-comments__name">
-                                                Mahir Cümşüdov
-                                            </p>
-                                            <span class="clients-comments__position">
-                                                <b>Mycell</b> | Marketing Manager
-                                            </span>
-                                            <p class="clients-comments__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <div class="clients-comments__rating">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                {% else %}
                                                 <img src="{% static 'assets/svg/Star 2 (1).svg' %}" alt="">
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="clients-comments__box">
-                                            <p class="clients-comments__name">
-                                                Mahir Cümşüdov
-                                            </p>
-                                            <span class="clients-comments__position">
-                                                <b>Mycell</b> | Marketing Manager
-                                            </span>
-                                            <p class="clients-comments__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <div class="clients-comments__rating">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="clients-comments__box">
-                                            <p class="clients-comments__name">
-                                                Mahir Cümşüdov
-                                            </p>
-                                            <span class="clients-comments__position">
-                                                <b>Mycell</b> | Marketing Manager
-                                            </span>
-                                            <p class="clients-comments__text">
-                                                Excellent Marketing agency. We do recommend Trustme Digital to all the
-                                                businesses who cares about their development and brand building. We do
-                                                trust to Trustme.
-                                            </p>
-                                            <div class="clients-comments__rating">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
-                                                <img src="{% static 'assets/svg/Star 2 (1).svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -876,12 +682,13 @@
                             </div>
                         </div>
                         <button class="g-btn-fill comment-btn-mob" data-bs-toggle="modal"
-                            data-bs-target="#commentModal">Rəy
-                            bildir</button>
+                            data-bs-target="#commentModal">{% trans 'Rəy bildir' %}</button>
                     </div>
                 </div>
             </div>
         </section>
+        {% endif %}
+
         {% if blogs.count > 0 %}
         <section class="blogs section-gap">
             <div class="g-container">
@@ -1127,4 +934,44 @@
         }
         </script>
 
+
+
+<script>
+    testimonial = document.getElementById("comment-form");
+    const TestimonialLogic = {
+        testimonialManager(data) {
+            fetch('/api/testimonial', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": testimonial.csrfmiddlewaretoken.value,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'company_name': data.company_name,
+                    'position': data.position,
+                    'comment': data.comment,
+                    'star': data.star,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+    }
+    testimonial_submit = document.getElementById('comment-form-submit');
+    testimonial_submit.addEventListener('click', function (e) {
+        e.preventDefault();
+        data = {
+            'position': testimonial.position.value,
+            'full_name': testimonial.full_name.value,
+            'company_name': testimonial.company_name.value,
+            'comment': testimonial.message.value,
+            'star': document.querySelector('input[name="rating"]:checked').value,
+        }
+        TestimonialLogic.testimonialManager(data);
+    });
+</script>
 {% endblock js %}

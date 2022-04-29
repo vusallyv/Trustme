@@ -1,4 +1,5 @@
-{% load static %}
+{% load static i18n get_services %}
+{% get_services as services %}
 <!-- Apply Modal -->
 <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -9,34 +10,27 @@
 
             <div class="modal-body">
                 <p class="modal-title">
-                    Müraciət et
+                    {% trans 'Müraciət et' %}
                 </p>
-                <form action="" class="w-100">
+                <form action="" class="w-100" method="post" id="apply-for-service">
+                    {% csrf_token %}
                     <div class="g-input-group">
-                        <label for="name">Xidmət <span>*</span></label>
+                        <label for="name">{% trans 'Xidmət' %} <span>*</span></label>
                         <select class="modal-select" name="state">
                             <option value=""></option>
-                            <option value="SMM Xidmətləri">SMM Xidmətləri</option>
-                            <option value="Dizayn Xidmətləri">Dizayn Xidmətləri</option>
-                            <option value="SEO Xidməti">SEO Xidməti</option>
-                            <option value="Rəqəmsal Strategiya">Rəqəmsal Strategiya</option>
-                            <option value="TV & Media Planlama">TV & Media Planlama</option>
-                            <option value="Google Reklamları">Google Reklamları</option>
-                            <option value="Brendinq Xidməti">Brendinq Xidməti</option>
-                            <option value="Vebsayt Xidmətləri">Vebsayt Xidmətləri</option>
-                            <option value="Lokal Marketinq">Lokal Marketinq</option>
-                            <option value="Reklam Filmlərinin Çəkilişi">Reklam Filmlərinin Çəkilişi</option>
-                            <option value="SEO Audit">SEO Audit</option>
+                            {% for service in services %}
+                            <option value="{{service.id}}">{{service.title}}</option>
+                            {% endfor %}
                         </select>
                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                     </div>
                     <div class="g-input-group">
-                        <label for="name">Ad və soyad <span>*</span></label>
-                        <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                        <label for="full_name">Ad və soyad <span>*</span></label>
+                        <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
                     </div>
                     <div class="g-input-group">
-                        <label for="company-name">Şirkət adı <span>*</span></label>
-                        <input id="company-name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                        <label for="company_name">Şirkət adı <span>*</span></label>
+                        <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
                     </div>
                     <div class="g-input-group">
                         <label for="email">Email <span>*</span></label>
@@ -45,7 +39,7 @@
                     <div class="g-input-group mb-0">
                         <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                         <div class="d-flex align-items-center">
-                            <select class="prefix" name="states[]">
+                            <select class="prefix" name="states[]" id="phone_prefix">
                                 <option value='+994'>+994</option>
                                 <option value='+7'>+7</option>
                                 <option value='+1'>+1</option>
@@ -53,7 +47,7 @@
                             <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                         </div>
                     </div>
-                    <button type="submit" class="g-btn-fill w-100">Göndər</button>
+                    <button type="submit" id="apply-for-service-submit" class="g-btn-fill w-100">Göndər</button>
                 </form>
                 <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
 
@@ -61,3 +55,44 @@
         </div>
     </div>
 </div>
+
+<script>
+    apply_for_service = document.getElementById("apply-for-service");
+    const ApplyForServiceLogic = {
+        applyForServiceManager(data) {
+            fetch('/api/service-applicant', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": apply_for_service.csrfmiddlewaretoken.value,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'company_name': data.company_name,
+                    'email': data.email,
+                    'phone': data.phone,
+                    'service': data.service,
+                    'phone_prefix': data.phone_prefix,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+    }
+    apply_for_service_submit = document.getElementById('apply-for-service-submit');
+    apply_for_service_submit.addEventListener('click', function (e) {
+        e.preventDefault();
+        data = {
+            'email': apply_for_service.email.value,
+            'full_name': apply_for_service.full_name.value,
+            'company_name': apply_for_service.company_name.value,
+            'phone': apply_for_service.phone.value,
+            'service': apply_for_service.state.value,
+            'phone_prefix': apply_for_service.phone_prefix.value,
+        }
+        ApplyForServiceLogic.applyForServiceManager(data);
+    });
+</script>

@@ -2,14 +2,20 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
-from api.serializers.core import ContactSerializer, ApplicantSerializer
-from core.models import Contact, Applicant, Vacancy
+from api.serializers.core import ContactSerializer, ApplicantSerializer, TestimonialSerializer
+from core.models import Contact, Applicant, Testimonial, Vacancy
 
 
 class ContactAPIView(CreateAPIView):
     serializer_class = ContactSerializer
     permission_classes = [permissions.AllowAny]
     model = Contact
+
+
+class TestimonialAPIView(CreateAPIView):
+    serializer_class = TestimonialSerializer
+    permission_classes = [permissions.AllowAny]
+    model = Testimonial
 
 
 class ApplicantAPIView(CreateAPIView):
