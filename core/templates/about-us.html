@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
-{% block title %}Trustme{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 {% block content %}
 
     <main>
@@ -20,239 +20,91 @@
                 </ul>
 
                 <div class="section-title mb-3 mb-md-5">
-                    <h2>Haqqımızda</h2>
+                    <h2>{{about_us.title}}</h2>
                 </div>
 
                 <div class="row align-items-center">
                     <div class="col-lg-7">
                         <div class="about-us__text">
                             <p>
-                                Trustme Digital Marketinq agentliyi, uzun illərin təcrübəsinə əsaslanaraq rəqəmsal
-                                marketinq və brendinq çərçivəsində bir çox fərqli sahələrdə fərqli markalara xidmət
-                                etmişdir. Rəqəmsal bir agentlik olaraq əsas məqsədimiz, müştərilərimizin hədəf
-                                auditoriyasının
-                                düzgün anlamaq və istəklərini qarşılamaq, bunun nəticəsində müştərilərimizin satışlarını
-                                artırmaqdır. Bu istiqamətdə ilk addım, müştərimizin markasının ehtiyaclarını
-                                müəyyənləşdirməkdir. Davam edən prosesdə, müəyyən edilmiş
-                                ehtiyaclara uyğun olaraq marka üçün xüsusi strategiyalar yaradılır, marka
-                                yerləşdirilməsi aparılır və yol xəritəsi çəkilir. Bu addımlar əsasən markanın
-                                ayaqlarının yerə möhkəm dayanması üçün atılır. Nəhayət, bu yol xəritəsini
-                                müəyyən olunmuş tarixlərə uyğun şəkildə həyata keçiririk və zaman keçdikcə dövriyyənizi
-                                və satışlarınızı artırırıq.
+                                {{about_us.description|safe}}
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-5 d-lg-block d-none">
                         <div class="about-us__title">
                             <p>
-                                “A company is as good as the people it keeps.”
+                                {{about_us.aphorism}}
                             </p>
-                            <span>Mary Kay Ash</span>
+                            <span>{{about_us.aphorism_author}}</span>
                         </div>
                     </div>
                 </div>
-
+                {% if about_us.about_us_statistic.count > 0 %}
                 <div class="statistics section-gap">
+                    {% for statistic in about_us.about_us_statistic.all %}
                     <div class="statistics__box">
                         <span class="statistics__numbers">
-                            98%
+                            {{statistic.title}}
                         </span>
                         <span class="statistics__text">
-                            positive reviews from
-                            our costumers
+                            {{statistic.description|safe}}
                         </span>
                     </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            23
-                        </span>
-                        <span class="statistics__text">
-                            23 certified
-                            specialists
-                        </span>
-                    </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            1118
-                        </span>
-                        <span class="statistics__text">
-                            social media posts
-                            created in last year
-                        </span>
-                    </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            8900
-                        </span>
-                        <span class="statistics__text">
-                            digital materials created
-                            for the last year
-                        </span>
-                    </div>
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
             <img class="about-us__decor" src="{% static 'assets/svg/about-us-decor.svg' %}" alt="">
         </section>
-
+        {% if about_us.about_us_info.count > 0 %}   
         <section class="about-info">
             <div class="g-container">
                 <div class="row g-3 g-sm-4">
+                    {% for info in about_us.about_us_info.all %}
                     <div class="col-sm-6 col-lg-3">
                         <div class="about-info-box">
-                            <img src="{% static 'assets/svg/Icons (5).svg' %}" class="about-info-box__icon" alt="">
-                            <h3 class="about-info-box__title">360° Marketinq</h3>
+                            <img src="{{info.icon.url}}" class="about-info-box__icon" alt="">
+                            <h3 class="about-info-box__title">{{info.title}}</h3>
                             <p class="about-info-box__text">
-                                Ağlınıza gələcək bütün xidmətləri ən peşəkar formada sizə təklif etmək imkanlarına
-                                sahibik.
+                                {{info.description|safe}}
                             </p>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="about-info-box">
-                            <img src="{% static 'assets/svg/Vector 1.svg' %}" class="about-info-box__icon" alt="">
-                            <h3 class="about-info-box__title">Müsbət ROI</h3>
-                            <p class="about-info-box__text">
-                                Marketinq yatırımınızdan müsbət gəlir əldə etmək hər zaman ən vacib vəzifəmizdir.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="about-info-box">
-                            <img src="{% static 'assets/svg/icon (6).svg' %}" class="about-info-box__icon" alt="">
-                            <h3 class="about-info-box__title">Peşəkar komanda</h3>
-                            <p class="about-info-box__text">
-                                Layihə idarəetmə sistemimizin hər nöqtəsində bizimlə birlikdə istirak edə bilərsiniz.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="about-info-box">
-                            <img src="{% static 'assets/svg/Star 2 (2).svg' %}" class="about-info-box__icon" alt="">
-                            <h3 class="about-info-box__title">Şəffaf idarəetmə</h3>
-                            <p class="about-info-box__text">
-                                Hər zaman layihəni əmanət etdiyiniz komandanı və əlaqə quran şəxsi tapa bilərsiniz.
-                            </p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+        {% endif %}
 
+        {% if about_us.about_us_team.count > 0 %}
         <section class="profile-card">
             <div class="g-container">
                 <div class="section-title mb-3 mb-md-5">
-                    <h2>Komandımız</h2>
+                    <h2>{% trans 'Komandımız' %}</h2>
                 </div>
 
                 <div class="row d-none d-sm-flex">
+                    {% for team_member in about_us.about_us_team.all %}
                     <div class="col-6 col-lg-4">
                         <div class="profile-card__wrapper">
                             <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
+                                <img src="{{team_member.image.url}}" alt="">
                             </div>
                             <div class="profile-card__content">
                                 <h4 class="profile-card__title">
-                                    Nərminə Ağayeva
+                                    {{team_member.full_name}}
                                 </h4>
                                 <span class="profile-card__position">
-                                    UX/UI Dİzayner
+                                    {{team_member.position}}
                                 </span>
                                 <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
+                                    {{team_member.description|safe}}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 col-lg-4">
-                        <div class="profile-card__wrapper">
-                            <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
-                            </div>
-                            <div class="profile-card__content">
-                                <h4 class="profile-card__title">
-                                    Kənan Abbaszadə
-                                </h4>
-                                <span class="profile-card__position">
-                                    QRAFİK DİZAYNER
-                                </span>
-                                <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-4">
-                        <div class="profile-card__wrapper">
-                            <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
-                            </div>
-                            <div class="profile-card__content">
-                                <h4 class="profile-card__title">
-                                    Zeynəb Qubiyeva
-                                </h4>
-                                <span class="profile-card__position">
-                                    SOSİAL MEDİA MENECERİ
-                                </span>
-                                <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-4">
-                        <div class="profile-card__wrapper">
-                            <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
-                            </div>
-                            <div class="profile-card__content">
-                                <h4 class="profile-card__title">
-                                    Nərminə Ağayeva
-                                </h4>
-                                <span class="profile-card__position">
-                                    UX/UI Dİzayner
-                                </span>
-                                <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-4">
-                        <div class="profile-card__wrapper">
-                            <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
-                            </div>
-                            <div class="profile-card__content">
-                                <h4 class="profile-card__title">
-                                    Kənan Abbaszadə
-                                </h4>
-                                <span class="profile-card__position">
-                                    QRAFİK DİZAYNER
-                                </span>
-                                <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-lg-4">
-                        <div class="profile-card__wrapper">
-                            <div class="profile-card__img">
-                                <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
-                            </div>
-                            <div class="profile-card__content">
-                                <h4 class="profile-card__title">
-                                    Zeynəb Qubiyeva
-                                </h4>
-                                <span class="profile-card__position">
-                                    SOSİAL MEDİA MENECERİ
-                                </span>
-                                <p class="profile-card__description">
-                                    Bir kəlmə haqqında məlumat
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <div class="swiper profile-card__slide d-block d-sm-none">
@@ -370,6 +222,7 @@
                 </div>
             </div>
         </section>
+        {% endif %}
 
     </main>
     

@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-lg-6 order-lg-2 order-first">
                         <div class="project-about__img">
-                            <img src="{{portfolio.image.url}}" alt="">
+                            <img src="{{portfolio.cover_image.url}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -162,58 +162,33 @@
                 </div>
             </div>
         </section>
-
+        {% if portfolio.statistics.count > 0 %}
         <section class="mt-4 mt-md-0">
             <div class="g-container">
                 <div class="statistics statistics--four">
+                    {% for statistic in portfolio.statistics.all %}
                     <div class="statistics__box">
                         <span class="statistics__numbers">
-                            98%
+                            {{statistic.name}}
                         </span>
                         <span class="statistics__text">
-                            positive reviews from
-                            our costumers
+                            {{statistic.description|safe}}
                         </span>
                     </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            2006
-                        </span>
-                        <span class="statistics__text">
-                            experienced in digital
-                            marketing since 2006
-                        </span>
-                    </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            1118
-                        </span>
-                        <span class="statistics__text">
-                            social media posts
-                            created in last year
-                        </span>
-                    </div>
-                    <div class="statistics__box">
-                        <span class="statistics__numbers">
-                            8900
-                        </span>
-                        <span class="statistics__text">
-                            digital materials created
-                            for the last year
-                        </span>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
+        {% endif %}
 
         <section class="apply-banner section-gap">
             <div class="g-container">
                 <div class="apply-banner__wrapper">
                     <p class="apply-banner__title">
-                        Xidmətimizdən yararlanmaq istəyirsizmi?
+                        {% trans 'Xidmətimizdən yararlanmaq istəyirsizmi?' %}
                     </p>
                     <button class="g-btn-fill" data-bs-toggle="modal" data-bs-target="#applyModal">
-                        Müraciət et
+                        {% trans 'Müraciət et' %}
                     </button>
                 </div>
             </div>
