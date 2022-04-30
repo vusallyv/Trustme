@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from service.models import ServiceProject, Service
-from django.views.generic import ListView, DetailView
+from service.models import DigitalAuditInfo, ServiceProject, Service
+from django.views.generic import ListView, DetailView, TemplateView
 from django.utils.translation import gettext_lazy as _
 # Create your views here.
 
@@ -10,8 +10,14 @@ def brief(request):
     return render(request, "brief.html")
 
 
-def digital_audit(request):
-    return render(request, "digital-audit.html")
+class DigitalAuditView(TemplateView):
+    template_name = "digital-audit.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['digital_audit'] = DigitalAuditInfo.objects.filter(is_active=True).last()
+        context['title'] = _('Digital Audit')
+        return context
 
 
 class PortfolioDetailView(DetailView):
