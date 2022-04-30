@@ -5,7 +5,7 @@ app_name = "service"
 
 urlpatterns = [
     path("brief", views.brief, name = "brief"),
-    path("digital-audit", views.digital_audit, name = "digital-audit"),
+    path("digital-audit", views.DigitalAuditView.as_view(), name = "digital-audit"),
     path("portfolio/<slug:slug>", views.PortfolioDetailView.as_view(), name = "portfolio-detail"),
     path("packets", views.packets, name = "packets"),
     path("portfolio", views.PortfolioListView.as_view(), name = "portfolio"),

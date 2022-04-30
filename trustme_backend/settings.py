@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'api',
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('az', gettext('Azerbaijan')),
+    ('en', gettext('English')),
+    ('ru', gettext('Russian')),
+)
+
+MODELTRANSLATION_LANGUAGES = ('en', 'az', 'ru')
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'az'
 
 TIME_ZONE = 'UTC'
 

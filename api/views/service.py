@@ -2,8 +2,8 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
-from api.serializers.service import PacketApplicantSerializer, ServiceApplicantSerializer
-from service.models import PacketApplicant, Service, ServiceApplicant, ServicePacket
+from api.serializers.service import DigitalAuditApplicantSerializer, PacketApplicantSerializer, ServiceApplicantSerializer
+from service.models import DigitalAuditApplicant, PacketApplicant, Service, ServiceApplicant
 
 
 class PacketApplicantAPIView(CreateAPIView):
@@ -37,3 +37,9 @@ class ServiceApplicantAPIView(CreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class DigitalAuditApplicantAPIView(CreateAPIView):
+    serializer_class = DigitalAuditApplicantSerializer
+    permission_classes = [permissions.AllowAny]
+    model = DigitalAuditApplicant

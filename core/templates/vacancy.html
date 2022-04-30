@@ -102,7 +102,6 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
                     });
             }
         }
@@ -112,7 +111,6 @@
             full_name = document.getElementById('full_name').value;
             cv = document.getElementById('cv').value;
             vacancy = window.location.pathname.split('/')[2];
-            console.log(vacancy);
             message = document.getElementById('message').value;
             if (full_name === '' || cv === '' || message === '') {
                 alert('Zəhmət olmasa bütün xanaları doldurun');

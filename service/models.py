@@ -42,6 +42,7 @@ class ServiceSpecialist(BaseModel):
         verbose_name = _('Service Specialist')
         verbose_name_plural = _('Service Specialists')
 
+
 class ProjectStatistic(BaseModel):
     name = models.CharField(max_length=200, verbose_name=_('Name'))
     description = RichTextField(verbose_name=_('Description'))
@@ -94,7 +95,8 @@ class ServiceProject(BaseModel):
     url = models.URLField(verbose_name=_('URL'))
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
-    cover_image = models.ImageField(upload_to='projects/', verbose_name=_('Cover Image'))
+    cover_image = models.ImageField(
+        upload_to='projects/', verbose_name=_('Cover Image'))
     slug = models.SlugField(max_length=200, unique=True,
                             verbose_name=_('Slug'))
     process = models.ManyToManyField(
@@ -192,3 +194,49 @@ class ServiceApplicant(BaseModel):
 
     def __str__(self):
         return self.full_name
+
+
+class DigitalAuditInfo(BaseModel):
+    title = models.CharField(max_length=200, verbose_name=_('Title'))
+    description = RichTextField(verbose_name=_('Description'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Digital Audit Info')
+        verbose_name_plural = _('Digital Audit Info')
+
+
+class DigitalAuditAccordion(BaseModel):
+    title = models.CharField(max_length=200, verbose_name=_('Title'))
+    description = RichTextField(verbose_name=_('Description'))
+    digital_audit = models.ForeignKey(
+        DigitalAuditInfo, on_delete=models.CASCADE, verbose_name=_('Digital Audit'), related_name='digital_audit_accordions')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Digital Audit Accordion')
+        verbose_name_plural = _('Digital Audit Accordion')
+
+
+class DigitalAuditApplicant(BaseModel):
+    full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
+    email = models.EmailField(max_length=255, verbose_name=_('Email'))
+    phone_prefix = models.CharField(
+        max_length=255, verbose_name=_('Phone prefix'))
+    phone = models.CharField(max_length=255, verbose_name=_('Phone'))
+    site_link = models.URLField(max_length=255, verbose_name=_('Site link'))
+    facebook_link = models.CharField(max_length=255, verbose_name=_('Facebook link'))
+    instagram_link = models.CharField(max_length=255, verbose_name=_('Instagram link'))
+
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        db_table = 'digital_audit_applicant'
+        verbose_name = _('Digital Audit Applicant')
+        verbose_name_plural = _('Digital Audit Applicants')
