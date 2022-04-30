@@ -15,7 +15,8 @@ class DigitalAuditView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['digital_audit'] = DigitalAuditInfo.objects.filter(is_active=True).last()
+        context['digital_audit'] = DigitalAuditInfo.objects.filter(
+            is_active=True).last()
         context['title'] = _('Digital Audit')
         return context
 
@@ -28,7 +29,8 @@ class PortfolioDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
-        context['recommended_projects'] = ServiceProject.objects.exclude(id=self.object.id)[:3]
+        context['recommended_projects'] = ServiceProject.objects.exclude(id=self.object.id)[
+            :3]
         return context
 
 
@@ -44,7 +46,7 @@ class PortfolioListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Portfolio')
-        context['services'] = Service.objects.all() 
+        context['services'] = Service.objects.all()
         return context
 
     def get_queryset(self):

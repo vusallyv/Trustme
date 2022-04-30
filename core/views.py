@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
@@ -5,8 +6,7 @@ from core.forms import ContactForm
 from core.models import AboutUs, Testimonial, Vacancy
 from blog.models import Blog
 from django.db.models import Count
-from django.utils.translation import gettext_lazy as _
-
+from django.utils.translation import gettext_lazy as _, activate
 from service.models import Service, ServiceProject
 
 # Create your views here.
@@ -71,3 +71,11 @@ class ContactView(View):
             "form": ContactForm,
         }
         return render(request, "contact.html", context=context)
+
+
+def set_language(request):
+    if request.GET.get('lang'):
+        activate(request.GET.get('lang'))
+        response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        response.set_cookie('django_language', request.GET['lang'])
+        return response

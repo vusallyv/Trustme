@@ -12,12 +12,13 @@ PHONE_NUMBER_CHOICES = (
     ('+994', '+994'),
     ('+7', '+7'),
     ('+1', '+1'),
+    ('+90', '+90'),
 )
 
 VACANCY_TYPE_CHOICES = (
-    (1, 'Full time'),
-    (2, 'Part time'),
-    (3, 'Internship'),
+    ('Full time', 'Full time'),
+    ('Part time', 'Part time'),
+    ('Internship', 'Internship'),
 )
 
 STAR_CHOICES = (
@@ -50,8 +51,8 @@ class Contact(BaseModel):
 
 class Vacancy(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
-    type = models.IntegerField(verbose_name=_(
-        'Type'), choices=VACANCY_TYPE_CHOICES, default='full_time')
+    type = models.CharField(verbose_name=_(
+        'Type'), choices=VACANCY_TYPE_CHOICES, default='full_time', max_length=255)
     short_description = models.TextField(verbose_name=_('Short Description'))
     full_description = RichTextField(verbose_name=_('Full Description'))
     slug = models.SlugField(
@@ -74,7 +75,7 @@ class Vacancy(BaseModel):
 class Applicant(BaseModel):
     full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
     message = models.TextField(verbose_name=_('Message'))
-    cv = models.FileField(upload_to='cv', verbose_name=_('CV'))
+    cv = models.FileField(upload_to='cv/', verbose_name=_('CV'))
     vacancy = models.ForeignKey(
         Vacancy, on_delete=models.CASCADE, verbose_name=_('Vacancy'))
 
@@ -122,9 +123,9 @@ class AboutUsStatistic(BaseModel):
 class AboutUsInfo(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
     description = models.TextField(verbose_name=_('Description'))
-    icon = models.ImageField(upload_to='about_us_info', verbose_name=_('Icon'))
+    icon = models.ImageField(upload_to='about_us_info/', verbose_name=_('Icon'))
     mobile_icon = models.ImageField(
-        upload_to='about_us_info', verbose_name=_('Mobile icon'))
+        upload_to='about_us_info/', verbose_name=_('Mobile icon'))
     about_us = models.ForeignKey(
         AboutUs, on_delete=models.CASCADE, verbose_name=_('About Us'), related_name='about_us_info')
 
@@ -142,7 +143,7 @@ class AboutUsTeam(BaseModel):
     position = models.CharField(max_length=255, verbose_name=_('Position'))
     description = models.TextField(verbose_name=_('Description'))
     image = models.ImageField(
-        upload_to='about_us_team', verbose_name=_('Image'))
+        upload_to='about_us_team/', verbose_name=_('Image'))
     about_us = models.ForeignKey(
         AboutUs, on_delete=models.CASCADE, verbose_name=_('About Us'), related_name='about_us_team')
 

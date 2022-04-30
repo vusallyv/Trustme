@@ -130,7 +130,9 @@ LANGUAGES = (
 
 MODELTRANSLATION_LANGUAGES = ('en', 'az', 'ru')
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'az'
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), "locale"),
+)
 
 TIME_ZONE = 'UTC'
 

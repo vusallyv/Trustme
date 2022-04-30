@@ -64,8 +64,7 @@
                                         <span class="file-msg">
                                             Sürüşdürün və ya <b>yükləyin</b>
                                         </span>
-                                        <!-- <input id="cv" class="file-input" type="file" multiple> -->
-                                        <input type="file" name="" id="cv">
+                                        <input id="cv" class="file-input" type="file" multiple>
                                     </div>
                                 </div>
 
@@ -92,16 +91,18 @@
                     headers: {
                         "X-CSRFToken": applicantform.csrfmiddlewaretoken.value,
                         'Content-Type': 'application/json',
+                        'Content-Disposition': 'attachment; filename="cv.pdf"'
                     },
                     body: JSON.stringify({
                         'full_name': data.full_name,
                         'cv': data.cv,
                         'message': data.message,
-                        'vacancy': vacancy
+                        'vacancy': data.vacancy
                     })
                 })
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data);
                     });
             }
         }
@@ -112,17 +113,13 @@
             cv = document.getElementById('cv').value;
             vacancy = window.location.pathname.split('/')[2];
             message = document.getElementById('message').value;
-            if (full_name === '' || cv === '' || message === '') {
-                alert('Zəhmət olmasa bütün xanaları doldurun');
-            } else {
-                data = {
-                    'full_name': full_name,
-                    'cv': cv,
-                    'message': message,
-                    'vacancy': vacancy
-                }
-                ApplicantLogic.applicantManager(data);
+            data = {
+                'full_name': full_name,
+                'cv': cv,
+                'message': message,
+                'vacancy': vacancy
             }
+            ApplicantLogic.applicantManager(data);
         });
     </script>
 {% endblock js %}

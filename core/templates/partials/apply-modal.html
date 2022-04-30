@@ -1,5 +1,6 @@
-{% load static i18n get_services %}
+{% load static i18n get_services get_phone_prefixes %}
 {% get_services as services %}
+{% get_phone_prefixes as phone_prefixes %}
 <!-- Apply Modal -->
 <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -40,9 +41,9 @@
                         <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                         <div class="d-flex align-items-center">
                             <select class="prefix" name="states[]" id="phone_prefix">
-                                <option value='+994'>+994</option>
-                                <option value='+7'>+7</option>
-                                <option value='+1'>+1</option>
+                                {% for val, prefix in phone_prefixes %}
+                                <option value="{{val}}">{{prefix}}</option>
+                                {% endfor %}
                             </select>
                             <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                         </div>

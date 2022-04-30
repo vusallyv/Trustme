@@ -13,7 +13,7 @@ class BlogListView(ListView):
     paginate_by = 3
     context_object_name = 'blogs'
     queryset = Blog.objects.exclude(id=Blog.objects.last(
-    ).id) if Blog.objects.last() else None
+    ).id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
