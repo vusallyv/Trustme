@@ -1,5 +1,6 @@
-{% load static get_packets i18n %}
+{% load static get_packets i18n get_phone_prefixes %}
 {% get_packets_of_service request as packets %}
+{% get_phone_prefixes as phone_prefixes %}
 <!-- Standart Package  Modal -->
 {% for packet in packets %}
  <div class="modal fade" id="packetID{{packet.id}}" tabindex="-1" aria-hidden="true">
@@ -54,9 +55,9 @@
                             <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                             <div class="d-flex align-items-center">
                                 <select class="prefix-standartPacket" name="states[]">
-                                    <option value='+994'>+994</option>
-                                    <option value='+7'>+7</option>
-                                    <option value='+1'>+1</option>
+                                    {% for val, prefix in phone_prefixes %}
+                                    <option value="{{val}}">{{prefix}}</option>
+                                    {% endfor %}
                                 </select>
                                 <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                             </div>

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static get_phone_prefixes %}
 {% block css %}
 {% endblock css %}
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
+{% get_phone_prefixes as phone_prefixes %}
+
 
     <main>
         <div class="section blog-detail pt-4 pt-sm-5 mb-sm-5 mb-4">
@@ -63,9 +65,9 @@
                                     <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                                     <div class="d-flex align-items-center">
                                         <select id="phone_prefix" class="prefix" name="states[]" style="min-width: 85px;">
-                                            <option value='+994'>+994</option>
-                                            <option value='+7'>+7</option>
-                                            <option value='+1'>+1</option>
+                                            {% for val, prefix in phone_prefixes %}
+                                            <option value="{{val}}">{{prefix}}</option>
+                                            {% endfor %}
                                         </select>
                                         <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                                     </div>

@@ -6,15 +6,14 @@ from core.models import AboutUs, AboutUsInfo, AboutUsStatistic, AboutUsTeam, App
 
 
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'email', 'company_name',
-                    'phone_prefix', 'phone')
+    list_display = ('full_name', 'email', 'company_name', 'phone')
     list_filter = ('full_name', 'email', 'company_name',
                    'phone_prefix', 'phone')
     search_fields = ('full_name', 'email', 'company_name')
 
 
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'type')
+    list_display = ('title',)
     list_filter = ('type',)
     search_fields = ('title', 'short_description', 'full_description')
     exclude = ('slug',)

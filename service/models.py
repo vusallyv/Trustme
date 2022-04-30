@@ -2,7 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
 from django.utils.translation import gettext_lazy as _
-from django.utils.text import slugify
+from core.models import PHONE_NUMBER_CHOICES
 from trustme_backend.utils.base_model import BaseModel
 
 
@@ -226,12 +226,14 @@ class DigitalAuditAccordion(BaseModel):
 class DigitalAuditApplicant(BaseModel):
     full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
     email = models.EmailField(max_length=255, verbose_name=_('Email'))
-    phone_prefix = models.CharField(
-        max_length=255, verbose_name=_('Phone prefix'))
+    phone_prefix = models.IntegerField(
+        verbose_name=_('Phone prefix'), choices=PHONE_NUMBER_CHOICES)
     phone = models.CharField(max_length=255, verbose_name=_('Phone'))
     site_link = models.URLField(max_length=255, verbose_name=_('Site link'))
-    facebook_link = models.CharField(max_length=255, verbose_name=_('Facebook link'))
-    instagram_link = models.CharField(max_length=255, verbose_name=_('Instagram link'))
+    facebook_link = models.CharField(
+        max_length=255, verbose_name=_('Facebook link'))
+    instagram_link = models.CharField(
+        max_length=255, verbose_name=_('Instagram link'))
 
     def __str__(self):
         return self.full_name

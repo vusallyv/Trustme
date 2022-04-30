@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% load static i18n %}
+{% load static i18n get_phone_prefixes %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
 {% block content %}
+{% get_phone_prefixes as phone_prefixes %}
 
 
 {% include 'partials/packages.html' %}
