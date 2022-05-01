@@ -15,27 +15,32 @@
                 </p>
                 <form action="" class="w-100" method="post" id="apply-for-service">
                     {% csrf_token %}
+                    <div class="alert alert-danger d-none" id="apply-for-service-non_field_errors-error" ></div>
                     <div class="g-input-group">
                         <label for="name">{% trans 'Xidmət' %} <span>*</span></label>
-                        <select class="modal-select" name="state">
+                        <select id="service" class="modal-select" name="state">
                             <option value=""></option>
                             {% for service in services %}
                             <option value="{{service.id}}">{{service.title}}</option>
                             {% endfor %}
                         </select>
+                        <div class="form-text mb-4 text-danger text-small" id='service-error'></div>
                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                     </div>
                     <div class="g-input-group">
                         <label for="full_name">Ad və soyad <span>*</span></label>
                         <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                        <div class="form-text mb-4 text-danger text-small" id='full_name-error'></div>
                     </div>
                     <div class="g-input-group">
                         <label for="company_name">Şirkət adı <span>*</span></label>
                         <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                        <div class="form-text mb-4 text-danger text-small" id='company_name-error'></div>
                     </div>
                     <div class="g-input-group">
                         <label for="email">Email <span>*</span></label>
                         <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                        <div class="form-text mb-4 text-danger text-small" id='email-error'></div>
                     </div>
                     <div class="g-input-group mb-0">
                         <label for="phone">Əlaqə nömrəsi <span>*</span></label>
@@ -47,6 +52,7 @@
                             </select>
                             <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                         </div>
+                        <div class="form-text mb-4 text-danger text-small" id='phone_prefix-error'></div>
                     </div>
                     <button type="submit" id="apply-for-service-submit" class="g-btn-fill w-100">Göndər</button>
                 </form>
@@ -60,8 +66,8 @@
 <script>
     apply_for_service = document.getElementById("apply-for-service");
     const ApplyForServiceLogic = {
-        applyForServiceManager(data) {
-            fetch('/api/service-applicant', {
+        async applyForServiceManager(data) {
+            let response = await fetch('/api/applicant', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -77,9 +83,33 @@
                     'phone_prefix': data.phone_prefix,
                 })
             })
-                .then(response => response.json())
-                .then(data => {
-                });
+                
+            let response_data = await response.json();
+            let status = await response.ok;
+            if (status) {
+                digital_audit_apply_form.reset()
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).text('');
+                    $(id).addClass('d-none');
+                    $(id).removeClass('d-block');
+                }
+            } else {
+                if ('apply-for-service-apply-non_field_errors' in response_data) {
+                    $('#apply-for-service-non_field_errors-error').addClass('d-block')
+                    $('#apply-for-service-non_field_errors-error').removeClass('d-none')
+                } else {
+                    $('#apply-for-service-non_field_errors-error').addClass('d-none')
+                }
+            
+                $('#apply-for-service-form .form-text').text('')
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).addClass('d-block');
+                    $(id).removeClass('d-none');
+                    $(id).text(response_data[field][0]);
+                }
+            }
         }
     }
     apply_for_service_submit = document.getElementById('apply-for-service-submit');

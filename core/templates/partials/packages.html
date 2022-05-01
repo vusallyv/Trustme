@@ -54,7 +54,7 @@
                         <div class="g-input-group mb-0">
                             <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                             <div class="d-flex align-items-center">
-                                <select class="prefix-standartPacket" name="states[]">
+                                <select id="phone_prefix" class="prefix-standartPacket" name="states[]">
                                     {% for val, prefix in phone_prefixes %}
                                     <option value="{{val}}">{{prefix}}</option>
                                     {% endfor %}
@@ -76,7 +76,7 @@
     apply_for_packet = document.getElementsByClassName('apply-for-packet');
     const ContactLogic = {
         contactManager(data) {
-            fetch('/api/packet-applicant', {
+            fetch('/api/applicant', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -88,6 +88,7 @@
                     'company_name': data.company_name,
                     'email': data.email,
                     'phone': data.phone,
+                    'phone_prefix': data.phone_prefix,
                     'service': window.location.pathname.split('/')[2],
                     'packet': data.packet,
                 })
@@ -106,6 +107,7 @@
                 'full_name': apply_for_packet[i].full_name.value,
                 'company_name': apply_for_packet[i].company_name.value,
                 'phone': apply_for_packet[i].phone.value,
+                'phone_prefix': apply_for_packet[i].phone_prefix.value,
                 'packet': apply_for_packet[i].dataset.packet,
                 'CSRFToken': apply_for_packet[i].csrfmiddlewaretoken.value,
             }

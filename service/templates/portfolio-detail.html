@@ -205,7 +205,7 @@
                                 <h2>{% trans 'Həmçinin bax' %}</h2>
                             </div>
 
-                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">
                                 {% trans 'Hamısı' %}
                             </a>
                         </div>
@@ -215,7 +215,7 @@
                             <div class="swiper-wrapper">
                                 {% for project in recommended_projects %}
                                 <div class="swiper-slide">
-                                    <a href="{% url 'service:portfolio-detail' project.slug %}" class="recommend__item">
+                                    <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="recommend__item">
                                         <img src="{{project.image.url}}" alt="">
                                     </a>
                                 </div>

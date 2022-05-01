@@ -363,21 +363,21 @@
                                     <img src="{% static 'assets/svg/right.svg' %}" alt="">{{category.title}}
                                 </a>
                                 {% else %}
-                                <a href="{% url 'service:portfolio' %}?service={{category.slug}}" class="portfolio__link">{{category.title}}</a>
+                                <a href="{% url 'portfolio:portfolio' %}?service={{category.slug}}" class="portfolio__link">{{category.title}}</a>
                                 {% endif %}
                                 {% endfor %}
                             </div>
-                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">Hamısı</a>
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">Hamısı</a>
                         </div>
                     </div>
                     <div class="col-xl-10">
                         <div class="portfolio__cards">
                             {% for project in projects %}
-                            <a href="{% url 'service:portfolio-detail' project.slug %}" class="portfolio__card">
+                            <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="portfolio__card">
                                 <img src="{{project.cover_image.url}}" alt="">
                             </a>
                             {% endfor %}
-                            <a href="{% url 'service:portfolio' %}" class="portfolio-card-add">
+                            <a href="{% url 'portfolio:portfolio' %}" class="portfolio-card-add">
                                 <div class="portfolio-card-add__content">
                                     <p>{% trans 'daha <br> çox' %}</p>
                                     <div class="portfolio-card-add__link">
@@ -415,7 +415,7 @@
                     <div class="swiper-wrapper">
                         {% for project in category.projects.all %}
                         <div class="swiper-slide">
-                            <a href="{% url 'service:portfolio-detail' project.slug %}" class="mob-portfolio__img">
+                            <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="mob-portfolio__img">
                                 <img src="{{project.cover_image.url}}" alt="">
                             </a>
                         </div>
@@ -616,7 +616,7 @@
             </div>
         </section>
         
-        {% if testimonials.count > -1 %}
+        {% if testimonials.count > 0 %}
         <section class="clients-comments section-gap">
             <div class="g-container">
                 <div class="row">
@@ -936,41 +936,41 @@
 
 
 
-<script>
-    testimonial = document.getElementById("comment-form");
-    const TestimonialLogic = {
-        testimonialManager(data) {
-            fetch('/api/testimonial', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    "X-CSRFToken": testimonial.csrfmiddlewaretoken.value,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'full_name': data.full_name,
-                    'company_name': data.company_name,
-                    'position': data.position,
-                    'comment': data.comment,
-                    'star': data.star,
+    <script>
+        testimonial = document.getElementById("comment-form");
+        const TestimonialLogic = {
+            testimonialManager(data) {
+                fetch('/api/testimonial', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": testimonial.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'company_name': data.company_name,
+                        'position': data.position,
+                        'comment': data.comment,
+                        'star': data.star,
+                    })
                 })
-            })
-                .then(response => response.json())
-                .then(data => {
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                    });
+            }
         }
-    }
-    testimonial_submit = document.getElementById('comment-form-submit');
-    testimonial_submit.addEventListener('click', function (e) {
-        e.preventDefault();
-        data = {
-            'position': testimonial.position.value,
-            'full_name': testimonial.full_name.value,
-            'company_name': testimonial.company_name.value,
-            'comment': testimonial.message.value,
-            'star': document.querySelector('input[name="rating"]:checked').value,
-        }
-        TestimonialLogic.testimonialManager(data);
-    });
-</script>
+        testimonial_submit = document.getElementById('comment-form-submit');
+        testimonial_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            data = {
+                'position': testimonial.position.value,
+                'full_name': testimonial.full_name.value,
+                'company_name': testimonial.company_name.value,
+                'comment': testimonial.message.value,
+                'star': document.querySelector('input[name="rating"]:checked').value,
+            }
+            TestimonialLogic.testimonialManager(data);
+        });
+    </script>
 {% endblock js %}

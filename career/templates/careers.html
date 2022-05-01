@@ -26,7 +26,7 @@
                 <div class="row g-4">
                     {% for vacancy in vacancies %}
                     <div class="col-sm-6 col-lg-4">
-                        <a href="{% url 'core:career-detail' vacancy.slug %}" class="services__box services__box--career">
+                        <a href="{% url 'career:career-detail' vacancy.slug %}" class="services__box services__box--career">
                             <span class="chip mb-3">
                                 {{vacancy.type}}
                             </span>

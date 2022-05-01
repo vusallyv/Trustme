@@ -7,8 +7,6 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name = "home"),
     path("faq", views.FAQView.as_view(), name = "faq"),
     path("about-us", views.AboutUsView.as_view(), name = "about_us"),
-    path("careers", views.VacancyListView.as_view(), name = "careers"),
-    path("careers/<slug:slug>", views.VacancyDetailView.as_view(), name = "career-detail"),
     path("contact", views.ContactView.as_view(), name = "contact"),
     path('set_language/', views.set_language, name="set_language")
 ]

@@ -31,7 +31,7 @@
                         <li class="dashboard__item">
                             <a href="{% url 'service:service-detail' ser.slug %}" class="dashboard__link 
                             {% if ser.slug == service.slug %} dashboard__link--active {% endif %}">
-                                <img src="{{service.icon.url}}" alt="">{{service.title}}
+                                <img src="{{ser.icon.url}}" alt="">{{ser.title}}
                             </a>
                         </li>
                         {% endfor %}
@@ -87,220 +87,20 @@
                 </div>
             </div>
         </section>
-
-        <section class="advantages seo-rank section-gap">
-            <div class="g-container">
-                <div class="row">
-                    <div class="col-xl-2">
-                        <div class="d-flex flex-column justify-content-between h-100 py-xl-5">
-                            <div class="section-title text-center text-xl-start pt-3 pt-md-5 mb-4">
-                                <p>Portfolio</p>
-                                <h2>Uğurlu işlərimiz</h2>
-                            </div>
-                            <a href="" class="g-btn d-none d-xl-flex">
-                                Hamısı
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xl-10 position-relative">
-                        <div class="swiper advantages__slide seo-rank__slide">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="seo-rank__box">
-                                        <div class="seo-rank__header">
-                                            <div class="seo-rank__link">
-                                                <img src="{% static 'assets/svg/link.svg' %}" alt="">
-                                                <span>yourlink.com</span>
-                                            </div>
-                                            <div class="seo-rank__location">
-                                                UAE
-                                                <img src="{% static 'assets/svg/seo-flag.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="seo-rank__titles">
-                                            <span>Keyword</span>
-                                            <span>Position</span>
-                                        </div>
-                                        <ul class="seo-rank__list">
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>1</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners dubai
-                                                <span>2</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>3</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>4</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>5</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="seo-rank__box">
-                                        <div class="seo-rank__header">
-                                            <div class="seo-rank__link">
-                                                <img src="{% static 'assets/svg/link.svg' %}" alt="">
-                                                <span>yourlink.com</span>
-                                            </div>
-                                            <div class="seo-rank__location">
-                                                UAE
-                                                <img src="{% static 'assets/svg/seo-flag.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="seo-rank__titles">
-                                            <span>Keyword</span>
-                                            <span>Position</span>
-                                        </div>
-                                        <ul class="seo-rank__list">
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>1</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners dubai
-                                                <span>2</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>3</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>4</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>5</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="seo-rank__box">
-                                        <div class="seo-rank__header">
-                                            <div class="seo-rank__link">
-                                                <img src="{% static 'assets/svg/link.svg' %}" alt="">
-                                                <span>yourlink.com</span>
-                                            </div>
-                                            <div class="seo-rank__location">
-                                                UAE
-                                                <img src="{% static 'assets/svg/seo-flag.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="seo-rank__titles">
-                                            <span>Keyword</span>
-                                            <span>Position</span>
-                                        </div>
-                                        <ul class="seo-rank__list">
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>1</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners dubai
-                                                <span>2</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>3</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>4</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>5</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="seo-rank__box">
-                                        <div class="seo-rank__header">
-                                            <div class="seo-rank__link">
-                                                <img src="{% static 'assets/svg/link.svg' %}" alt="">
-                                                <span>yourlink.com</span>
-                                            </div>
-                                            <div class="seo-rank__location">
-                                                UAE
-                                                <img src="{% static 'assets/svg/seo-flag.svg' %}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="seo-rank__titles">
-                                            <span>Keyword</span>
-                                            <span>Position</span>
-                                        </div>
-                                        <ul class="seo-rank__list">
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>1</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners dubai
-                                                <span>2</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>3</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>4</span>
-                                            </li>
-                                            <li class="seo-rank__item">
-                                                Wedding planners in dubai
-                                                <span>5</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                        <div class="swiper-button-next custom-next-btn seo-rank-next-btn">
-                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div class="swiper-button-prev custom-prev-btn seo-rank-prev-btn">
-                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
-                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         
+        {% if service.projects.count > 0 %}
         <section class="recommend">
             <div class="g-container">
                 <div class="row justify-content-between">
                     <div class="col-xl-2">
                         <div class="d-flex flex-column">
                             <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
-                                <p>XİDMƏTLƏR</p>
+                                <p>{% trans 'XİDMƏTLƏR' %}</p>
                                 <h2>Uğurlu İşlər</h2>
                             </div>
 
-                            <a href="{% url 'service:portfolio' %}" class="g-btn d-none d-xl-flex">
-                                Hamısı
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                {% trans 'Hamısı' %}
                             </a>
                         </div>
                     </div>
@@ -308,21 +108,13 @@
                     <div class="col-xl-9">
                         <div class="swiper recommend__slide">
                             <div class="swiper-wrapper">
+                                {% for project in service.projects.all %}
                                 <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 64 (1).png' %}" alt="">
+                                    <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="recommend__item">
+                                        <img src="{{project.cover_image.url}}" alt="">
                                     </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="" class="recommend__item">
-                                        <img src="{% static 'assets/img/Frame 26 (1).png' %}" alt="">
-                                    </a>
-                                </div>
+                                {% endfor %}
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -330,7 +122,7 @@
                 </div>
             </div>
         </section>
-
+        {% endif %}
         {% if service.advantages.count > 0 %}
         <section class="advantages d-none d-xl-block">
             <div class="g-container">

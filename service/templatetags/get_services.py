@@ -5,4 +5,4 @@ register = template.Library()
 
 @register.simple_tag
 def get_services():
-    return Service.objects.all()
+    return Service.objects.filter(is_visible=True)

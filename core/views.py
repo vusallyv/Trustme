@@ -1,9 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, DetailView, TemplateView
-from core.forms import ContactForm
-from core.models import AboutUs, Testimonial, Vacancy
+from django.views.generic import TemplateView
+from core.models import AboutUs, Testimonial
 from blog.models import Blog
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _, activate
@@ -16,7 +15,7 @@ class HomeView(View):
     def get(self, request):
         context = {
             'title': _('Home'),
-            'services': Service.objects.all(),
+            'services': Service.objects.filter(is_visible=True),
             'blogs': Blog.objects.all(),
             'about_us': AboutUs.objects.filter(is_active=True).last(),
             'services_categories': Service.objects.annotate(Count('projects')).order_by('-projects__count')[:3],
@@ -53,36 +52,13 @@ class AboutUsView(TemplateView):
         return context
 
 
-class VacancyListView(ListView):
-    model = Vacancy
-    template_name = 'careers.html'
-    context_object_name = 'vacancies'
-    paginate_by = 6
+class ContactView(TemplateView):
+    template_name = "contact.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = _('Careers')
+        context['title'] = _('Contact')
         return context
-
-
-class VacancyDetailView(DetailView):
-    model = Vacancy
-    template_name = 'vacancy.html'
-    context_object_name = 'vacancy'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = self.object.title
-        return context
-
-
-class ContactView(View):
-    def get(self, request):
-        context = {
-            "title": _("Contact"),
-            "form": ContactForm,
-        }
-        return render(request, "contact.html", context=context)
 
 
 def set_language(request):

@@ -43,10 +43,13 @@ INSTALLED_APPS = [
     'blog',
     'core',
     'service',
+    'career',
+    'portfolio',
     'ckeditor',
     'rest_framework',
     'api',
     'modeltranslation',
+    'gm2m',
 ]
 
 MIDDLEWARE = [
