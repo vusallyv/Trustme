@@ -26,7 +26,7 @@
                 <div class="portfolio-page__wrapper">
                     <ul class="dashboard">
                         <li class="dashboard__item">
-                            <a href="{% url 'service:portfolio' %}" class="dashboard__link  {% if not request.GET.service %}  dashboard__link--active {% endif %}">
+                            <a href="{% url 'portfolio:portfolio' %}" class="dashboard__link  {% if not request.GET.service %}  dashboard__link--active {% endif %}">
                                 <img src="{% static 'assets/svg/copy2.svg' %}" alt=""> Hamısı
                             </a>
                         </li>
@@ -115,7 +115,7 @@
                         <div class="row g-3 g-xl-4 d-sm-flex d-none">
                             {% for portfolio in portfolios %}
                             <div class="col-6">
-                                <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
+                                <a href="{% url 'portfolio:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
                                     <img src="{{portfolio.cover_image.url}}" alt="">
                                 </a>
                             </div>
@@ -125,7 +125,7 @@
                         <div class="row g-3 d-sm-flex d-sm-none">
                             {% for portfolio in portfolios %}
                             <div class="col-12">
-                                <a href="{% url 'service:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
+                                <a href="{% url 'portfolio:portfolio-detail' portfolio.slug %}" class="portfolio-page__item">
                                     <img src="{{portfolio.cover_image.url}}" alt="">
                                 </a>
                             </div>

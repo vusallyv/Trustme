@@ -3,6 +3,7 @@ autopep8==1.6.0
 backports.zoneinfo==0.2.1
 Django==4.0.4
 django-ckeditor==6.4.0
+django-gm2m==1.1.1
 django-js-asset==2.0.0
 django-modeltranslation==0.17.6
 djangorestframework==3.13.1
