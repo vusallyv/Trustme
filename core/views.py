@@ -7,7 +7,7 @@ from core.models import AboutUs, Testimonial, Vacancy
 from blog.models import Blog
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _, activate
-from service.models import Service, ServiceProject
+from service.models import Service, ServiceCategory, ServiceProject
 
 # Create your views here.
 
@@ -27,8 +27,20 @@ class HomeView(View):
         return render(request, "home.html", context=context)
 
 
-def faq(request):
-    return render(request, "faq.html")
+class FAQView(TemplateView):
+    template_name = 'faq.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = _('FAQ')
+        context['services'] = Service.objects.filter(is_visible=True)
+        context['categories'] = self.get_queryset()
+        return context
+
+    def get_queryset(self):
+        if self.request.GET.get('service'):
+            return Service.objects.filter(is_visible=True, slug=self.request.GET.get('service')).first().categories.all()
+        return ServiceCategory.objects.all()
 
 
 class AboutUsView(TemplateView):

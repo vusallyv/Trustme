@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
-{% block title %}Home{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
-                            FAQ
+                            {% trans 'FAQ' %}
                         </a>
                     </li>
                 </ul>
@@ -23,218 +23,52 @@
                 <div class="faq__wrapper">
                     <ul class="dashboard">
                         <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> 360° Marketinq xidməti
+                            <a href="{% url 'core:faq' %}" class="dashboard__link {% if not request.GET.service %}  dashboard__link--active {% endif %}">
+                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> Hamısı
                             </a>
                         </li>
+                        {% for service in services %}
                         <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy3.svg' %}" alt=""> Rəqəmsal Strategiya Xidməti
+                            <a href="?service={{ service.slug }}" class="dashboard__link {% if request.GET.service == service.slug %}dashboard__link--active{% endif %}">
+                                <img src="{{service.icon.url}}" alt="">{{service.title}}
                             </a>
                         </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy4.svg' %}" alt="">SEO Xidməti Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link dashboard__link--active">
-                                <img src="{% static 'assets/svg/copy13.svg' %}" alt="">Veb sayt Xidmətləri
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy5.svg' %}" alt=""> SMM Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy6.svg' %}" alt=""> Local Marketinq Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy7.svg' %}" alt=""> Google Reklamları Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy8.svg' %}" alt="">Tv & Media Planlama Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy9.svg' %}" alt=""> SEO Audit Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy10.svg' %}" alt=""> Dizayn Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy11.svg' %}" alt=""> Brendinq Xidməti
-                            </a>
-                        </li>
-                        <li class="dashboard__item">
-                            <a href="" class="dashboard__link">
-                                <img src="{% static 'assets/svg/copy12.svg' %}" alt=""> Reklam filmlərinin çəkilişi Xidməti
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
 
                     <ul class="categories-tab">
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Hamısı
+                        <li class="categories-tab__item {% if not request.GET.service %}  categories-tab__item--active {% endif %}">
+                            <a href="{% url 'core:faq' %}">
+                                {% trans 'Hamısı' %}
                             </a>
                         </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                360° Marketinq xidməti
+                        {% for service in services %}
+                        <li class="categories-tab__item {% if request.GET.service == service.slug %}categories-tab__item--active{% endif %}">
+                            <a href="?service={{ service.slug }}">
+                                {{service.title}}
                             </a>
                         </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Rəqəmsal Strategiya Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SEO Xidməti Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item categories-tab__item--active">
-                            <a href="">
-                                Veb sayt Xidmətləri
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SMM Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Local Marketinq Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Google Reklamları Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Tv & Media Planlama Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SEO Audit Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Dizayn Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Brendinq Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Reklam filmlərinin çəkilişi Xidməti
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
-
                     <div class="w-100 ps-lg-4 ms-lg-2">
                         <div class="accordion" id="accordionCategory">
+                            {% for category in categories %}
                             <div class="accordion-item">
-                                <div class="accordion-header" id="headingOne">
+                                <div class="accordion-header" id="heading{{category.id}}">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Korporativ şəxsiyyət dizaynının loqo dizaynından fərqi nədir?
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
                                         <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
                                     </button>
                                 </div>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingOne" >
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                                    aria-labelledby="heading{{category.id}}" >
                                     <div class="accordion-body">
-                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
-                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
-                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
-                                        edirik. Potensial
-                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
-                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
+                                        {{category.answer|safe}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Loqo dizaynı neçə müddətə başa gəlir?
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                    >
-                                    <div class="accordion-body">
-                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
-                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
-                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
-                                        edirik. Potensial
-                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
-                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        E-poçt Şablon dizaynı edirsiniz?
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="headingThree" >
-                                    <div class="accordion-body">
-                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
-                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
-                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
-                                        edirik. Potensial
-                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
-                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header" id="heading4">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                        Sosial media konsept dizaynının qiyməti nə qədərdir?
-                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
-                                    </button>
-                                </div>
-                                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
-                                    >
-                                    <div class="accordion-body">
-                                        Loqo, şirkətin imici və şəxsiyyətinin ayrılmaz hissəsidir. Mükəmməl dizaynlı bir
-                                        loqo dəyərlərinizi, hədəflərinizi, şəxsiyyətinizi və fərqinizi ifadə edir. Biz,
-                                        hədəflərinizi, fikirlərinizi və şəxsiyyətinizi göstərən xüsusi dizayn təqdim
-                                        edirik. Potensial
-                                        müştərilərinizin diqqətini cəlb etmək və bazarda sizə lazımi dərəcədə görünürlük
-                                        vermək üçün təsirli bir loqo dizaynı hazırlayırıq.
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
