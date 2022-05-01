@@ -1,14 +1,12 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+
 # Create your models here.
+
 from django.utils.translation import gettext_lazy as _
 from career.models import Vacancy
-from core.models import PHONE_NUMBER_CHOICES
 from portfolio.models import ServiceProject
 from trustme_backend.utils.base_model import BaseModel
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
-from gm2m import GM2MField
 
 
 class ServiceCategory(BaseModel):

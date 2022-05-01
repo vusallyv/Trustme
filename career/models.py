@@ -8,9 +8,9 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 VACANCY_TYPE_CHOICES = (
-    ('Full time', 'Full time'),
-    ('Part time', 'Part time'),
-    ('Internship', 'Internship'),
+    (_('Full time'), _('Full time')),
+    (_('Part time'), _('Part time')),
+    (_('Internship'), _('Internship')),
 )
 
 

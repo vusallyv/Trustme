@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-from django.db import models
 from trustme_backend.utils.base_model import BaseModel
 from django.utils.translation import gettext_lazy as _
 from ckeditor.fields import RichTextField
@@ -15,7 +14,6 @@ PHONE_NUMBER_CHOICES = (
 )
 
 
-
 STAR_CHOICES = (
     (1, '1'),
     (2, '2'),
@@ -25,13 +23,12 @@ STAR_CHOICES = (
 )
 
 
-
 class AboutUs(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
-    aphorism = models.TextField(verbose_name=_('Aphorism'))
-    aphorism_author = models.CharField(
-        max_length=255, verbose_name=_('Aphorism author'))
+    slogan = models.TextField(verbose_name=_('Slogan'))
+    slogan_author = models.CharField(
+        max_length=255, verbose_name=_('Slogan author'))
     is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
 
     class Meta:
@@ -112,3 +109,49 @@ class Testimonial(BaseModel):
 
     def __str__(self):
         return self.full_name
+
+
+class ContactInfo(BaseModel):
+    email = models.EmailField(verbose_name=_('Email'))
+    address = models.TextField(verbose_name=_('Address'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+
+    class Meta:
+        db_table = 'contact_info'
+        verbose_name = _('Contact Info')
+        verbose_name_plural = _('Contact Info')
+
+    def __str__(self):
+        return self.email
+
+
+class ContactPhone(BaseModel):
+    phone_number = models.CharField(
+        max_length=255, verbose_name=_('Phone number'))
+    contact_info = models.ForeignKey(
+        ContactInfo, on_delete=models.CASCADE, verbose_name=_('Contact info'), related_name='contact_phone')
+
+    class Meta:
+        db_table = 'contact_phone'
+        verbose_name = _('Contact Phone')
+        verbose_name_plural = _('Contact Phone')
+
+    def __str__(self):
+        return self.phone_number
+
+
+class SocialLink(BaseModel):
+    link = models.URLField(verbose_name=_('Link'))
+    icon = models.ImageField(
+        upload_to='social_link/', verbose_name=_('Icon'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+    contact_info = models.ForeignKey(
+        ContactInfo, on_delete=models.CASCADE, verbose_name=_('Contact info'), related_name='social_link')
+
+    class Meta:
+        db_table = 'social_link'
+        verbose_name = _('Social Link')
+        verbose_name_plural = _('Social Link')
+
+    def __str__(self):
+        return f"{self.link}"
