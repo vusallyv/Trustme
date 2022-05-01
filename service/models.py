@@ -146,6 +146,7 @@ class Service(BaseModel):
         ServiceProject, related_name='services_projects', blank=True)
     packets = models.ManyToManyField(
         ServicePacket, related_name='services_packets', blank=True)
+    is_visible = models.BooleanField(default=False)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     def __str__(self):
