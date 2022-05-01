@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'modeltranslation',
-    'gm2m',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processor.context_renderer'
             ],
         },
     },

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <footer class="footer">
     <div class="g-container">
@@ -15,7 +15,7 @@
             <div class="footer__links">
                 <ul class="footer__list">
                     <p class="footer__title">
-                        Əsas keçidlər
+                        {% trans 'Əsas keçidlər' %}
                     </p>
                     <li class="footer__item">
                         <a href="{% url 'core:about_us'  %}" class="footer__link">
@@ -61,113 +61,53 @@
                 </ul>
                 <ul class="footer__list">
                     <p class="footer__title">
-                        Xidmətlərimiz
+                        {% trans 'Xidmətlərimiz' %}
                     </p>
+                    {% for service in services_footer %}
                     <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Rəqəmsal strategiya
+                        <a href="{% url 'service:service-detail' service.slug %}" class="footer__link">
+                            {{service.title}}
                         </a>
                     </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            SMM xidməti
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Media planlama
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            SEO xidməti
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Google reklamları
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Vebsayt xidməti
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Brendinq xidməti
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="#" class="footer__link">
-                            Dizayn xidmətləri
-                        </a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Lokal marketinq
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="footer__contact">
                 <p class="footer__title">
-                    Əlaqə
+                    {% trans 'Əlaqə' %}
                 </p>
                 <ul class="footer__contact-list">
                     <li class="footer__contact-item">
                         <a href="" class="footer__contact-link">
-                            <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> Bakı, Babək prospekti, 10E
+                            <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> {{contact_footer.address}}
                         </a>
                     </li>
+                    {% if contact_footer.contact_phone.count > 0 %}
+                    {% for phone in contact_footer.contact_phone.all %}
                     <li class="footer__contact-item">
-                        <a href="tel:+994702523315" class="footer__contact-link">
-                            <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> +994 70 252 33 15
+                        <a href="tel:{{phone.phone_number}}" class="footer__contact-link">
+                            <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> {{phone.phone_number}}
                         </a>
                     </li>
+                    {% endfor %}
+                    {% endif %}
                     <li class="footer__contact-item">
-                        <a href="tel:+994775053315" class="footer__contact-link">
-                            <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> +994 77 505 33 15
-                        </a>
-                    </li>
-                    <li class="footer__contact-item">
-                        <a href="mailto:hello@trustmedigital.com" class="footer__contact-link">
-                            <img src="{% static 'assets/svg/Icons (3).svg' %}" alt=""> hello@trustmedigital.com
+                        <a href="mailto:{{contact_footer.email}}" class="footer__contact-link">
+                            <img src="{% static 'assets/svg/Icons (3).svg' %}" alt=""> {{contact_footer.email}}
                         </a>
                     </li>
                 </ul>
+                {% if contact_footer.social_link.count > 0 %}
                 <ul class="footer__socials-list">
+                    {% for social in contact_footer.social_link.all %}
                     <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/Icons (4).svg' %}" alt="">
+                        <a href="{{social.link}}" class="footer__socaials-link">
+                            <img src="{{social.icon.url}}" alt="">
                         </a>
                     </li>
-                    <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/Icons.svg' %}" alt="">
-                        </a>
-                    </li>
-                    <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/fb.svg' %}" alt="">
-                        </a>
-                    </li>
-                    <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/twitter.svg' %}" alt="">
-                        </a>
-                    </li>
-                    <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/Group.svg' %}" alt="">
-                        </a>
-                    </li>
-                    <li class="footer__socials-item">
-                        <a href="" class="footer__socaials-link">
-                            <img src="{% static 'assets/svg/Group (1).svg' %}" alt="">
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
+                {% endif %}
             </div>
         </div>
         <div class="footer__copyright">
