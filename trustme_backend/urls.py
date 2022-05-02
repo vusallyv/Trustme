@@ -23,9 +23,11 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('blog.urls')),
     path('', include('service.urls')),
+    path('', include('portfolio.brief.website.urls')),
     path('', include('career.urls')),
     path('', include('portfolio.urls')),
     path('api/', include('api.urls.core')),
+    path('api/', include('api.urls.brief')),
     path('api/', include('api.urls.service')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

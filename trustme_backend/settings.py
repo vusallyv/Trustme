@@ -45,11 +45,13 @@ INSTALLED_APPS = [
     'service',
     'career',
     'portfolio',
+    'portfolio.brief.website',
     'ckeditor',
     'rest_framework',
     'api',
     'modeltranslation',
     'rosetta',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
