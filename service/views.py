@@ -1,13 +1,9 @@
 from django.shortcuts import render
 
-from service.models import ServiceProject, Service
+from service.models import Service
 from django.views.generic import ListView, DetailView, TemplateView
 from django.utils.translation import gettext_lazy as _
 # Create your views here.
-
-
-def brief(request):
-    return render(request, "brief.html")
 
 
 class DigitalAuditView(TemplateView):

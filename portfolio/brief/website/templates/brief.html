@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static get_phone_prefixes %}
 {% block css %}
 {% endblock css %}
-{% block title %}Trustme{% endblock title %}
+{% block title %}{{title}}{% endblock title %}
 {% block content %}
+{% get_phone_prefixes as phone_prefixes %}
 
     <main>
         <section class="brief">
@@ -53,7 +54,8 @@
                     </button>
                 </div>
 
-                <form action="">
+                <form id="brief-form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div id="brief-1" class="tabcontent">
                         <p class="brief__title">
                             Şəxsi məlumatlar
@@ -64,8 +66,8 @@
 
                         <div class="brief__input-wrapper">
                             <div class="g-input-group">
-                                <label for="name">Ad və soyad <span>*</span></label>
-                                <input id="name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                <label for="full_name">Ad və soyad <span>*</span></label>
+                                <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
                             </div>
                             <div class="g-input-group">
                                 <label for="email">Email <span>*</span></label>
@@ -74,10 +76,10 @@
                             <div class="g-input-group">
                                 <label for="phone">Əlaqə nömrəsi <span>*</span></label>
                                 <div class="d-flex align-items-center">
-                                    <select class="prefix" name="states[]" style="min-width: 85px;">
-                                        <option value='+994'>+994</option>
-                                        <option value='+7'>+7</option>
-                                        <option value='+1'>+1</option>
+                                    <select class="prefix" id="phone_prefix" name="states[]" style="min-width: 85px;">
+                                        {% for val, prefix in phone_prefixes %}
+                                        <option value="{{val}}">{{prefix}}</option>
+                                        {% endfor %}
                                     </select>
                                     <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
                                 </div>
@@ -102,17 +104,19 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="company-name">Şirkət adı <span>*</span></label>
-                                        <input id="company-name" type="text"
+                                        <label for="company_name">Şirkət adı <span>*</span></label>
+                                        <input id="company_name" type="text"
                                             placeholder="Şirkətinizin adını daxil edin">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="">Fəaliyyət sferası <span>*</span></label>
-                                        <select class="select2-area" name="state">
+                                        <label for="activity_sphere">Fəaliyyət sferası <span>*</span></label>
+                                        <select id="activity_sphere"  class="select2-area" name="state">
                                             <option></option>
-                                            <option value="SMM Xidmətləri">Test</option>
+                                            {% for val, name in brief_choices.activity_sphere_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
@@ -170,63 +174,71 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="">Layihənin müddəti <span>*</span></label>
-                                        <select class="select2-date" name="state">
+                                        <label for="project_period">Layihənin müddəti <span>*</span></label>
+                                        <select id="project_period" class="select2-date" name="state">
                                             <option></option>
-                                            <option value="Test">Test</option>
+                                            {% for val, name in brief_choices.project_period_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="">Vebsayt növü <span>*</span></label>
-                                        <select class="select2-type" name="state">
+                                        <label for="website_type">Vebsayt növü <span>*</span></label>
+                                        <select id="website_type" class="select2-type" name="state">
                                             <option></option>
-                                            <option value="Test">Test</option>
+                                            {% for val, name in brief_choices.website_type_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="">Dil seçimi <span>*</span></label>
-                                        <select class="select2-language" name="states[]" multiple="multiple">
+                                        <label for="language">Dil seçimi <span>*</span></label>
+                                        <select id="language" class="select2-language" name="states[]" multiple="multiple">
                                             <option></option>
-                                            <option value="Azərbaycan">Azərbaycan</option>
-                                            <option value="Rus">Rus</option>
-                                            <option value="İngilis">İngilis</option>
-                                            <option value="Ukranya">Ukranya</option>
-                                            <option value="Alman">Alman</option>
-                                            <option value="Fransız">Fransız</option>
-                                            <option value="İspan">İspan</option>
-                                            <option value="İtalyan">İtalyan</option>
+                                            {% for val, name in brief_choices.language_choices %}
+                                            <option value="{{name}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="">Dizayn <span>*</span></label>
-                                        <select class="select2-design" name="state">
-                                            <option value="Test">Test</option>
+                                        <label for="design">Dizayn <span>*</span></label>
+                                        <select id="design" class="select2-design" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.design_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="">Tələblər <span>*</span></label>
-                                        <select class="select2-demands" name="state">
-                                            <option value="Test">Test</option>
+                                        <label for="requirements">Tələblər <span>*</span></label>
+                                        <select id="requirements" class="select2-demands" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.requirements_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
                                         <label for="">Fotolar <span>*</span></label>
-                                        <select class="select2-photos" name="state">
-                                            <option value="Test">Test</option>
+                                        <select id="photos" class="select2-photos" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.requirements_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
                                         </select>
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="submit" class="g-btn-fill w-100">
+                            <button id="brief-form-submit" type="submit" class="g-btn-fill w-100">
                                 Göndər
                             </button>
                         </div>
@@ -241,4 +253,91 @@
     <script src="{% static 'js/brief-select.js' %}"></script>
     <script src="{% static 'js/brief-tab.js' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>
+
+    <script>
+        brief_form = document.getElementById("brief-form");
+        const BriefLogic = {
+            async briefManager(data) {
+                let response = await fetch('/api/brief', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": brief_form.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'email': data.email,
+                        'phone': data.phone,
+                        'phone_prefix': data.phone_prefix,
+                        'website_url': data.website_url,
+                        'company_name': data.company_name,
+                        'activity_sphere': data.activity_sphere,
+                        'project_period': data.project_period,
+                        'design': data.design,
+                        'requirements': data.requirements,
+                        'website_type': data.website_type,
+                        'language': data.language,
+                    })
+                })
+                let response_data = await response.json();
+                let status = await response.ok;
+                if (status) {
+                    brief_form.reset()
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).text('');
+                    }
+                } else {
+                    if ('digital-audit-apply-non_field_errors' in response_data) {
+                        $('#digital-audit-non_field_errors-error').addClass('d-block')
+                        $('#digital-audit-non_field_errors-error').removeClass('d-none')
+                    } else {
+                        $('#digital-audit-non_field_errors-error').addClass('d-none')
+                    }
+                
+                    $('#digital-audit-apply-form .form-text').text('')
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).text(response_data[field][0]);
+                    }
+                }
+
+            }
+        }
+        brief_form_submit = document.getElementById('brief-form-submit');
+        brief_form_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            select2_language_container = document.getElementById('select2-language-container');
+            lang = [];
+            data_lang = [];
+            for (let i = 0; i < brief_form.language.options.length; i++) {
+                const element = brief_form.language.options[i];
+                if (element.innerText !== '') {
+                    lang.push(element.innerText);
+                }
+            }
+            for (let i = 0; i < select2_language_container.children.length; i++) {
+                const element = select2_language_container.children[i];
+                if (lang.includes(element.title)) {
+                    data_lang.push(element.title);
+                }
+            }
+            data = {
+                'email': brief_form.email.value,
+                'full_name': brief_form.full_name.value,
+                'phone': brief_form.phone.value,
+                'phone_prefix': brief_form.phone_prefix.value,
+                'website_url': brief_form.website.value,
+                'company_name': brief_form.company_name.value,
+                'activity_sphere': brief_form.activity_sphere.value,
+                'project_period': brief_form.project_period.value,
+                'design': brief_form.design.value,
+                'requirements': brief_form.requirements.value,
+                'website_type': brief_form.website_type.value,
+                'language': data_lang,
+            }
+            BriefLogic.briefManager(data);
+        });
+    </script>
 {% endblock js %}
