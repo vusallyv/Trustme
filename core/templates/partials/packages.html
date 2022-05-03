@@ -39,20 +39,20 @@
                 <form action="" class="w-100 apply-for-packet" method="post" data-packet="{{packet.id}}">
                     {% csrf_token %}
                     <div class="g-input-group">
-                        <label for="full_name">Ad və soyad <span>*</span></label>
-                        <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                        <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                        <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                     </div>
                     <div class="g-input-group">
-                        <label for="company_name">Şirkət adı <span>*</span></label>
-                        <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                        <input id="company_name" type="text" placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
                     </div>
                     <div class="g-input-group">
-                        <label for="email">Email <span>*</span></label>
-                        <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                        <label for="email">{% trans 'Email' %} <span>*</span></label>
+                        <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
                     </div>
                     <div class="g-input-group mb-0">
                         <div class="g-input-group mb-0">
-                            <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                            <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
                             <div class="d-flex align-items-center">
                                 <select id="phone_prefix" class="prefix-standartPacket" name="states[]">
                                     {% for val, prefix in phone_prefixes %}

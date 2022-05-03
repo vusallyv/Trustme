@@ -30,6 +30,8 @@ class PortfolioListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Portfolio')
         context['services'] = Service.objects.filter(is_visible=True)
+        context['portfolio_title'] = Service.objects.filter(slug=self.request.GET.get('service')).first().title if self.request.GET.get(
+            'service') else _('Hamısı')
         return context
 
     def get_queryset(self):

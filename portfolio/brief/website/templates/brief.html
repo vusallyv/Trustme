@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static get_phone_prefixes %}
+{% load static get_phone_prefixes i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}{{title}}{% endblock title %}
@@ -42,15 +42,15 @@
                 <div class="brief-tab">
                     <button id="brief-tab__btn-1" class="brief-tab__btn" onclick="OpenTab(event, 'brief-1')">
                         <span class="brief-tab__step">1</span>
-                        <span class="brief-tab__name">Şəxsi məlumatlar</span>
+                        <span class="brief-tab__name">{% trans 'Şəxsi məlumatlar' %}</span>
                     </button>
                     <button id="brief-tab__btn-2" class="brief-tab__btn" onclick="OpenTab(event, 'brief-2')">
                         <span class="brief-tab__step">2</span>
-                        <span class="brief-tab__name">Ümumi məlumatlar</span>
+                        <span class="brief-tab__name">{% trans 'Ümumi məlumatlar' %}</span>
                     </button>
                     <button id="brief-tab__btn-3" class="brief-tab__btn" onclick="OpenTab(event, 'brief-3')">
                         <span class="brief-tab__step">3</span>
-                        <span class="brief-tab__name">Xidmətlə bağlı məlumatlar</span>
+                        <span class="brief-tab__name">{% trans 'Xidmətlə bağlı məlumatlar' %} </span>
                     </button>
                 </div>
 
@@ -58,7 +58,7 @@
                     {% csrf_token %}
                     <div id="brief-1" class="tabcontent">
                         <p class="brief__title">
-                            Şəxsi məlumatlar
+                            {% trans 'Şəxsi məlumatlar' %}
                         </p>
                         <p class="brief__subtitle">
                             Şəxsi məlumatlarınız sizi daha yaxşı tanımağımıza kömək edəcək
@@ -66,15 +66,15 @@
 
                         <div class="brief__input-wrapper">
                             <div class="g-input-group">
-                                <label for="full_name">Ad və soyad <span>*</span></label>
-                                <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                             </div>
                             <div class="g-input-group">
-                                <label for="email">Email <span>*</span></label>
-                                <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                                <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
                             </div>
                             <div class="g-input-group">
-                                <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                                <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
                                 <div class="d-flex align-items-center">
                                     <select class="prefix" id="phone_prefix" name="states[]" style="min-width: 85px;">
                                         {% for val, prefix in phone_prefixes %}
@@ -86,32 +86,32 @@
                             </div>
 
                             <button type="button" class="g-btn-fill w-100" id="move-brief-2">
-                                Davam
+                                {% trans 'Davam' %}
                             </button>
                         </div>
                     </div>
 
                     <div id="brief-2" class="tabcontent">
                         <p class="brief__title">
-                            Ümumi məlumatlar
+                            {% trans 'Ümumi məlumatlar' %}
                         </p>
 
                         <p class="brief__subtitle">
-                            Ümumi məlumatlarınız şirkətinizi daha yaxşı tanımağımıza kömək edəcək
+                            {% trans 'Ümumi məlumatlarınız şirkətinizi daha yaxşı tanımağımıza kömək edəcək' %}
                         </p>
 
                         <div class="brief__input-wrapper">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="company_name">Şirkət adı <span>*</span></label>
+                                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
                                         <input id="company_name" type="text"
-                                            placeholder="Şirkətinizin adını daxil edin">
+                                            placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="activity_sphere">Fəaliyyət sferası <span>*</span></label>
+                                        <label for="activity_sphere">{% trans 'Fəaliyyət sferası' %} <span>*</span></label>
                                         <select id="activity_sphere"  class="select2-area" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.activity_sphere_choices %}
@@ -125,56 +125,56 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="website">Vebsayt URL</label>
-                                        <input id="website" type="url" placeholder="Vebsayt URL daxil edin">
+                                        <label for="website">{% trans 'Vebsayt URL' %}</label>
+                                        <input id="website" type="url" placeholder="{% trans 'Vebsayt URL daxil edin' %}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="domain">Yeni alınacaq domain (ehtiyac varsa)</label>
-                                        <input id="domain" type="url" placeholder="Yeni domaini qeyd edin">
+                                        <label for="domain">{% trans 'Yeni alınacaq domain (ehtiyac varsa)' %}</label>
+                                        <input id="domain" type="url" placeholder="{% trans 'Yeni domaini qeyd edin' %}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="Rəqiblərin-saytları">Rəqiblərin saytları <span>*</span></label>
+                                        <label for="Rəqiblərin-saytları">{% trans 'Rəqiblərin saytları' %} <span>*</span></label>
                                         <textarea id="Rəqiblərin-saytları" name=""
-                                            placeholder="Əsas rəqiblərin saytlarını qeyd edin" cols="30"
+                                            placeholder="{% trans 'Əsas rəqiblərin saytlarını qeyd edin' %}" cols="30"
                                             rows="10"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="Bəyəndiyiniz-saytlar">Bəyəndiyiniz saytlar <span>*</span></label>
+                                        <label for="Bəyəndiyiniz-saytlar">{% trans 'Bəyəndiyiniz saytlar' %} <span>*</span></label>
                                         <textarea id="Bəyəndiyiniz-saytlar" name=""
-                                            placeholder="Dizayn və funksionallıq cəhətdən bəyəndiyiniz saytları qeyd edin"
+                                            placeholder="{% trans 'Dizayn və funksionallıq cəhətdən bəyəndiyiniz saytları qeyd edin' %}"
                                             cols="30" rows="10"></textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <button type="button" class="g-btn-fill w-100" id="move-brief-3">
-                                Davam
+                                {% trans 'Davam' %}
                             </button>
                         </div>
                     </div>
 
                     <div id="brief-3" class="tabcontent">
                         <p class="brief__title">
-                            Xidmət haqqında
+                            {% trans 'Xidmət haqqında' %}
                         </p>
 
                         <p class="brief__subtitle">
-                            Xidmət haqqında məlumatlar sizə daha yaxşı xidmət etməyimizə kömək edəcək
+                            {% trans 'Xidmət haqqında məlumatlar sizə daha yaxşı xidmət etməyimizə kömək edəcək' %} 
                         </p>
 
                         <div class="brief__input-wrapper">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="project_period">Layihənin müddəti <span>*</span></label>
+                                        <label for="project_period">{% trans 'Layihənin müddəti' %} <span>*</span></label>
                                         <select id="project_period" class="select2-date" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.project_period_choices %}
@@ -184,7 +184,7 @@
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="website_type">Vebsayt növü <span>*</span></label>
+                                        <label for="website_type">{% trans 'Vebsayt növü' %} <span>*</span></label>
                                         <select id="website_type" class="select2-type" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.website_type_choices %}
@@ -194,7 +194,7 @@
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="language">Dil seçimi <span>*</span></label>
+                                        <label for="language">{% trans 'Dil seçimi' %} <span>*</span></label>
                                         <select id="language" class="select2-language" name="states[]" multiple="multiple">
                                             <option></option>
                                             {% for val, name in brief_choices.language_choices %}
@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="g-input-group">
-                                        <label for="design">Dizayn <span>*</span></label>
+                                        <label for="design">{% trans 'Dizayn' %} <span>*</span></label>
                                         <select id="design" class="select2-design" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.design_choices %}
@@ -216,7 +216,7 @@
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="requirements">Tələblər <span>*</span></label>
+                                        <label for="requirements">{% trans 'Tələblər' %} <span>*</span></label>
                                         <select id="requirements" class="select2-demands" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.requirements_choices %}
@@ -226,7 +226,7 @@
                                         <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="">Fotolar <span>*</span></label>
+                                        <label for="">{% trans 'Fotolar' %} <span>*</span></label>
                                         <select id="photos" class="select2-photos" name="state">
                                             <option></option>
                                             {% for val, name in brief_choices.requirements_choices %}
@@ -239,7 +239,7 @@
                             </div>
 
                             <button id="brief-form-submit" type="submit" class="g-btn-fill w-100">
-                                Göndər
+                                {% trans 'Göndər' %}
                             </button>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
     </main>
 {% endblock content %}
 {% block js %}
-
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/brief-select.js' %}"></script>
     <script src="{% static 'js/brief-tab.js' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>

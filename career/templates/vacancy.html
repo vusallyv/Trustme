@@ -50,8 +50,8 @@
                             <form action="" method="post" id="applicantform" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <div class="g-input-group">
-                                    <label for="full_name">Ad və soyad <span>*</span></label>
-                                    <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                    <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                    <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                                 </div>
                                 <div class="g-input-group">
                                     <label for="message">Mesaj <span>*</span></label>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static get_phone_prefixes %}
+{% load static get_phone_prefixes i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}{{title}}{% endblock title %}
@@ -12,7 +12,7 @@
             <div class="g-container">
                 <ul class="g-breadcrumb mb-3 mb-sm-4">
                     <li class="g-breadcrumb__item">
-                        Ana səhifə
+                        {% trans 'Ana səhifə' %}
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
@@ -51,18 +51,18 @@
                     <div class="col-lg-4">
                         <div class="apply-box">
                             <p class="blog-detail__subtitle mb-4 pb-1">
-                                Müraciət et
+                                {% trans 'Müraciət et' %}
                             </p>
                             <form action="" method="post" id="digital-audit-apply-form">
                                 {% csrf_token %}
                                 <div class="alert alert-danger d-none" id="digital-audit-non_field_errors-error" ></div>
                                 <div class="g-input-group">
-                                    <label for="full_name">Ad və soyad <span>*</span></label>
-                                    <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                    <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                    <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                                     <div class="form-text mb-4 text-danger text-small" id='full_name-error'></div>
                                 </div>
                                 <div class="g-input-group">
-                                    <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                                    <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
                                     <div class="d-flex align-items-center">
                                         <select id="phone_prefix" class="prefix" name="states[]" style="min-width: 85px;">
                                             {% for val, prefix in phone_prefixes %}
@@ -74,13 +74,13 @@
                                     <div class="form-text mb-4 text-danger text-small" id='phone-error'></div>
                                 </div>
                                 <div class="g-input-group">
-                                    <label for="email">Email <span>*</span></label>
-                                    <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                                    <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                    <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
                                     <div class="form-text mb-4 text-danger text-small" id='email-error'></div>
                                 </div>
                                 <div class="g-input-group">
                                     <label for="website">Vebsayt</label>
-                                    <input id="website" type="url" placeholder="Vebsayt URL daxil edin">
+                                    <input id="website" type="url" placeholder="{% trans 'Vebsayt URL' %} daxil edin">
                                     <div class="form-text mb-4 text-danger text-small" id='site_link-error'></div>
                                 </div>
                                 <div class="g-input-group">
@@ -106,6 +106,7 @@
 {% endblock content %}
 
 {% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>
 
 <script>

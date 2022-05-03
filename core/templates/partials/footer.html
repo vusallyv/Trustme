@@ -19,43 +19,43 @@
                     </p>
                     <li class="footer__item">
                         <a href="{% url 'core:about_us'  %}" class="footer__link">
-                            Haqqımızda
+                            {% trans 'Haqqımızda' %}
                         </a>
                     </li>
                     <li class="footer__item">
                         <a href="{% url 'service:services' %}" class="footer__link">
-                            Xidmətlər
+                            {% trans 'Xidmətlər' %}
                         </a>
                     </li>
                     <li class="footer__item">
                         <a href="{% url 'portfolio:portfolio' %}" class="footer__link">
-                            Portflio
+                            {% trans 'Portfolio' %}
                         </a>
                     </li>
                     <li class="footer__item">
                         <a href="{% url 'blog:blogs' %}" class="footer__link">
-                            Bloq
+                            {% trans 'Bloq' %}
                         </a>
                     </li>
                     <li class="footer__item">
                         <a href="{% url 'career:careers'  %}" class="footer__link">
-                            Kariyera
+                            {% trans 'Kariyera' %}
                         </a>
                     </li>
                     <li class="footer__item">
-                        <a href="" class="footer__link">
-                            Əlaqə
+                        <a href="{% url 'core:contact' %}" class="footer__link">
+                            {% trans 'Əlaqə' %}
                         </a>
                     </li>
 
                     <li class="footer__item">
                         <a href="{% url 'core:faq'  %}" class="footer__link">
-                            Tez-tez soruşulan suallar
+                            {% trans 'Tez-tez soruşulan suallar' %}
                         </a>
                     </li>
                     <li class="footer__item">
                         <a href="{% url 'website:brief' %}" class="footer__link">
-                            Brief göndər
+                            {% trans 'Brief göndər' %}
                         </a>
                     </li>
                 </ul>
@@ -128,7 +128,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#footer-collapseOne" aria-expanded="true"
                             aria-controls="footer-collapseOne">
-                            Xidmətlərimiz
+                            {% trans 'Xidmətlərimiz' %}
                             <div class="plusminus"></div>
                         </button>
                     </div>
@@ -136,61 +136,13 @@
                         aria-labelledby="footer-headingOne">
                         <div class="accordion-body">
                             <ul>
+                            {% for service in services_footer %}
                                 <li>
-                                    <a href="">
-                                        360 Marketinq
+                                    <a href="{% url 'service:service-detail' service.slug %}">
+                                        {{service.title}}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        Rəqəmsal strategiya
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        SEO xidməti
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Vebsayt xidməti
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Lokal Marketinq
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Google reklamları
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Tv& media planlama
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        SEO audit
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Brendinq xidməti
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Dizayn xidməti
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Reklam filmlərin çəkilişi
-                                    </a>
-                                </li>
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -200,7 +152,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#footer-collapseTwo" aria-expanded="false"
                             aria-controls="footer-collapseTwo">
-                            Portfolio
+                            {% trans 'Portfolio' %}
                             <div class="plusminus"></div>
                         </button>
                     </div>
@@ -208,26 +160,13 @@
                         aria-labelledby="footer-headingTwo">
                         <div class="accordion-body">
                             <ul>
+                                {% for service in services_footer %}
                                 <li>
-                                    <a href="">
-                                        Vebsayt
+                                    <a href="{% url 'portfolio:portfolio' %}?service={{service.slug}}">
+                                        {{service.title}}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        SMM
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        SEO
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        Branding
-                                    </a>
-                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -237,7 +176,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#footer-collapseThree" aria-expanded="false"
                             aria-controls="footer-collapseThree">
-                            Əlaqə
+                            {% trans 'Əlaqə' %}
                             <div class="plusminus"></div>
                         </button>
                     </div>
@@ -247,24 +186,22 @@
                             <ul class="footer__contact-list mb-0">
                                 <li class="footer__contact-item">
                                     <a href="" class="footer__contact-link">
-                                        <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> Bakı, Babək prospekti,
-                                        10E
+                                        <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> {{contact_footer.address}}
                                     </a>
                                 </li>
+                                {% if contact_footer.contact_phone.count > 0 %}
+                                {% for phone in contact_footer.contact_phone.all %}
                                 <li class="footer__contact-item">
-                                    <a href="tel:+994702523315" class="footer__contact-link">
-                                        <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> +994 70 252 33 15
+                                    <a href="tel:{{phone.phone_number}}" class="footer__contact-link">
+                                        <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> {{phone.phone_number}}
                                     </a>
                                 </li>
+                                {% endfor %}
+                                {% endif %}
                                 <li class="footer__contact-item">
-                                    <a href="tel:+994775053315" class="footer__contact-link">
-                                        <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> +994 77 505 33 15
-                                    </a>
-                                </li>
-                                <li class="footer__contact-item">
-                                    <a href="mailto:hello@trustmedigital.com" class="footer__contact-link">
+                                    <a href="mailto:{{contact_footer.email}}" class="footer__contact-link">
                                         <img src="{% static 'assets/svg/Icons (3).svg' %}" alt="">
-                                        hello@trustmedigital.com
+                                        {{contact_footer.email}}
                                     </a>
                                 </li>
                             </ul>
@@ -276,7 +213,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#footer-collapseFour" aria-expanded="false"
                             aria-controls="footer-collapseFour">
-                            Əsas keçidlər
+                            {% trans 'Əsas keçidlər' %}
                             <div class="plusminus"></div>
                         </button>
                     </div>
@@ -286,38 +223,38 @@
                             <ul>
                                 <li>
                                     <a href="{% url 'core:about_us'  %}">
-                                        Haqqımızda
+                                        {% trans 'Haqqımızda' %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{% url 'service:services' %}">
-                                        Xidmətlər
+                                        {% trans 'Xidmətlər' %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{% url 'portfolio:portfolio' %}">
-                                        Portfolio
+                                        {% trans 'Portfolio' %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{% url 'blog:blogs' %}">
-                                        Bloq
+                                        {% trans 'Bloq' %}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        Əlaqə
+                                    <a href="{% url 'core:contact' %}">
+                                        {% trans 'Əlaqə' %}
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="{% url 'core:faq'  %}">
-                                        Tez-tez soruşulan suallar
+                                        {% trans 'Tez-tez soruşulan suallar' %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{% url 'website:brief' %}">
-                                        Brief Göndər
+                                        {% trans 'Brief Göndər' %}
                                     </a>
                                 </li>
                             </ul>
@@ -325,38 +262,17 @@
                     </div>
                 </div>
             </div>
+            {% if contact_footer.social_link.count > 0 %}
             <ul class="mob-footer__socials">
+                {% for social in contact_footer.social_link.all %}
                 <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/instagran-icon.svg' %}" alt="">
+                    <a href="{{social.link}}">
+                        <img src="{{social.icon.url}}" alt="">
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/fb-icon.svg' %}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/Vector (3).svg' %}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/Vector (4).svg' %}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/Vector (5).svg' %}" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="{% static 'assets/svg/Vector (6).svg' %}" alt="">
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
+            {% endif %}
             <div class="mob-footer__copyright">
                 <p><span>Trustme Digital</span> | Bütün hüquqlar qorunur. 2022</p>
             </div>

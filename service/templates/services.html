@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -10,17 +10,17 @@
             <div class="g-container">
                 <ul class="g-breadcrumb mb-md-4 pb-3">
                     <li class="g-breadcrumb__item">
-                        Ana səhifə
+                        {% trans 'Ana səhifə' %}
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
-                            Xidmətlər
+                            {% trans 'Xidmətlər' %}
                         </a>
                     </li>
                 </ul>
 
                 <div class="section-title mb-3 mb-md-5">
-                    <h2>Xidmətlər</h2>
+                    <h2>{% trans 'Xidmətlər' %}</h2>
                 </div>
 
                 <div class="row g-3 g-md-4">

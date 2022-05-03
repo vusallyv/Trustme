@@ -14,10 +14,10 @@
             <div class="g-container">
                 <ul class="g-breadcrumb mb-md-4 pb-3">
                     <li class="g-breadcrumb__item">
-                        Ana səhifə
+                        {% trans 'Ana səhifə' %}
                     </li>
                     <li class="g-breadcrumb__item">
-                        Xidmətlər
+                        {% trans 'Xidmətlər' %}
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
@@ -263,6 +263,7 @@
 {% endblock content %}
 {% block js %}
 
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/slides/seo-rank-slide.js' %}"></script>
     <script src="{% static 'js/slides/advantages-slide.js' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>

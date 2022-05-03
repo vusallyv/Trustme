@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}Trustme{% endblock title %}
@@ -10,24 +10,24 @@
             <div class="g-container">
                 <ul class="g-breadcrumb mb-md-4 pb-3">
                     <li class="g-breadcrumb__item">
-                        Ana səhifə
+                        {% trans 'Ana səhifə' %}
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
-                            Portfolio
+                            {% trans 'Portfolio' %}
                         </a>
                     </li>
                 </ul>
 
                 <div class="section-title mb-3">
-                    <h2>Portfolio</h2>
+                    <h2>{% trans 'Portfolio' %}</h2>
                 </div>
 
                 <div class="portfolio-page__wrapper">
                     <ul class="dashboard">
                         <li class="dashboard__item">
                             <a href="{% url 'portfolio:portfolio' %}" class="dashboard__link  {% if not request.GET.service %}  dashboard__link--active {% endif %}">
-                                <img src="{% static 'assets/svg/copy2.svg' %}" alt=""> Hamısı
+                                <img src="{% static 'assets/svg/copy2.svg' %}" alt=""> {% trans 'Hamısı' %}
                             </a>
                         </li>
                         {% for service in services %}
@@ -40,76 +40,23 @@
                     </ul>
 
                     <ul class="categories-tab">
-                        <li class="categories-tab__item categories-tab__item--active">
-                            <a href="">
-                                Hamısı
+                        <li class="categories-tab__item {% if not request.GET.service %}  categories-tab__item--active {% endif %}">
+                            <a href="{% url 'portfolio:portfolio' %}">
+                                {% trans 'Hamısı' %}
                             </a>
                         </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                360° Marketinq xidməti
+                        {% for service in services %}
+                        <li class="categories-tab__item {% if request.GET.service == service.slug %}categories-tab__item--active{% endif %}">
+                            <a href="?service={{ service.slug }}">
+                                {{service.title}}
                             </a>
                         </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Rəqəmsal Strategiya Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SEO Xidməti Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Veb sayt Xidmətləri
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SMM Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Local Marketinq Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Google Reklamları Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Tv & Media Planlama Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                SEO Audit Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Dizayn Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Brendinq Xidməti
-                            </a>
-                        </li>
-                        <li class="categories-tab__item">
-                            <a href="">
-                                Reklam filmlərinin çəkilişi Xidməti
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
 
                     <div class="d-flex flex-column">
                         <h4 class="portfolio-page__title">
-                            Vebsayt işlərimiz
+                            {{portfolio_title}}
                         </h4>
 
                         <div class="row g-3 g-xl-4 d-sm-flex d-none">

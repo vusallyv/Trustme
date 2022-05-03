@@ -20,12 +20,12 @@
                     <form action="" class="w-100" method="post" id="comment-form">
                         {% csrf_token %}
                         <div class="g-input-group">
-                            <label for="full_name">Ad və soyad <span>*</span></label>
-                            <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                            <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                            <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                         </div>
                         <div class="g-input-group">
-                            <label for="company_name">Şirkət adı <span>*</span></label>
-                            <input id="company_name" type="text" placeholder="Şirkətinizin adını daxil edin">
+                            <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                            <input id="company_name" type="text" placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
                         </div>
                         <div class="g-input-group">
                             <label for="position">Çalışdığınız vəzifə <span>*</span></label>
@@ -754,7 +754,8 @@
 
 {% block js %}
 <!-- Additional js -->
-<script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/typeit@8.4.0/dist/index.umd.js"></script>
     <script src="{% static 'js/typeit.js' %}"></script>
     <script src="{% static 'js/rating.js' %}"></script>
