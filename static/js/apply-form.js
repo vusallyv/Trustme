@@ -2,7 +2,7 @@ $(document).ready(function () {
     if (document.querySelector("#applyModal")) {
         $('.modal-select').select2({
             dropdownParent: $('#applyModal'),
-            placeholder: "Xidmət seçin"
+            placeholder: gettext("Xidmət seçin"),
         });
     }
 

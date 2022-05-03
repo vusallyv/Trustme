@@ -48,9 +48,8 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="selectLanguage">
                             <form action="" method="post">{% csrf_token %}
-                                <input name="next" type="hidden" value="{{ redirect_to }}">
                                 {% for language in languages %}
-                                {% if language.code != LANGUAGE_CODE %}
+                                {% if language.code != current_lang.code %}
                                 <a value="{{ language.code }}" class="dropdown-item" href="{% url 'core:set_language'%}?lang={{language.code}}&next={{request.path}}">{{ language.code }}</a>
                                 {% endif %}
                                 {% endfor %}

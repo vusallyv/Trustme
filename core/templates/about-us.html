@@ -5,6 +5,7 @@
 {% block title %}{{title}}{% endblock title %}
 {% block content %}
 
+{% if about_us %}
     <main>
         <section class="about-us pt-4 pt-sm-5">
             <div class="g-container">
@@ -225,7 +226,8 @@
         {% endif %}
 
     </main>
-    
+{% endif %}
+
 {% endblock content %}
 
 

@@ -12,10 +12,10 @@
             <div class="g-container">
                 <ul class="g-breadcrumb">
                     <li class="g-breadcrumb__item">
-                        Ana səhifə
+                        {% trans 'Ana səhifə' %}
                     </li>
                     <li class="g-breadcrumb__item">
-                        Portfolio
+                        {% trans 'Portfolio' %}
                     </li>
                     <li class="g-breadcrumb__item g-breadcrumb__item--active">
                         <a href="">
@@ -232,7 +232,7 @@
 {% endblock content %}
 
 {% block js %}
-
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/slides/results-slide.js' %}"></script>
     <script src="{% static 'js/slides/proccess-slide.js' %}"></script>
     <script src="{% static 'js/slides/recommend-slide.js' %}"></script>

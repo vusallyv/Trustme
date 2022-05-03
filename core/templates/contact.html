@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static get_phone_prefixes %}
+{% load static get_phone_prefixes i18n %}
 {% block css %}
 {% endblock css %}
 {% block title %}{{title}}{% endblock title %}
@@ -33,23 +33,23 @@
                             <div class="row g-4 justify-content-end">
                                 <div class="col-md-6">
                                     <div class="g-input-group">
-                                        <label for="full_name">Ad və soyad <span>*</span></label>
-                                        <input id="full_name" type="text" placeholder="Ad və soyadınızı daxil edin">
+                                        <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                        <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
                                         <div class="form-text mb-4 text-danger text-small d-none" id='full_name-error'></div>
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="company_name">Şirkət adı <span>*</span></label>
+                                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
                                         <input id="company_name" type="text"
-                                            placeholder="Şirkətinizin adını daxil edin">
+                                            placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
                                         <div class="form-text mb-4 text-danger text-small d-none" id='company_name-error'></div>
                                     </div>
                                     <div class="g-input-group">
-                                        <label for="email">Email <span>*</span></label>
-                                        <input id="email" type="email" placeholder="Email ünvanınızı daxil edin">
+                                        <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                        <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
                                         <div class="form-text mb-4 text-danger text-small d-none" id='email-error'></div>
                                     </div>
                                     <div class="g-input-group mb-0">
-                                        <label for="phone">Əlaqə nömrəsi <span>*</span></label>
+                                        <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
                                         <div class="d-flex align-items-center">
                                             <select class="prefix" id="phone_prefix" name="states[]" style="min-width: 85px;">
                                                 {% for val, prefix in phone_prefixes %}
@@ -80,6 +80,7 @@
     
 {% endblock content %}
 {% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'js/apply-form.js' %}"></script>
     <script>
         contactform = document.getElementById('contactform');
