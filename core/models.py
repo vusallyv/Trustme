@@ -100,7 +100,7 @@ class Testimonial(BaseModel):
     comment = models.TextField(verbose_name=_('Comment'))
     star = models.IntegerField(verbose_name=_(
         'Star'), choices=STAR_CHOICES, default=1)
-    is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
+    is_active = models.BooleanField(default=False, verbose_name=_('Is active'))
 
     class Meta:
         db_table = 'testimonial'
