@@ -90,12 +90,14 @@ class Service(BaseModel):
 
 class Applicant(BaseModel):
     full_name = models.CharField(max_length=255, verbose_name=_('Full name'))
-    email = models.EmailField(max_length=255, verbose_name=_('Email'))
+    email = models.EmailField(
+        max_length=255, verbose_name=_('Email'), null=True, blank=True)
     company_name = models.CharField(
         max_length=255, verbose_name=_('Company name'), null=True, blank=True)
     phone_prefix = models.CharField(
-        max_length=255, verbose_name=_('Phone prefix'))
-    phone = models.CharField(max_length=255, verbose_name=_('Phone'))
+        max_length=255, verbose_name=_('Phone prefix'), null=True, blank=True)
+    phone = models.CharField(max_length=255, verbose_name=_(
+        'Phone'), null=True, blank=True)
     message = models.TextField(verbose_name=_(
         'Message'), null=True, blank=True)
     cv = models.FileField(upload_to='applicants/', null=True, blank=True)

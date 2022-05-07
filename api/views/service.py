@@ -12,12 +12,12 @@ class ApplicantAPIView(CreateAPIView):
     model = Applicant
 
     def create(self, request, *args, **kwargs):
-        service = request.data.get('service')
+        service_id = request.data.get('service')
         packet = request.data.get('packet')
         vacancy = request.data.get('vacancy')
         project = request.data.get('project')
-        if service:
-            request.data['service'] = Service.objects.get(slug=service).id
+        if service_id:
+            request.data['service'] = Service.objects.get(id=service_id).id
         if packet:
             request.data['packet'] = packet
         if vacancy:
