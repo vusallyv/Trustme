@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import AboutUs, AboutUsInfo, AboutUsStatistic, AboutUsTeam, ContactInfo, ContactPhone, SocialLink, Testimonial
+from core.models import AboutUs, AboutUsInfo, AboutUsSlogan, AboutUsStatistic, AboutUsTeam, ContactInfo, ContactPhone, SocialLink, Testimonial
 
 # Register your models here.
 
@@ -15,6 +15,11 @@ class AboutUsInfoInline(admin.TabularInline):
     extra = 1
 
 
+class AboutUsSloganInline(admin.TabularInline):
+    model = AboutUsSlogan
+    extra = 1
+
+
 class AboutUsStatisticInline(admin.TabularInline):
     model = AboutUsStatistic
     extra = 1
@@ -22,7 +27,8 @@ class AboutUsStatisticInline(admin.TabularInline):
 
 class AboutUsAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')
-    inlines = [AboutUsTeamInline, AboutUsInfoInline, AboutUsStatisticInline]
+    inlines = [AboutUsTeamInline, AboutUsInfoInline,
+               AboutUsStatisticInline, AboutUsSloganInline]
 
 
 class TestimonialAdmin(admin.ModelAdmin):

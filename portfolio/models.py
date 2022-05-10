@@ -58,6 +58,7 @@ class ServiceProject(BaseModel):
     url = models.URLField(verbose_name=_('URL'))
     title = models.CharField(max_length=200, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
+    aims = RichTextField(verbose_name=_('Aims'))
     cover_image = models.ImageField(
         upload_to='projects/', verbose_name=_('Cover Image'))
     slug = models.SlugField(max_length=200, unique=True,

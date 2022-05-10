@@ -26,9 +26,6 @@ STAR_CHOICES = (
 class AboutUs(BaseModel):
     title = models.CharField(max_length=255, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))
-    slogan = models.TextField(verbose_name=_('Slogan'))
-    slogan_author = models.CharField(
-        max_length=255, verbose_name=_('Slogan author'))
     is_active = models.BooleanField(default=True, verbose_name=_('Is active'))
 
     class Meta:
@@ -38,6 +35,22 @@ class AboutUs(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class AboutUsSlogan(BaseModel):
+    about_us = models.ForeignKey(
+        AboutUs, on_delete=models.CASCADE, verbose_name=_('About us'), related_name='about_us_slogan')
+    slogan = models.TextField(verbose_name=_('Slogan'))
+    slogan_author = models.CharField(
+        max_length=255, verbose_name=_('Slogan author'))
+        
+    class Meta:
+        db_table = 'about_us_slogan'
+        verbose_name = _('About Us Slogan')
+        verbose_name_plural = _('About Us Slogan')
+
+    def __str__(self):
+        return self.slogan
 
 
 class AboutUsStatistic(BaseModel):
