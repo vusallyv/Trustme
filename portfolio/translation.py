@@ -3,7 +3,7 @@ from .models import ProjectProcess, ProjectResult, ProjectStatistic, ServiceProj
 
 
 class ServiceProjectTranslationOptions(TranslationOptions):
-    fields = ('title', 'description',)
+    fields = ('title', 'description', 'aims')
 
 
 class ProjectProcessTranslationOptions(TranslationOptions):
