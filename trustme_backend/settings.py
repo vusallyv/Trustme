@@ -28,7 +28,7 @@ STAGING = os.environ.get("STAGING", "False") == "True"
 DEBUG_TOOLBAR = os.environ.get("DEBUG_TOOLBAR", "False") == "True"
 PROD = not DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
