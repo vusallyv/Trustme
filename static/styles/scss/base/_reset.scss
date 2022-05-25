@@ -1,0 +1,92 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+* {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    *:focus {
+        outline: none;
+    }
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Euclid Circular A", sans-serif !important;
+    background-color: #fff;
+    color: $dark-color;
+    font-size: 1rem !important;
+    line-height: 1.1rem;
+}
+
+@media screen and (min-width: 1441px) {
+    html {
+        font-size: calc(100vw / 1920 * 20) !important;
+    }
+}
+
+.btn,
+.form-control {
+    box-shadow: none;
+    &:focus {
+        text-shadow: none;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+address {
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none !important;
+    &:hover {
+        color: inherit;
+    }
+}
+
+p {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-size: 400;
+}
+
+ul {
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+button {
+    background: none;
+    border: none;
+}

@@ -1,0 +1,72 @@
+.section-title {
+    h2 {
+        @include font-size(36, 700);
+        line-height: rem(45);
+
+        @include breakpoint-max($tablet-width) {
+            font-size: rem(24);
+            line-height: rem(30);
+        }
+    }
+
+    p {
+        text-transform: uppercase;
+        font-size: rem(13);
+        margin-bottom: rem(7);
+        white-space: nowrap;
+    }
+}
+
+.section-gap {
+    margin-top: rem(50);
+
+    @include breakpoint-max($tablet-width) {
+        margin-top: rem(20);
+    }
+}
+
+.top-gap {
+    padding-top: rem(124);
+
+    @include breakpoint-max($tablet-width) {
+        padding-top: rem(56);
+    }
+}
+
+.g-title {
+    @include font-size(18, 700);
+
+    @include breakpoint-max($mobile-width) {
+        font-size: rem(16);
+    }
+}
+
+.g-title--purple {
+    @include font-size(18, 700);
+    color: $dark-purple;
+}
+
+.g-text {
+    font-size: rem(14);
+    line-height: rem(21);
+}
+
+.g-list {
+    font-size: rem(14);
+    line-height: rem(21);
+    list-style: disc;
+    padding-left: rem(16);
+}
+
+.g-img {
+    height: rem(390);
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    @include breakpoint-max(576) {
+        height: rem(210);
+    }
+}

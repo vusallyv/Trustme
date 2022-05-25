@@ -1,0 +1,10 @@
+@each $type, $weight in $font-types {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: normal;
+    src: url("../../assets/fonts/Euclid Circular A/Euclid Circular A #{$type}.ttf")
+      format("truetype");
+    font-display: swap;
+  }
+}

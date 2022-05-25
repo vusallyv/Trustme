@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="services pt-sm-5 pt-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb  mb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Kariyera
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="section-title mb-3 mb-md-5">
+                    <h2>Komandamıza qoşul</h2>
+                </div>
+
+                <div class="row g-4">
+                    {% for vacancy in vacancies %}
+                    <div class="col-sm-6 col-lg-4">
+                        <a href="{% url 'career:career-detail' vacancy.slug %}" class="services__box services__box--career">
+                            <span class="chip mb-3">
+                                {{vacancy.type}}
+                            </span>
+                            <h3 class="services__title">{{vacancy.title}}</h3>
+                            <p class="services__text services__text--career">
+                                {{vacancy.short_description}}
+                            </p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <ul class="pagination mt-4 mb-4 mb-sm-5 justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="custom-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="#" class="custom-prev-btn disabled">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link pagination__link--active">
+                            {{i}}
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="pagination__item">
+                        <a href="?page={{ i }}" class="pagination__link">
+                            {{i}}
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li>
+                        <a href="?page={{ page_obj.next_page_number }}" class="custom-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="#" class="custom-next-btn disabled">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="services__decor">
+                <img src="{% static 'assets/svg/decor.svg' %}" alt="">
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+{% block js %}
+{% endblock js %}

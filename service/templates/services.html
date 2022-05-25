@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+
+    <main>
+        <section class="services pt-4 pt-sm-5">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Ana səhifə' %}
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {% trans 'Xidmətlər' %}
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="section-title mb-3 mb-md-5">
+                    <h2>{% trans 'Xidmətlər' %}</h2>
+                </div>
+
+                <div class="row g-3 g-md-4">
+                    {% for service in services %}
+                    <div class="col-lg-4 col-sm-6">
+                        <a href="{% url 'service:service-detail' service.slug %}" class="services__box">
+                            <img src="{{service.icon.url}}" class="services__icon" alt="">
+                            <h3 class="services__title">{{service.title}}</h3>
+                            <p class="services__text">
+                                {{service.short_description}}
+                            </p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="services__decor">
+                <img src="{% static 'assets/svg/decor.svg' %}" alt="">
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+
+
+{% block js %}
+{% endblock js %}

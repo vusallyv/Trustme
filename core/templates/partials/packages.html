@@ -1,0 +1,117 @@
+{% load static get_packets i18n get_phone_prefixes %}
+{% get_packets_of_service request as packets %}
+{% get_phone_prefixes as phone_prefixes %}
+<!-- Standart Package  Modal -->
+{% for packet in packets %}
+ <div class="modal fade" id="packetID{{packet.id}}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
+            </button>
+
+            <div class="modal-body">
+                <p class="modal-title">
+                    Müraciət et
+                </p>
+                {% if packet.is_main %}
+                <div class="price-box-apply price-box-apply--main mb-3">
+                    <span class="chip chip--green">
+                        {% trans 'Populyar' %}
+                    </span>
+                    <p class="price-box-apply__title">
+                        {{packet.title}}
+                    </p>
+                    <p class="price-box-apply__subtitle">
+                        {{packet.title}}/⋔{{packet.price}}/{{packet.price_per}}
+                    </p>
+                </div>
+                {% else %}
+                <div class="price-box-apply mb-3">
+                    <p class="price-box-apply__title mt-0">
+                        {{packet.title}}
+                    </p>
+                    <p class="price-box-apply__subtitle">
+                        {{packet.title}}/⋔{{packet.price}}/{{packet.price_per}}
+                    </p>
+                </div>
+                {% endif %}
+                <form action="" class="w-100 apply-for-packet" method="post" data-packet="{{packet.id}}">
+                    {% csrf_token %}
+                    <div class="g-input-group">
+                        <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                        <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                    </div>
+                    <div class="g-input-group">
+                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                        <input id="company_name" type="text" placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
+                    </div>
+                    <div class="g-input-group">
+                        <label for="email">{% trans 'Email' %} <span>*</span></label>
+                        <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
+                    </div>
+                    <div class="g-input-group mb-0">
+                        <div class="g-input-group mb-0">
+                            <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
+                            <div class="d-flex align-items-center">
+                                <select id="phone_prefix" class="prefix-standartPacket" name="states[]">
+                                    {% for val, prefix in phone_prefixes %}
+                                    <option value="{{val}}">{{prefix}}</option>
+                                    {% endfor %}
+                                </select>
+                                <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="g-btn-fill w-100 apply-for-packet-submit">Göndər</button>
+                </form>
+                <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<script>
+    apply_for_packet = document.getElementsByClassName('apply-for-packet');
+    const ContactLogic = {
+        contactManager(data) {
+            fetch('/api/applicant', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": data.CSRFToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'company_name': data.company_name,
+                    'email': data.email,
+                    'phone': data.phone,
+                    'phone_prefix': data.phone_prefix,
+                    'service': window.location.pathname.split('/')[2],
+                    'packet': data.packet,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                });
+        }
+    }
+    apply_for_packet_submit = document.getElementsByClassName('apply-for-packet-submit');
+    for (let i = 0; i < apply_for_packet_submit.length; i++) {
+        apply_for_packet_submit[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            data = {
+                'email': apply_for_packet[i].email.value,
+                'full_name': apply_for_packet[i].full_name.value,
+                'company_name': apply_for_packet[i].company_name.value,
+                'phone': apply_for_packet[i].phone.value,
+                'phone_prefix': apply_for_packet[i].phone_prefix.value,
+                'packet': apply_for_packet[i].dataset.packet,
+                'CSRFToken': apply_for_packet[i].csrfmiddlewaretoken.value,
+            }
+            ContactLogic.contactManager(data);
+        });
+    }
+</script>

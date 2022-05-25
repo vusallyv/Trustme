@@ -1,0 +1,128 @@
+{% load static i18n get_services get_phone_prefixes %}
+{% get_services as services %}
+{% get_phone_prefixes as phone_prefixes %}
+<!-- Apply Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
+            </button>
+
+            <div class="modal-body">
+                <p class="modal-title">
+                    {% trans 'Müraciət et' %}
+                </p>
+                <form action="" class="w-100" method="post" id="apply-for-service">
+                    {% csrf_token %}
+                    <div class="alert alert-danger d-none" id="apply-for-service-non_field_errors-error" ></div>
+                    <div class="g-input-group">
+                        <label for="name">{% trans 'Xidmət' %} <span>*</span></label>
+                        <select id="service" class="modal-select" name="state">
+                            <option value=""></option>
+                            {% for service in services %}
+                            <option value="{{service.id}}">{{service.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text mb-4 text-danger text-small" id='service-error'></div>
+                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                    </div>
+                    <div class="g-input-group">
+                        <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                        <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                        <div class="form-text mb-4 text-danger text-small" id='full_name-error'></div>
+                    </div>
+                    <div class="g-input-group">
+                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                        <input id="company_name" type="text" placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
+                        <div class="form-text mb-4 text-danger text-small" id='company_name-error'></div>
+                    </div>
+                    <div class="g-input-group">
+                        <label for="email">{% trans 'Email' %} <span>*</span></label>
+                        <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
+                        <div class="form-text mb-4 text-danger text-small" id='email-error'></div>
+                    </div>
+                    <div class="g-input-group mb-0">
+                        <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
+                        <div class="d-flex align-items-center">
+                            <select class="prefix" name="states[]" id="phone_prefix">
+                                {% for val, prefix in phone_prefixes %}
+                                <option value="{{val}}">{{prefix}}</option>
+                                {% endfor %}
+                            </select>
+                            <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                        </div>
+                        <div class="form-text mb-4 text-danger text-small" id='phone_prefix-error'></div>
+                    </div>
+                    <button type="submit" id="apply-for-service-submit" class="g-btn-fill w-100">Göndər</button>
+                </form>
+                <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    apply_for_service = document.getElementById("apply-for-service");
+    const ApplyForServiceLogic = {
+        async applyForServiceManager(data) {
+            let response = await fetch('/api/applicant', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": apply_for_service.csrfmiddlewaretoken.value,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'company_name': data.company_name,
+                    'email': data.email,
+                    'phone': data.phone,
+                    'service': data.service,
+                    'phone_prefix': data.phone_prefix,
+                })
+            })
+                
+            let response_data = await response.json();
+            let status = await response.ok;
+            if (status) {
+                digital_audit_apply_form.reset()
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).text('');
+                    $(id).addClass('d-none');
+                    $(id).removeClass('d-block');
+                }
+            } else {
+                if ('apply-for-service-apply-non_field_errors' in response_data) {
+                    $('#apply-for-service-non_field_errors-error').addClass('d-block')
+                    $('#apply-for-service-non_field_errors-error').removeClass('d-none')
+                } else {
+                    $('#apply-for-service-non_field_errors-error').addClass('d-none')
+                }
+            
+                $('#apply-for-service-form .form-text').text('')
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).addClass('d-block');
+                    $(id).removeClass('d-none');
+                    $(id).text(response_data[field][0]);
+                }
+            }
+        }
+    }
+    apply_for_service_submit = document.getElementById('apply-for-service-submit');
+    apply_for_service_submit.addEventListener('click', function (e) {
+        e.preventDefault();
+        data = {
+            'email': apply_for_service.email.value,
+            'full_name': apply_for_service.full_name.value,
+            'company_name': apply_for_service.company_name.value,
+            'phone': apply_for_service.phone.value,
+            'service': apply_for_service.state.value,
+            'phone_prefix': apply_for_service.phone_prefix.value,
+        }
+        ApplyForServiceLogic.applyForServiceManager(data);
+    });
+</script>

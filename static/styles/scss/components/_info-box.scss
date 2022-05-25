@@ -1,0 +1,49 @@
+.info-box {
+    padding: rem(20);
+    background: $light-gray;
+    border-radius: rem(4);
+    height: 100%;
+    @include breakpoint-max($tablet-width){
+        padding: rem(20) rem(16);
+    }
+
+    &__icon {
+        width: rem(40);
+        height: rem(40);
+
+        @include breakpoint-max($tablet-width) {
+            display: none;
+        }
+
+        &--mob {
+            display: none;
+
+            @include breakpoint-max($tablet-width) {
+                width: rem(22);
+                height: rem(22);
+                display: block;
+                margin: auto;
+            }
+        }
+    }
+
+    &__title {
+        font-weight: 600;
+        margin-top: rem(13);
+
+        @include breakpoint-max($tablet-width){
+            text-align: center;
+            font-size: rem(14);
+        }
+    }
+
+    &__text {
+        font-size: rem(12);
+        color: $gray;
+        margin-top: rem(13);
+
+        @include breakpoint-max($tablet-width) {
+            display: none;
+        }
+    }
+}

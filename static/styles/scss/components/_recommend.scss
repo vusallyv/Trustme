@@ -1,0 +1,36 @@
+.recommend {
+    padding: rem(50) 0;
+    background-color: $light-gray;
+
+    @include breakpoint-max($mobile-width) {
+        padding-top: rem(20);
+        padding-bottom: rem(40);
+    }
+
+    &__item {
+        display: block;
+        height: rem(280);
+
+        @include breakpoint-max($tablet-width) {
+            height: rem(200);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .section-title {
+        margin-bottom: rem(125) !important;
+
+        @include breakpoint-max($desktop-width) {
+            margin-bottom: rem(17) !important;
+        }
+    }
+
+    &__slide {
+        padding-bottom: rem(35);
+    }
+}

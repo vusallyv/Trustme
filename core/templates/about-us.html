@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+
+{% if about_us %}
+    <main>
+        <section class="about-us pt-4 pt-sm-5">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Ana səhifə' %}
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {% trans 'Xidmətlər' %}
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="section-title mb-3 mb-md-5">
+                    <h2>{{about_us.title}}</h2>
+                </div>
+
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="about-us__text">
+                            <p>
+                                {{about_us.description|safe}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-lg-block d-none">
+                        <div class="about-us__title">
+                            {% for slogan in about_us.about_us_slogan.all %}
+                            <p>
+                                {{slogan.slogan}}
+                            </p>
+                            <span>{{slogan.slogan_author}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% if about_us.about_us_statistic.count > 0 %}
+                <div class="statistics section-gap">
+                    {% for statistic in about_us.about_us_statistic.all %}
+                    <div class="statistics__box">
+                        <span class="statistics__numbers">
+                            {{statistic.title}}
+                        </span>
+                        <span class="statistics__text">
+                            {{statistic.description|safe}}
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <img class="about-us__decor" src="{% static 'assets/svg/about-us-decor.svg' %}" alt="">
+        </section>
+        {% if about_us.about_us_info.count > 0 %}   
+        <section class="about-info">
+            <div class="g-container">
+                <div class="row g-3 g-sm-4">
+                    {% for info in about_us.about_us_info.all %}
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="about-info-box">
+                            <img src="{{info.icon.url}}" class="about-info-box__icon" alt="">
+                            <h3 class="about-info-box__title">{{info.title}}</h3>
+                            <p class="about-info-box__text">
+                                {{info.description|safe}}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if about_us.about_us_team.count > 0 %}
+        <section class="profile-card">
+            <div class="g-container">
+                <div class="section-title mb-3 mb-md-5">
+                    <h2>{% trans 'Komandımız' %}</h2>
+                </div>
+
+                <div class="row d-none d-sm-flex">
+                    {% for team_member in about_us.about_us_team.all %}
+                    <div class="col-6 col-lg-4">
+                        <div class="profile-card__wrapper">
+                            <div class="profile-card__img">
+                                <img src="{{team_member.image.url}}" alt="">
+                            </div>
+                            <div class="profile-card__content">
+                                <h4 class="profile-card__title">
+                                    {{team_member.full_name}}
+                                </h4>
+                                <span class="profile-card__position">
+                                    {{team_member.position}}
+                                </span>
+                                <p class="profile-card__description">
+                                    {{team_member.description|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="swiper profile-card__slide d-block d-sm-none">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Nərminə Ağayeva
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        UX/UI Dİzayner
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Kənan Abbaszadə
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        QRAFİK DİZAYNER
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Zeynəb Qubiyeva
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        SOSİAL MEDİA MENECERİ
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_0Zx1bDv5BNY.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Nərminə Ağayeva
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        UX/UI Dİzayner
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_KIPqvvTOC1s.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Kənan Abbaszadə
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        QRAFİK DİZAYNER
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="profile-card__wrapper">
+                                <div class="profile-card__img">
+                                    <img src="{% static 'assets/img/unsplash_N7aRuAXT2Ro.png' %}" alt="">
+                                </div>
+                                <div class="profile-card__content">
+                                    <h4 class="profile-card__title">
+                                        Zeynəb Qubiyeva
+                                    </h4>
+                                    <span class="profile-card__position">
+                                        SOSİAL MEDİA MENECERİ
+                                    </span>
+                                    <p class="profile-card__description">
+                                        Bir kəlmə haqqında məlumat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+    </main>
+{% endif %}
+
+{% endblock content %}
+
+
+{% block js %}
+    <script src="{% static 'js/slides/profile-cards-slide.js' %}"></script>
+{% endblock js %}

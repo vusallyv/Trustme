@@ -1,0 +1,16 @@
+.chip {
+    color: $dark-color;
+    background-color: #F2F2F2;
+    width: fit-content;
+    border-radius: rem(100);
+    padding: rem(0) rem(15);
+    font-size: rem(12);
+    height: rem(25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--green {
+        background-color: $green;
+        color: white;
+    }
+}

@@ -1,0 +1,35 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    min-width: rem(305);
+    margin-right: rem(50);
+    @include breakpoint-max($desktop-sm-width) {
+        display: none;
+    }
+    &__link {
+        font-size: rem(14);
+        color: $dark-color !important;
+        display: flex;
+        gap: rem(15);
+        align-items: center;
+        padding: rem(20);
+        transition: 0.3s;
+        &--active {
+            background-color: $dark-purple;
+            color: white !important;
+            border-radius: rem(4);
+            img {
+                filter: invert(78%) sepia(92%) saturate(0%) hue-rotate(238deg) brightness(105%) contrast(112%);
+            }
+        }
+        &:hover {
+            background-color: $dark-purple;
+            color: white !important;
+            border-radius: rem(4);
+            img {
+                filter: invert(78%) sepia(92%) saturate(0%) hue-rotate(238deg) brightness(105%) contrast(112%);
+            }
+        }
+    }
+}

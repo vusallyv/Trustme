@@ -1,0 +1,46 @@
+.project-about {
+    &__img {
+        height: rem(390);
+        transform: translateY(rem(-100));
+        @include breakpoint-max(991) {
+            transform: translateY(0);
+        }
+        @include breakpoint-max(576) {
+            height: rem(210);
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        max-width: rem(547);
+
+        @include breakpoint-max(991) {
+            max-width: 100%;
+        }
+    }
+}
+
+.result-slide{
+    &__img {
+        height: rem(390);
+
+        @include breakpoint-max(576) {
+            height: rem(210);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    } 
+
+    .swiper-wrapper{
+        padding-bottom: rem(40);
+    }
+}

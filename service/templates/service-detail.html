@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% load static i18n get_phone_prefixes %}
+{% block css %}
+{% endblock css %}
+{% block title %}Trustme{% endblock title %}
+{% block content %}
+{% get_phone_prefixes as phone_prefixes %}
+
+
+{% include 'partials/packages.html' %}
+
+    <main>
+        <section class="services-page pt-sm-5 pt-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Ana səhifə' %}
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Xidmətlər' %}
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {{service.title}}
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <ul class="dashboard">
+                        {% for ser in services %}
+                        <li class="dashboard__item">
+                            <a href="{% url 'service:service-detail' ser.slug %}" class="dashboard__link 
+                            {% if ser.slug == service.slug %} dashboard__link--active {% endif %}">
+                                <img src="{{ser.icon.url}}" alt="">{{ser.title}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="d-flex flex-column ps-lg-4 ms-lg-2">
+                        <div class="section-title mb-4">
+                            <h2>{{service.title}}</h2>
+                        </div>
+                        <p class="g-text">
+                            {{service.full_description|safe}}
+                        </p>
+                        <p class="g-title mt-3 mt-md-4">
+                            {% trans 'Kateqoriyalar' %}
+                        </p>
+                        <div class="accordion mt-3 mt-md-4" id="accordionCategory">
+                            {% for category in service.categories.all %}
+                            {% if forloop.first %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading{{category.id}}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="true" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse show"
+                                    aria-labelledby="heading{{category.id}}">
+                                    <div class="accordion-body">
+                                        {{category.answer|safe}}
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading{{category.id}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="false" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{category.id}}">
+                                    <div class="accordion-body">
+                                        {{category.answer|safe}}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        {% if service.projects.count > 0 %}
+        <section class="recommend">
+            <div class="g-container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
+                                <p>{% trans 'XİDMƏTLƏR' %}</p>
+                                <h2>Uğurlu İşlər</h2>
+                            </div>
+
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                {% trans 'Hamısı' %}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-9">
+                        <div class="swiper recommend__slide">
+                            <div class="swiper-wrapper">
+                                {% for project in service.projects.all %}
+                                <div class="swiper-slide">
+                                    <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="recommend__item">
+                                        <img src="{{project.cover_image.url}}" alt="">
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        {% if service.advantages.count > 0 %}
+        <section class="advantages d-none d-xl-block">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start pt-5 mb-4">
+                            <p>{% trans 'ÜSTÜNLÜKLƏR' %}</p>
+                            <h2>{% trans 'SEO-un üstünlükləri' %}</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper advantages__slide" id="advantages__slide">
+                            <div class="swiper-wrapper">
+                                {% for advantage in service.advantages.all %}
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <img src="{{advantage.icon.url}}" class="advantages-box__icon"
+                                            alt="">
+                                        <h3 class="advantages-box__title">{{advantage.title}}</h3>
+                                        <p class="advantages-box__text">
+                                            {{advantage.description|safe}}
+                                        </p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="swiper-button-next custom-next-btn advantages-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev custom-prev-btn advantages-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+        
+        {% if service.specialists.count > 0 %}
+        <section class="advantages experts pb-4 pb-md-0">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start pt-5 mb-4">
+                            <p>{{service.title}}</p>
+                            <h2>{% trans 'Xidmətə cəlb olunan mütəxəssislər' %}</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 position-relative">
+                        <div class="swiper advantages__slide" id="experts__slide">
+                            <div class="swiper-wrapper">
+                                {% for specialist in service.specialists.all %}
+                                <div class="swiper-slide">
+                                    <div class="advantages-box">
+                                        <h3 class="advantages-box__title">{{specialist.name}}</h3>
+                                        <p class="advantages-box__text">
+                                            {{specialist.description|safe|striptags}}
+                                        </p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="swiper-button-next custom-next-btn experts-next-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="swiper-button-prev custom-prev-btn experts-prev-btn">
+                            <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if service.packets.count > 0 %}
+        <section class="mt-md-4">
+            <div class="g-container">
+                <div class="price-box">
+                    {% for packet in service.packets.all|dictsort:"is_main" %}
+                    <div class="price-box__wrapper {% if packet.is_main %} price-box__wrapper--main {% endif %}">
+                        <p class="price-box__title">
+                            {{packet.title}}
+                            {% if packet.is_main %} 
+                            <span class="chip chip--green">
+                                Populyar
+                            </span>
+                            {% endif %}
+                        </p>
+                        <p class="price-box__subtitle">
+                            ⋔{{packet.price}} <span> / {{packet.price_per}}</span>
+                        </p>
+                        <ul class="price-box__list price-box__list--shadow">
+                            
+                            <li class="price-box__item">
+                                 {{packet.description|safe}}
+                            </li>
+                        </ul>
+                        <button class="price-box__more">
+                            {% trans 'Daha çox' %}
+                            
+                            <img src="{% if packet.is_main %}{% static 'assets/svg/white-down.svg' %}{% else %}{% static 'assets/svg/black-down.svg' %}{% endif %}" alt="">
+                            
+                        </button>
+                        <button class="g-btn-fill w-100" data-bs-toggle="modal" data-bs-target="#packetID{{packet.id}}">
+                            {% trans 'Müraciət et' %}
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+    </main>
+{% endblock content %}
+{% block js %}
+
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/slides/seo-rank-slide.js' %}"></script>
+    <script src="{% static 'js/slides/advantages-slide.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+    <script src="{% static 'js/pricebox-more.js' %}"></script>
+    <script src="{% static 'js/slides/experts-slide.js' %}"></script>
+    <script src="{% static 'js/slides/recommend-slide.js' %}"></script>
+{% endblock js %}

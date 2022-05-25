@@ -1,0 +1,33 @@
+.apply-banner {
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $dark-purple;
+        padding: rem(30);
+        border-radius: rem(6);
+
+        @include breakpoint-max($tablet-width) {
+            flex-direction: column;
+            gap: rem(20);
+            padding: rem(20);
+        }
+    }
+
+    &__title {
+        background-color: $dark-purple;
+        @include font-size(24, 600);
+        line-height: rem(30);
+        color: white;
+
+        @include breakpoint-max($tablet-width) {
+            font-size: rem(18);
+            line-height: rem(23);
+            text-align: center;
+        }
+    }
+
+    .g-btn-fill {
+        width: rem(200);
+    }
+}

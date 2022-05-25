@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+
+    {% include 'partials/apply-modal.html' %}
+
+    <main>
+        <section class="project-about pt-sm-5 pt-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb">
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Ana səhifə' %}
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Portfolio' %}
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {{portfolio.title}}
+                        </a>
+                    </li>
+                </ul>
+                <div class="section-title mb-4 mt-3">
+                    <h2>{{portfolio.title}}</h2>
+                </div>
+                <div class="row g-3">
+                    <div class="col-lg-6">
+                        <div class="project-about__content">
+                            <h4 class="g-title--purple mb-3">
+                                {% trans 'Haqqında' %}
+                            </h4>
+                            <p class="g-text mb-4">
+                                {{portfolio.description|safe}}
+                            </p>
+                            <h4 class="g-title--purple mb-3">
+                                {% trans 'Hədəf' %}
+                            </h4>
+                            {{portfolio.aims|safe}}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-2 order-first">
+                        <div class="project-about__img">
+                            <img src="{{portfolio.cover_image.url}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process">
+            <img src="{% static 'assets/svg/Line 4.svg' %}" class="process__line d-lg-flex d-none" alt="">
+
+            <div class="g-container">
+                <h4 class="g-title--purple mb-3">
+                    {% trans 'Proses' %}
+                </h4>
+
+                <div class="process__wrapper d-lg-flex d-none">
+                    {% for pr in portfolio.process.all %}
+                    <div class="process__box">
+                        <div class="process__icon">
+                            <img src="{{pr.icon.url}}" alt="">
+                        </div>
+                        <div class="process__right">
+                            <p class="process__title">
+                                {{pr.title}}
+                            </p>
+                            <span class="process__subtitle">
+                                {{pr.period}}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="swiper process__slide d-lg-none">
+                    <div class="swiper-wrapper">
+                        {% for pr in portfolio.process.all %}
+                        <div class="swiper-slide">
+                            <div class="process__box">
+                                <div class="process__icon">
+                                    <img src="{{pr.icon.url}}" alt="">
+                                </div>
+                                <div class="process__right">
+                                    <p class="process__title">
+                                        {{pr.title}}
+                                    </p>
+                                    <span class="process__subtitle">
+                                        {{pr.period}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+        </section>
+
+        <section class="project-about">
+            <div class="g-container">
+                <div class="row g-lg-4 g-3">
+                    <div class="col-lg-6">
+                        <div class="project-about__content">
+                            <h4 class="g-title--purple mb-3">
+                                {% trans 'Nəticə' %}
+                            </h4>
+                            <div class="accordion" id="accordionResult">
+                                {% for result in portfolio.results.all %}
+                                {% if forloop.first %}
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="heading{{result.id}}">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse{{result.id}}" aria-expanded="true"
+                                            aria-controls="collapse{{result.id}}">
+                                            {{result.title}}
+                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                        </button>
+                                    </div>
+                                    <div id="collapse{{result.id}}" class="accordion-collapse collapse show"
+                                        aria-labelledby="heading{{result.id}}">
+                                        <div class="accordion-body">
+                                            {{result.description|safe}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="heading{{result.id}}">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{result.id}}"
+                                            aria-expanded="false" aria-controls="collapse{{result.id}}">
+                                            {{result.title}}
+                                            <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                        </button>
+                                    </div>
+                                    <div id="collapse{{result.id}}" class="accordion-collapse collapse"
+                                        aria-labelledby="heading{{result.id}}">
+                                        <div class="accordion-body">
+                                           {{result.description|safe}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="swiper result-slide">
+                            <div class="swiper-wrapper">
+                                {% for image in portfolio.images.all %}
+                                <div class="swiper-slide">
+                                    <div class="result-slide__img">
+                                        <img src="{{image.image.url}}" alt="">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% if portfolio.statistics.count > 0 %}
+        <section class="mt-4 mt-md-0">
+            <div class="g-container">
+                <div class="statistics statistics--four">
+                    {% for statistic in portfolio.statistics.all %}
+                    <div class="statistics__box">
+                        <span class="statistics__numbers">
+                            {{statistic.name}}
+                        </span>
+                        <span class="statistics__text">
+                            {{statistic.description|safe}}
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="apply-banner section-gap">
+            <div class="g-container">
+                <div class="apply-banner__wrapper">
+                    <p class="apply-banner__title">
+                        {% trans 'Xidmətimizdən yararlanmaq istəyirsizmi?' %}
+                    </p>
+                    <button class="g-btn-fill" data-bs-toggle="modal" data-bs-target="#applyModal">
+                        {% trans 'Müraciət et' %}
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        {% if recommended_projects.count > 0 %}
+        <section class="recommend">
+            <div class="g-container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title mx-auto mx-xl-0 text-center text-xl-start mb-3 mb-xl-0">
+                                <p>{% trans 'PORTFOLİO' %}</p>
+                                <h2>{% trans 'Həmçinin bax' %}</h2>
+                            </div>
+
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">
+                                {% trans 'Hamısı' %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-9">
+                        <div class="swiper recommend__slide">
+                            <div class="swiper-wrapper">
+                                {% for project in recommended_projects %}
+                                <div class="swiper-slide">
+                                    <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="recommend__item">
+                                        <img src="{{project.image.url}}" alt="">
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/slides/results-slide.js' %}"></script>
+    <script src="{% static 'js/slides/proccess-slide.js' %}"></script>
+    <script src="{% static 'js/slides/recommend-slide.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+{% endblock js %}

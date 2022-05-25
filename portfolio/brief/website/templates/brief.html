@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load static get_phone_prefixes i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+{% get_phone_prefixes as phone_prefixes %}
+
+    <main>
+        <section class="brief">
+            <img src="{% static 'assets/svg/brief-1-decor.svg' %}" class="brief__decor" id="brief-1-decor" alt="">
+            <img src="{% static 'assets/svg/brief-2-decor.svg' %}" class="brief__decor" id="brief-2-decor" alt="">
+            <img src="{% static 'assets/svg/brief-3-decor.svg' %}" class="brief__decor" id="brief-3-decor" alt="">
+            <img src="{% static 'assets/svg/brief-mobile-decor.svg' %}" class="brief__mob-decor" alt="">
+            <div class="g-container">
+                <ul class="g-breadcrumb">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        Portfolio
+                    </li>
+                    <li class="g-breadcrumb__item">
+                        Vebsayt Xidmətləri
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Brief göndər
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="brief-top">
+                    <button class="brief__back-btn">
+                        <img src="{% static 'assets/svg/Arrow Left.svg' %}" alt="">
+                    </button>
+                    <p class="brief-top__title">
+                        Brief göndər
+                    </p>
+                </div>
+
+                <div class="brief-tab">
+                    <button id="brief-tab__btn-1" class="brief-tab__btn" onclick="OpenTab(event, 'brief-1')">
+                        <span class="brief-tab__step">1</span>
+                        <span class="brief-tab__name">{% trans 'Şəxsi məlumatlar' %}</span>
+                    </button>
+                    <button id="brief-tab__btn-2" class="brief-tab__btn" onclick="OpenTab(event, 'brief-2')">
+                        <span class="brief-tab__step">2</span>
+                        <span class="brief-tab__name">{% trans 'Ümumi məlumatlar' %}</span>
+                    </button>
+                    <button id="brief-tab__btn-3" class="brief-tab__btn" onclick="OpenTab(event, 'brief-3')">
+                        <span class="brief-tab__step">3</span>
+                        <span class="brief-tab__name">{% trans 'Xidmətlə bağlı məlumatlar' %} </span>
+                    </button>
+                </div>
+
+                <form id="brief-form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div id="brief-1" class="tabcontent">
+                        <p class="brief__title">
+                            {% trans 'Şəxsi məlumatlar' %}
+                        </p>
+                        <p class="brief__subtitle">
+                            Şəxsi məlumatlarınız sizi daha yaxşı tanımağımıza kömək edəcək
+                        </p>
+
+                        <div class="brief__input-wrapper">
+                            <div class="g-input-group">
+                                <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                            </div>
+                            <div class="g-input-group">
+                                <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
+                            </div>
+                            <div class="g-input-group">
+                                <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
+                                <div class="d-flex align-items-center">
+                                    <select class="prefix" id="phone_prefix" name="states[]" style="min-width: 85px;">
+                                        {% for val, prefix in phone_prefixes %}
+                                        <option value="{{val}}">{{prefix}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                                </div>
+                            </div>
+
+                            <button type="button" class="g-btn-fill w-100" id="move-brief-2">
+                                {% trans 'Davam' %}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="brief-2" class="tabcontent">
+                        <p class="brief__title">
+                            {% trans 'Ümumi məlumatlar' %}
+                        </p>
+
+                        <p class="brief__subtitle">
+                            {% trans 'Ümumi məlumatlarınız şirkətinizi daha yaxşı tanımağımıza kömək edəcək' %}
+                        </p>
+
+                        <div class="brief__input-wrapper">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                                        <input id="company_name" type="text"
+                                            placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="activity_sphere">{% trans 'Fəaliyyət sferası' %} <span>*</span></label>
+                                        <select id="activity_sphere"  class="select2-area" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.activity_sphere_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="website">{% trans 'Vebsayt URL' %}</label>
+                                        <input id="website" type="url" placeholder="{% trans 'Vebsayt URL daxil edin' %}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="domain">{% trans 'Yeni alınacaq domain (ehtiyac varsa)' %}</label>
+                                        <input id="domain" type="url" placeholder="{% trans 'Yeni domaini qeyd edin' %}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="Rəqiblərin-saytları">{% trans 'Rəqiblərin saytları' %} <span>*</span></label>
+                                        <textarea id="Rəqiblərin-saytları" name=""
+                                            placeholder="{% trans 'Əsas rəqiblərin saytlarını qeyd edin' %}" cols="30"
+                                            rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="Bəyəndiyiniz-saytlar">{% trans 'Bəyəndiyiniz saytlar' %} <span>*</span></label>
+                                        <textarea id="Bəyəndiyiniz-saytlar" name=""
+                                            placeholder="{% trans 'Dizayn və funksionallıq cəhətdən bəyəndiyiniz saytları qeyd edin' %}"
+                                            cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="g-btn-fill w-100" id="move-brief-3">
+                                {% trans 'Davam' %}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="brief-3" class="tabcontent">
+                        <p class="brief__title">
+                            {% trans 'Xidmət haqqında' %}
+                        </p>
+
+                        <p class="brief__subtitle">
+                            {% trans 'Xidmət haqqında məlumatlar sizə daha yaxşı xidmət etməyimizə kömək edəcək' %} 
+                        </p>
+
+                        <div class="brief__input-wrapper">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="project_period">{% trans 'Layihənin müddəti' %} <span>*</span></label>
+                                        <select id="project_period" class="select2-date" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.project_period_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="website_type">{% trans 'Vebsayt növü' %} <span>*</span></label>
+                                        <select id="website_type" class="select2-type" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.website_type_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="language">{% trans 'Dil seçimi' %} <span>*</span></label>
+                                        <select id="language" class="select2-language" name="states[]" multiple="multiple">
+                                            <option></option>
+                                            {% for val, name in brief_choices.language_choices %}
+                                            <option value="{{name}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="g-input-group">
+                                        <label for="design">{% trans 'Dizayn' %} <span>*</span></label>
+                                        <select id="design" class="select2-design" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.design_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="requirements">{% trans 'Tələblər' %} <span>*</span></label>
+                                        <select id="requirements" class="select2-demands" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.requirements_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="">{% trans 'Fotolar' %} <span>*</span></label>
+                                        <select id="photos" class="select2-photos" name="state">
+                                            <option></option>
+                                            {% for val, name in brief_choices.requirements_choices %}
+                                            <option value="{{val}}">{{name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <img src="{% static 'assets/svg/select-down.svg' %}" class="select-icon" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="brief-form-submit" type="submit" class="g-btn-fill w-100">
+                                {% trans 'Göndər' %}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+{% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/brief-select.js' %}"></script>
+    <script src="{% static 'js/brief-tab.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+
+    <script>
+        brief_form = document.getElementById("brief-form");
+        const BriefLogic = {
+            async briefManager(data) {
+                let response = await fetch('/api/brief', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": brief_form.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'email': data.email,
+                        'phone': data.phone,
+                        'phone_prefix': data.phone_prefix,
+                        'website_url': data.website_url,
+                        'company_name': data.company_name,
+                        'activity_sphere': data.activity_sphere,
+                        'project_period': data.project_period,
+                        'design': data.design,
+                        'requirements': data.requirements,
+                        'website_type': data.website_type,
+                        'language': data.language,
+                    })
+                })
+                let response_data = await response.json();
+                let status = await response.ok;
+                if (status) {
+                    brief_form.reset()
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).text('');
+                    }
+                } else {
+                    if ('digital-audit-apply-non_field_errors' in response_data) {
+                        $('#digital-audit-non_field_errors-error').addClass('d-block')
+                        $('#digital-audit-non_field_errors-error').removeClass('d-none')
+                    } else {
+                        $('#digital-audit-non_field_errors-error').addClass('d-none')
+                    }
+                
+                    $('#digital-audit-apply-form .form-text').text('')
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).text(response_data[field][0]);
+                    }
+                }
+
+            }
+        }
+        brief_form_submit = document.getElementById('brief-form-submit');
+        brief_form_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            select2_language_container = document.getElementById('select2-language-container');
+            lang = [];
+            data_lang = [];
+            for (let i = 0; i < brief_form.language.options.length; i++) {
+                const element = brief_form.language.options[i];
+                if (element.innerText !== '') {
+                    lang.push(element.innerText);
+                }
+            }
+            for (let i = 0; i < select2_language_container.children.length; i++) {
+                const element = select2_language_container.children[i];
+                if (lang.includes(element.title)) {
+                    data_lang.push(element.title);
+                }
+            }
+            data = {
+                'email': brief_form.email.value,
+                'full_name': brief_form.full_name.value,
+                'phone': brief_form.phone.value,
+                'phone_prefix': brief_form.phone_prefix.value,
+                'website_url': brief_form.website.value,
+                'company_name': brief_form.company_name.value,
+                'activity_sphere': brief_form.activity_sphere.value,
+                'project_period': brief_form.project_period.value,
+                'design': brief_form.design.value,
+                'requirements': brief_form.requirements.value,
+                'website_type': brief_form.website_type.value,
+                'language': data_lang,
+            }
+            BriefLogic.briefManager(data);
+        });
+    </script>
+{% endblock js %}

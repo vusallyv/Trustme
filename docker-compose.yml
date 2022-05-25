@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  # nginx-proxy:
+  #   image: jwilder/nginx-proxy
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - ./nginx/vhost/:/etc/nginx/vhost.d:ro
+  #     - ./nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
+  #     - ./static/:/app/static
+  #     - ./media/:/app/media
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/vhost/:/etc/nginx/vhost.d:ro
+      - ./nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
+      - ./static/:/app/static
+      - ./media/:/app/media
+      
+
+  postgres:
+    image: postgres:11
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdb:/var/lib/postgresql/data
+    env_file: ./.env
+    environment:
+      - LC_ALL=C.UTF-8
+
+  # redis:
+  #   image: redis:5
+  #   restart: "on-failure"
+  #   container_name: redis
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ./redisdb:/var/lib/redis
+    
+  web:
+    build: .
+    command: gunicorn --bind 0.0.0.0 -p 8000 trustme_backend.wsgi
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file: ./.env
+    depends_on:
+      - "postgres"
+
+  # celery:
+  #   build: 
+  #     context: .
+  #     dockerfile: celery.dockerfile
+  #   command: celery -A trustme_backend worker --beat --scheduler django --loglevel=info
+  #   volumes:
+  #     - .:/app
+  #   env_file: ./.env
+  #   depends_on:
+  #     - "postgres"
+  #     - "redis"
+    

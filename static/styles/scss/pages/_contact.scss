@@ -1,0 +1,17 @@
+.contact {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: rem(120);
+
+    @include breakpoint-max($tablet-width){
+        padding-bottom: rem(40);
+    }
+
+    textarea {
+        margin-bottom: rem(43);
+    }
+
+    .mob-navbar__decor {
+        top: rem(-50);
+    }
+}

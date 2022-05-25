@@ -1,0 +1,281 @@
+{% load static i18n %}
+
+<footer class="footer">
+    <div class="g-container">
+        <div class="footer__wrapper">
+            <div class="footer__info">
+                <a href="{% url 'core:home'  %}" class="footer__logo">
+                    <img src="{% static 'assets/svg/logo.svg' %}" alt="">
+                </a>
+                <p class="footer__info-text">
+                    Trustme Digital is a full-service marketing agency that focuses on driving results via effective
+                    and measurable solutions.
+                </p>
+            </div>
+            <div class="footer__links">
+                <ul class="footer__list">
+                    <p class="footer__title">
+                        {% trans 'Əsas keçidlər' %}
+                    </p>
+                    <li class="footer__item">
+                        <a href="{% url 'core:about_us'  %}" class="footer__link">
+                            {% trans 'Haqqımızda' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'service:services' %}" class="footer__link">
+                            {% trans 'Xidmətlər' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'portfolio:portfolio' %}" class="footer__link">
+                            {% trans 'Portfolio' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'blog:blogs' %}" class="footer__link">
+                            {% trans 'Bloq' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'career:careers'  %}" class="footer__link">
+                            {% trans 'Kariyera' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'core:contact' %}" class="footer__link">
+                            {% trans 'Əlaqə' %}
+                        </a>
+                    </li>
+
+                    <li class="footer__item">
+                        <a href="{% url 'core:faq'  %}" class="footer__link">
+                            {% trans 'Tez-tez soruşulan suallar' %}
+                        </a>
+                    </li>
+                    <li class="footer__item">
+                        <a href="{% url 'website:brief' %}" class="footer__link">
+                            {% trans 'Brief göndər' %}
+                        </a>
+                    </li>
+                </ul>
+                <ul class="footer__list">
+                    <p class="footer__title">
+                        {% trans 'Xidmətlərimiz' %}
+                    </p>
+                    {% for service in services_footer %}
+                    <li class="footer__item">
+                        <a href="{% url 'service:service-detail' service.slug %}" class="footer__link">
+                            {{service.title}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <p class="footer__title">
+                    {% trans 'Əlaqə' %}
+                </p>
+                <ul class="footer__contact-list">
+                    <li class="footer__contact-item">
+                        <a href="" class="footer__contact-link">
+                            <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> {{contact_footer.address}}
+                        </a>
+                    </li>
+                    {% if contact_footer.contact_phone.count > 0 %}
+                    {% for phone in contact_footer.contact_phone.all %}
+                    <li class="footer__contact-item">
+                        <a href="tel:{{phone.phone_number}}" class="footer__contact-link">
+                            <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> {{phone.phone_number}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                    <li class="footer__contact-item">
+                        <a href="mailto:{{contact_footer.email}}" class="footer__contact-link">
+                            <img src="{% static 'assets/svg/Icons (3).svg' %}" alt=""> {{contact_footer.email}}
+                        </a>
+                    </li>
+                </ul>
+                {% if contact_footer.social_link.count > 0 %}
+                <ul class="footer__socials-list">
+                    {% for social in contact_footer.social_link.all %}
+                    <li class="footer__socials-item">
+                        <a href="{{social.link}}" class="footer__socaials-link">
+                            <img src="{{social.icon.url}}" alt="">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <p><span>Trustme Digital</span> | Bütün hüquqlar qorunur. 2022</p>
+        </div>
+    </div>
+</footer>
+
+<footer class="mob-footer">
+    <div class="g-container">
+        <div class="mob-footer___wrapper">
+            <a href="" class="mob-footer__logo">
+                <img src="{% static 'assets/svg/logo.svg' %}" alt="">
+            </a>
+            <div class="accordion mob-footer__accordion" id="footerAccordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" id="footer-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#footer-collapseOne" aria-expanded="true"
+                            aria-controls="footer-collapseOne">
+                            {% trans 'Xidmətlərimiz' %}
+                            <div class="plusminus"></div>
+                        </button>
+                    </div>
+                    <div id="footer-collapseOne" class="accordion-collapse collapse"
+                        aria-labelledby="footer-headingOne">
+                        <div class="accordion-body">
+                            <ul>
+                            {% for service in services_footer %}
+                                <li>
+                                    <a href="{% url 'service:service-detail' service.slug %}">
+                                        {{service.title}}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" id="footer-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#footer-collapseTwo" aria-expanded="false"
+                            aria-controls="footer-collapseTwo">
+                            {% trans 'Portfolio' %}
+                            <div class="plusminus"></div>
+                        </button>
+                    </div>
+                    <div id="footer-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="footer-headingTwo">
+                        <div class="accordion-body">
+                            <ul>
+                                {% for service in services_footer %}
+                                <li>
+                                    <a href="{% url 'portfolio:portfolio' %}?service={{service.slug}}">
+                                        {{service.title}}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" id="footer-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#footer-collapseThree" aria-expanded="false"
+                            aria-controls="footer-collapseThree">
+                            {% trans 'Əlaqə' %}
+                            <div class="plusminus"></div>
+                        </button>
+                    </div>
+                    <div id="footer-collapseThree" class="accordion-collapse collapse"
+                        aria-labelledby="footer-headingThree">
+                        <div class="accordion-body">
+                            <ul class="footer__contact-list mb-0">
+                                <li class="footer__contact-item">
+                                    <a href="" class="footer__contact-link">
+                                        <img src="{% static 'assets/svg/Icons (1).svg' %}" alt=""> {{contact_footer.address}}
+                                    </a>
+                                </li>
+                                {% if contact_footer.contact_phone.count > 0 %}
+                                {% for phone in contact_footer.contact_phone.all %}
+                                <li class="footer__contact-item">
+                                    <a href="tel:{{phone.phone_number}}" class="footer__contact-link">
+                                        <img src="{% static 'assets/svg/Icons (2).svg' %}" alt=""> {{phone.phone_number}}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                                {% endif %}
+                                <li class="footer__contact-item">
+                                    <a href="mailto:{{contact_footer.email}}" class="footer__contact-link">
+                                        <img src="{% static 'assets/svg/Icons (3).svg' %}" alt="">
+                                        {{contact_footer.email}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" id="footer-headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#footer-collapseFour" aria-expanded="false"
+                            aria-controls="footer-collapseFour">
+                            {% trans 'Əsas keçidlər' %}
+                            <div class="plusminus"></div>
+                        </button>
+                    </div>
+                    <div id="footer-collapseFour" class="accordion-collapse collapse"
+                        aria-labelledby="footer-headingFour">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'core:about_us'  %}">
+                                        {% trans 'Haqqımızda' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'service:services' %}">
+                                        {% trans 'Xidmətlər' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'portfolio:portfolio' %}">
+                                        {% trans 'Portfolio' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'blog:blogs' %}">
+                                        {% trans 'Bloq' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'core:contact' %}">
+                                        {% trans 'Əlaqə' %}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{% url 'core:faq'  %}">
+                                        {% trans 'Tez-tez soruşulan suallar' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'website:brief' %}">
+                                        {% trans 'Brief Göndər' %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if contact_footer.social_link.count > 0 %}
+            <ul class="mob-footer__socials">
+                {% for social in contact_footer.social_link.all %}
+                <li>
+                    <a href="{{social.link}}">
+                        <img src="{{social.icon.url}}" alt="">
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="mob-footer__copyright">
+                <p><span>Trustme Digital</span> | Bütün hüquqlar qorunur. 2022</p>
+            </div>
+        </div>
+    </div>
+</footer>

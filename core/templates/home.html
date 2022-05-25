@@ -1,0 +1,977 @@
+{% extends 'base.html' %}
+{% load static generate_testimonial_list i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+
+    <!-- Comment Modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    <img src="{% static 'assets/svg/Clear (1).svg' %}" alt="">
+                </button>
+
+                <div class="modal-body">
+                    <p class="modal-title">
+                        {% trans 'Rəy bildir' %}
+                    </p>
+                    <form action="" class="w-100" method="post" id="comment-form">
+                        {% csrf_token %}
+                        <div class="g-input-group">
+                            <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                            <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                        </div>
+                        <div class="g-input-group">
+                            <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                            <input id="company_name" type="text" placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
+                        </div>
+                        <div class="g-input-group">
+                            <label for="position">Çalışdığınız vəzifə <span>*</span></label>
+                            <input id="position" type="text" placeholder="Çalışdığınız vəzifəni daxil edin">
+                        </div>
+                        <div class="g-input-group">
+                            <label for="message">Rəy <span>*</span></label>
+                            <textarea id="message" name="" placeholder="Rəyinizi yazın" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div class="g-input-group">
+                            <label>Qiymətləndir <span>*</span></label>
+
+                            <div class="star-rating">
+                                <div class="star-rating__wrapper">
+                                    <input class="rating-radio" type="radio" id="5-stars" name="rating" value="5" />
+                                    <label for="5-stars" class="star">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                            viewBox="0 0 22 21" fill="none">
+                                            <path
+                                                d="M10.5245 1.46352C10.6742 1.00287 11.3259 1.00287 11.4755 1.46353L13.3574 7.25532C13.4243 7.46133 13.6163 7.60081 13.8329 7.60081H19.9228C20.4071 7.60081 20.6085 8.22062 20.2167 8.50532L15.2899 12.0848C15.1146 12.2122 15.0413 12.4379 15.1083 12.6439L16.9901 18.4357C17.1398 18.8963 16.6126 19.2794 16.2207 18.9947L11.2939 15.4152C11.1187 15.2878 10.8814 15.2878 10.7061 15.4152L5.77932 18.9947C5.38747 19.2794 4.86023 18.8963 5.0099 18.4357L6.89177 12.6439C6.95871 12.4379 6.88538 12.2122 6.71013 12.0849L1.78334 8.50532C1.39148 8.22062 1.59287 7.60081 2.07723 7.60081H8.16709C8.3837 7.60081 8.57568 7.46133 8.64261 7.25532L10.5245 1.46352Z"
+                                                fill="white" />
+                                            <path
+                                                d="M1.78334 8.50532L2.37112 7.6963L1.78334 8.50532ZM6.71013 12.0849L6.12235 12.8939L6.71013 12.0849ZM5.77932 18.9947L6.36711 19.8037L5.77932 18.9947ZM5.0099 18.4357L4.05885 18.1266L5.0099 18.4357ZM11.2939 15.4152L10.7061 16.2242L11.2939 15.4152ZM10.7061 15.4152L10.1183 14.6061L10.7061 15.4152ZM16.9901 18.4357L16.0391 18.7447L16.9901 18.4357ZM16.2207 18.9947L16.8085 18.1857L16.2207 18.9947ZM15.2899 12.0848L14.7021 11.2758L15.2899 12.0848ZM15.1083 12.6439L14.1572 12.9529L15.1083 12.6439ZM20.2167 8.50532L19.6289 7.69631L20.2167 8.50532ZM10.5245 1.46352L9.57343 1.15451L10.5245 1.46352ZM10.5245 1.77254L12.4064 7.56434L14.3085 6.94631L12.4266 1.15451L10.5245 1.77254ZM13.8329 8.60081H19.9228V6.60081H13.8329V8.60081ZM19.6289 7.69631L14.7021 11.2758L15.8777 12.8939L20.8045 9.31434L19.6289 7.69631ZM14.1572 12.9529L16.0391 18.7447L17.9412 18.1266L16.0593 12.3349L14.1572 12.9529ZM16.8085 18.1857L11.8817 14.6061L10.7061 16.2242L15.6329 19.8037L16.8085 18.1857ZM10.1183 14.6061L5.19154 18.1857L6.36711 19.8037L11.2939 16.2242L10.1183 14.6061ZM5.96096 18.7447L7.84283 12.9529L5.94071 12.3349L4.05885 18.1266L5.96096 18.7447ZM7.29792 11.2758L2.37112 7.6963L1.19555 9.31434L6.12235 12.8939L7.29792 11.2758ZM2.07723 8.60081H8.16709V6.60081H2.07723V8.60081ZM9.59367 7.56434L11.4755 1.77254L9.57343 1.15451L7.69156 6.94631L9.59367 7.56434ZM8.16709 8.60081C8.81692 8.60081 9.39286 8.18237 9.59367 7.56434L7.69156 6.94631C7.75849 6.74029 7.95047 6.60081 8.16709 6.60081V8.60081ZM2.37112 7.6963C2.76299 7.98101 2.56159 8.60081 2.07723 8.60081V6.60081C0.624153 6.60081 0.019978 8.46023 1.19555 9.31434L2.37112 7.6963ZM7.84283 12.9529C8.04364 12.3348 7.82365 11.6578 7.29792 11.2758L6.12235 12.8939C5.94711 12.7665 5.87378 12.5409 5.94071 12.3349L7.84283 12.9529ZM5.19154 18.1857C5.5834 17.901 6.11063 18.284 5.96096 18.7447L4.05885 18.1266C3.60982 19.5086 5.19153 20.6578 6.36711 19.8037L5.19154 18.1857ZM11.8817 14.6061C11.356 14.2242 10.6441 14.2242 10.1183 14.6061L11.2939 16.2242C11.1187 16.3515 10.8814 16.3515 10.7061 16.2242L11.8817 14.6061ZM16.0391 18.7447C15.8894 18.284 16.4166 17.901 16.8085 18.1857L15.6329 19.8037C16.8085 20.6578 18.3902 19.5086 17.9412 18.1266L16.0391 18.7447ZM14.7021 11.2758C14.1764 11.6578 13.9564 12.3348 14.1572 12.9529L16.0593 12.3349C16.1262 12.5409 16.0529 12.7665 15.8777 12.8939L14.7021 11.2758ZM19.9228 8.60081C19.4384 8.60081 19.237 7.98101 19.6289 7.69631L20.8045 9.31434C21.98 8.46023 21.3759 6.60081 19.9228 6.60081V8.60081ZM12.4064 7.56434C12.6072 8.18237 13.1831 8.60081 13.8329 8.60081V6.60081C14.0495 6.60081 14.2415 6.74029 14.3085 6.94631L12.4064 7.56434ZM12.4266 1.15451C11.9776 -0.227453 10.0225 -0.227462 9.57343 1.15451L11.4755 1.77254C11.3259 2.2332 10.6742 2.23319 10.5245 1.77254L12.4266 1.15451Z"
+                                                fill="#E9204F" />
+                                        </svg>
+                                    </label>
+                                    <input class="rating-radio" type="radio" id="4-stars" name="rating" value="4" />
+                                    <label for="4-stars" class="star">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                            viewBox="0 0 22 21" fill="none">
+                                            <path
+                                                d="M10.5245 1.46352C10.6742 1.00287 11.3259 1.00287 11.4755 1.46353L13.3574 7.25532C13.4243 7.46133 13.6163 7.60081 13.8329 7.60081H19.9228C20.4071 7.60081 20.6085 8.22062 20.2167 8.50532L15.2899 12.0848C15.1146 12.2122 15.0413 12.4379 15.1083 12.6439L16.9901 18.4357C17.1398 18.8963 16.6126 19.2794 16.2207 18.9947L11.2939 15.4152C11.1187 15.2878 10.8814 15.2878 10.7061 15.4152L5.77932 18.9947C5.38747 19.2794 4.86023 18.8963 5.0099 18.4357L6.89177 12.6439C6.95871 12.4379 6.88538 12.2122 6.71013 12.0849L1.78334 8.50532C1.39148 8.22062 1.59287 7.60081 2.07723 7.60081H8.16709C8.3837 7.60081 8.57568 7.46133 8.64261 7.25532L10.5245 1.46352Z"
+                                                fill="white" />
+                                            <path
+                                                d="M1.78334 8.50532L2.37112 7.6963L1.78334 8.50532ZM6.71013 12.0849L6.12235 12.8939L6.71013 12.0849ZM5.77932 18.9947L6.36711 19.8037L5.77932 18.9947ZM5.0099 18.4357L4.05885 18.1266L5.0099 18.4357ZM11.2939 15.4152L10.7061 16.2242L11.2939 15.4152ZM10.7061 15.4152L10.1183 14.6061L10.7061 15.4152ZM16.9901 18.4357L16.0391 18.7447L16.9901 18.4357ZM16.2207 18.9947L16.8085 18.1857L16.2207 18.9947ZM15.2899 12.0848L14.7021 11.2758L15.2899 12.0848ZM15.1083 12.6439L14.1572 12.9529L15.1083 12.6439ZM20.2167 8.50532L19.6289 7.69631L20.2167 8.50532ZM10.5245 1.46352L9.57343 1.15451L10.5245 1.46352ZM10.5245 1.77254L12.4064 7.56434L14.3085 6.94631L12.4266 1.15451L10.5245 1.77254ZM13.8329 8.60081H19.9228V6.60081H13.8329V8.60081ZM19.6289 7.69631L14.7021 11.2758L15.8777 12.8939L20.8045 9.31434L19.6289 7.69631ZM14.1572 12.9529L16.0391 18.7447L17.9412 18.1266L16.0593 12.3349L14.1572 12.9529ZM16.8085 18.1857L11.8817 14.6061L10.7061 16.2242L15.6329 19.8037L16.8085 18.1857ZM10.1183 14.6061L5.19154 18.1857L6.36711 19.8037L11.2939 16.2242L10.1183 14.6061ZM5.96096 18.7447L7.84283 12.9529L5.94071 12.3349L4.05885 18.1266L5.96096 18.7447ZM7.29792 11.2758L2.37112 7.6963L1.19555 9.31434L6.12235 12.8939L7.29792 11.2758ZM2.07723 8.60081H8.16709V6.60081H2.07723V8.60081ZM9.59367 7.56434L11.4755 1.77254L9.57343 1.15451L7.69156 6.94631L9.59367 7.56434ZM8.16709 8.60081C8.81692 8.60081 9.39286 8.18237 9.59367 7.56434L7.69156 6.94631C7.75849 6.74029 7.95047 6.60081 8.16709 6.60081V8.60081ZM2.37112 7.6963C2.76299 7.98101 2.56159 8.60081 2.07723 8.60081V6.60081C0.624153 6.60081 0.019978 8.46023 1.19555 9.31434L2.37112 7.6963ZM7.84283 12.9529C8.04364 12.3348 7.82365 11.6578 7.29792 11.2758L6.12235 12.8939C5.94711 12.7665 5.87378 12.5409 5.94071 12.3349L7.84283 12.9529ZM5.19154 18.1857C5.5834 17.901 6.11063 18.284 5.96096 18.7447L4.05885 18.1266C3.60982 19.5086 5.19153 20.6578 6.36711 19.8037L5.19154 18.1857ZM11.8817 14.6061C11.356 14.2242 10.6441 14.2242 10.1183 14.6061L11.2939 16.2242C11.1187 16.3515 10.8814 16.3515 10.7061 16.2242L11.8817 14.6061ZM16.0391 18.7447C15.8894 18.284 16.4166 17.901 16.8085 18.1857L15.6329 19.8037C16.8085 20.6578 18.3902 19.5086 17.9412 18.1266L16.0391 18.7447ZM14.7021 11.2758C14.1764 11.6578 13.9564 12.3348 14.1572 12.9529L16.0593 12.3349C16.1262 12.5409 16.0529 12.7665 15.8777 12.8939L14.7021 11.2758ZM19.9228 8.60081C19.4384 8.60081 19.237 7.98101 19.6289 7.69631L20.8045 9.31434C21.98 8.46023 21.3759 6.60081 19.9228 6.60081V8.60081ZM12.4064 7.56434C12.6072 8.18237 13.1831 8.60081 13.8329 8.60081V6.60081C14.0495 6.60081 14.2415 6.74029 14.3085 6.94631L12.4064 7.56434ZM12.4266 1.15451C11.9776 -0.227453 10.0225 -0.227462 9.57343 1.15451L11.4755 1.77254C11.3259 2.2332 10.6742 2.23319 10.5245 1.77254L12.4266 1.15451Z"
+                                                fill="#E9204F" />
+                                        </svg>
+                                    </label>
+                                    <input class="rating-radio" type="radio" id="3-stars" name="rating" value="3" />
+                                    <label for="3-stars" class="star">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                            viewBox="0 0 22 21" fill="none">
+                                            <path
+                                                d="M10.5245 1.46352C10.6742 1.00287 11.3259 1.00287 11.4755 1.46353L13.3574 7.25532C13.4243 7.46133 13.6163 7.60081 13.8329 7.60081H19.9228C20.4071 7.60081 20.6085 8.22062 20.2167 8.50532L15.2899 12.0848C15.1146 12.2122 15.0413 12.4379 15.1083 12.6439L16.9901 18.4357C17.1398 18.8963 16.6126 19.2794 16.2207 18.9947L11.2939 15.4152C11.1187 15.2878 10.8814 15.2878 10.7061 15.4152L5.77932 18.9947C5.38747 19.2794 4.86023 18.8963 5.0099 18.4357L6.89177 12.6439C6.95871 12.4379 6.88538 12.2122 6.71013 12.0849L1.78334 8.50532C1.39148 8.22062 1.59287 7.60081 2.07723 7.60081H8.16709C8.3837 7.60081 8.57568 7.46133 8.64261 7.25532L10.5245 1.46352Z"
+                                                fill="white" />
+                                            <path
+                                                d="M1.78334 8.50532L2.37112 7.6963L1.78334 8.50532ZM6.71013 12.0849L6.12235 12.8939L6.71013 12.0849ZM5.77932 18.9947L6.36711 19.8037L5.77932 18.9947ZM5.0099 18.4357L4.05885 18.1266L5.0099 18.4357ZM11.2939 15.4152L10.7061 16.2242L11.2939 15.4152ZM10.7061 15.4152L10.1183 14.6061L10.7061 15.4152ZM16.9901 18.4357L16.0391 18.7447L16.9901 18.4357ZM16.2207 18.9947L16.8085 18.1857L16.2207 18.9947ZM15.2899 12.0848L14.7021 11.2758L15.2899 12.0848ZM15.1083 12.6439L14.1572 12.9529L15.1083 12.6439ZM20.2167 8.50532L19.6289 7.69631L20.2167 8.50532ZM10.5245 1.46352L9.57343 1.15451L10.5245 1.46352ZM10.5245 1.77254L12.4064 7.56434L14.3085 6.94631L12.4266 1.15451L10.5245 1.77254ZM13.8329 8.60081H19.9228V6.60081H13.8329V8.60081ZM19.6289 7.69631L14.7021 11.2758L15.8777 12.8939L20.8045 9.31434L19.6289 7.69631ZM14.1572 12.9529L16.0391 18.7447L17.9412 18.1266L16.0593 12.3349L14.1572 12.9529ZM16.8085 18.1857L11.8817 14.6061L10.7061 16.2242L15.6329 19.8037L16.8085 18.1857ZM10.1183 14.6061L5.19154 18.1857L6.36711 19.8037L11.2939 16.2242L10.1183 14.6061ZM5.96096 18.7447L7.84283 12.9529L5.94071 12.3349L4.05885 18.1266L5.96096 18.7447ZM7.29792 11.2758L2.37112 7.6963L1.19555 9.31434L6.12235 12.8939L7.29792 11.2758ZM2.07723 8.60081H8.16709V6.60081H2.07723V8.60081ZM9.59367 7.56434L11.4755 1.77254L9.57343 1.15451L7.69156 6.94631L9.59367 7.56434ZM8.16709 8.60081C8.81692 8.60081 9.39286 8.18237 9.59367 7.56434L7.69156 6.94631C7.75849 6.74029 7.95047 6.60081 8.16709 6.60081V8.60081ZM2.37112 7.6963C2.76299 7.98101 2.56159 8.60081 2.07723 8.60081V6.60081C0.624153 6.60081 0.019978 8.46023 1.19555 9.31434L2.37112 7.6963ZM7.84283 12.9529C8.04364 12.3348 7.82365 11.6578 7.29792 11.2758L6.12235 12.8939C5.94711 12.7665 5.87378 12.5409 5.94071 12.3349L7.84283 12.9529ZM5.19154 18.1857C5.5834 17.901 6.11063 18.284 5.96096 18.7447L4.05885 18.1266C3.60982 19.5086 5.19153 20.6578 6.36711 19.8037L5.19154 18.1857ZM11.8817 14.6061C11.356 14.2242 10.6441 14.2242 10.1183 14.6061L11.2939 16.2242C11.1187 16.3515 10.8814 16.3515 10.7061 16.2242L11.8817 14.6061ZM16.0391 18.7447C15.8894 18.284 16.4166 17.901 16.8085 18.1857L15.6329 19.8037C16.8085 20.6578 18.3902 19.5086 17.9412 18.1266L16.0391 18.7447ZM14.7021 11.2758C14.1764 11.6578 13.9564 12.3348 14.1572 12.9529L16.0593 12.3349C16.1262 12.5409 16.0529 12.7665 15.8777 12.8939L14.7021 11.2758ZM19.9228 8.60081C19.4384 8.60081 19.237 7.98101 19.6289 7.69631L20.8045 9.31434C21.98 8.46023 21.3759 6.60081 19.9228 6.60081V8.60081ZM12.4064 7.56434C12.6072 8.18237 13.1831 8.60081 13.8329 8.60081V6.60081C14.0495 6.60081 14.2415 6.74029 14.3085 6.94631L12.4064 7.56434ZM12.4266 1.15451C11.9776 -0.227453 10.0225 -0.227462 9.57343 1.15451L11.4755 1.77254C11.3259 2.2332 10.6742 2.23319 10.5245 1.77254L12.4266 1.15451Z"
+                                                fill="#E9204F" />
+                                        </svg>
+                                    </label>
+                                    <input class="rating-radio" type="radio" id="2-stars" name="rating" value="2" />
+                                    <label for="2-stars" class="star">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                            viewBox="0 0 22 21" fill="none">
+                                            <path
+                                                d="M10.5245 1.46352C10.6742 1.00287 11.3259 1.00287 11.4755 1.46353L13.3574 7.25532C13.4243 7.46133 13.6163 7.60081 13.8329 7.60081H19.9228C20.4071 7.60081 20.6085 8.22062 20.2167 8.50532L15.2899 12.0848C15.1146 12.2122 15.0413 12.4379 15.1083 12.6439L16.9901 18.4357C17.1398 18.8963 16.6126 19.2794 16.2207 18.9947L11.2939 15.4152C11.1187 15.2878 10.8814 15.2878 10.7061 15.4152L5.77932 18.9947C5.38747 19.2794 4.86023 18.8963 5.0099 18.4357L6.89177 12.6439C6.95871 12.4379 6.88538 12.2122 6.71013 12.0849L1.78334 8.50532C1.39148 8.22062 1.59287 7.60081 2.07723 7.60081H8.16709C8.3837 7.60081 8.57568 7.46133 8.64261 7.25532L10.5245 1.46352Z"
+                                                fill="white" />
+                                            <path
+                                                d="M1.78334 8.50532L2.37112 7.6963L1.78334 8.50532ZM6.71013 12.0849L6.12235 12.8939L6.71013 12.0849ZM5.77932 18.9947L6.36711 19.8037L5.77932 18.9947ZM5.0099 18.4357L4.05885 18.1266L5.0099 18.4357ZM11.2939 15.4152L10.7061 16.2242L11.2939 15.4152ZM10.7061 15.4152L10.1183 14.6061L10.7061 15.4152ZM16.9901 18.4357L16.0391 18.7447L16.9901 18.4357ZM16.2207 18.9947L16.8085 18.1857L16.2207 18.9947ZM15.2899 12.0848L14.7021 11.2758L15.2899 12.0848ZM15.1083 12.6439L14.1572 12.9529L15.1083 12.6439ZM20.2167 8.50532L19.6289 7.69631L20.2167 8.50532ZM10.5245 1.46352L9.57343 1.15451L10.5245 1.46352ZM10.5245 1.77254L12.4064 7.56434L14.3085 6.94631L12.4266 1.15451L10.5245 1.77254ZM13.8329 8.60081H19.9228V6.60081H13.8329V8.60081ZM19.6289 7.69631L14.7021 11.2758L15.8777 12.8939L20.8045 9.31434L19.6289 7.69631ZM14.1572 12.9529L16.0391 18.7447L17.9412 18.1266L16.0593 12.3349L14.1572 12.9529ZM16.8085 18.1857L11.8817 14.6061L10.7061 16.2242L15.6329 19.8037L16.8085 18.1857ZM10.1183 14.6061L5.19154 18.1857L6.36711 19.8037L11.2939 16.2242L10.1183 14.6061ZM5.96096 18.7447L7.84283 12.9529L5.94071 12.3349L4.05885 18.1266L5.96096 18.7447ZM7.29792 11.2758L2.37112 7.6963L1.19555 9.31434L6.12235 12.8939L7.29792 11.2758ZM2.07723 8.60081H8.16709V6.60081H2.07723V8.60081ZM9.59367 7.56434L11.4755 1.77254L9.57343 1.15451L7.69156 6.94631L9.59367 7.56434ZM8.16709 8.60081C8.81692 8.60081 9.39286 8.18237 9.59367 7.56434L7.69156 6.94631C7.75849 6.74029 7.95047 6.60081 8.16709 6.60081V8.60081ZM2.37112 7.6963C2.76299 7.98101 2.56159 8.60081 2.07723 8.60081V6.60081C0.624153 6.60081 0.019978 8.46023 1.19555 9.31434L2.37112 7.6963ZM7.84283 12.9529C8.04364 12.3348 7.82365 11.6578 7.29792 11.2758L6.12235 12.8939C5.94711 12.7665 5.87378 12.5409 5.94071 12.3349L7.84283 12.9529ZM5.19154 18.1857C5.5834 17.901 6.11063 18.284 5.96096 18.7447L4.05885 18.1266C3.60982 19.5086 5.19153 20.6578 6.36711 19.8037L5.19154 18.1857ZM11.8817 14.6061C11.356 14.2242 10.6441 14.2242 10.1183 14.6061L11.2939 16.2242C11.1187 16.3515 10.8814 16.3515 10.7061 16.2242L11.8817 14.6061ZM16.0391 18.7447C15.8894 18.284 16.4166 17.901 16.8085 18.1857L15.6329 19.8037C16.8085 20.6578 18.3902 19.5086 17.9412 18.1266L16.0391 18.7447ZM14.7021 11.2758C14.1764 11.6578 13.9564 12.3348 14.1572 12.9529L16.0593 12.3349C16.1262 12.5409 16.0529 12.7665 15.8777 12.8939L14.7021 11.2758ZM19.9228 8.60081C19.4384 8.60081 19.237 7.98101 19.6289 7.69631L20.8045 9.31434C21.98 8.46023 21.3759 6.60081 19.9228 6.60081V8.60081ZM12.4064 7.56434C12.6072 8.18237 13.1831 8.60081 13.8329 8.60081V6.60081C14.0495 6.60081 14.2415 6.74029 14.3085 6.94631L12.4064 7.56434ZM12.4266 1.15451C11.9776 -0.227453 10.0225 -0.227462 9.57343 1.15451L11.4755 1.77254C11.3259 2.2332 10.6742 2.23319 10.5245 1.77254L12.4266 1.15451Z"
+                                                fill="#E9204F" />
+                                        </svg>
+                                    </label>
+                                    <input class="rating-radio" type="radio" id="1-star" name="rating" value="1" />
+                                    <label for="1-star" class="star">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                            viewBox="0 0 22 21" fill="none">
+                                            <path
+                                                d="M10.5245 1.46352C10.6742 1.00287 11.3259 1.00287 11.4755 1.46353L13.3574 7.25532C13.4243 7.46133 13.6163 7.60081 13.8329 7.60081H19.9228C20.4071 7.60081 20.6085 8.22062 20.2167 8.50532L15.2899 12.0848C15.1146 12.2122 15.0413 12.4379 15.1083 12.6439L16.9901 18.4357C17.1398 18.8963 16.6126 19.2794 16.2207 18.9947L11.2939 15.4152C11.1187 15.2878 10.8814 15.2878 10.7061 15.4152L5.77932 18.9947C5.38747 19.2794 4.86023 18.8963 5.0099 18.4357L6.89177 12.6439C6.95871 12.4379 6.88538 12.2122 6.71013 12.0849L1.78334 8.50532C1.39148 8.22062 1.59287 7.60081 2.07723 7.60081H8.16709C8.3837 7.60081 8.57568 7.46133 8.64261 7.25532L10.5245 1.46352Z"
+                                                fill="white" />
+                                            <path
+                                                d="M1.78334 8.50532L2.37112 7.6963L1.78334 8.50532ZM6.71013 12.0849L6.12235 12.8939L6.71013 12.0849ZM5.77932 18.9947L6.36711 19.8037L5.77932 18.9947ZM5.0099 18.4357L4.05885 18.1266L5.0099 18.4357ZM11.2939 15.4152L10.7061 16.2242L11.2939 15.4152ZM10.7061 15.4152L10.1183 14.6061L10.7061 15.4152ZM16.9901 18.4357L16.0391 18.7447L16.9901 18.4357ZM16.2207 18.9947L16.8085 18.1857L16.2207 18.9947ZM15.2899 12.0848L14.7021 11.2758L15.2899 12.0848ZM15.1083 12.6439L14.1572 12.9529L15.1083 12.6439ZM20.2167 8.50532L19.6289 7.69631L20.2167 8.50532ZM10.5245 1.46352L9.57343 1.15451L10.5245 1.46352ZM10.5245 1.77254L12.4064 7.56434L14.3085 6.94631L12.4266 1.15451L10.5245 1.77254ZM13.8329 8.60081H19.9228V6.60081H13.8329V8.60081ZM19.6289 7.69631L14.7021 11.2758L15.8777 12.8939L20.8045 9.31434L19.6289 7.69631ZM14.1572 12.9529L16.0391 18.7447L17.9412 18.1266L16.0593 12.3349L14.1572 12.9529ZM16.8085 18.1857L11.8817 14.6061L10.7061 16.2242L15.6329 19.8037L16.8085 18.1857ZM10.1183 14.6061L5.19154 18.1857L6.36711 19.8037L11.2939 16.2242L10.1183 14.6061ZM5.96096 18.7447L7.84283 12.9529L5.94071 12.3349L4.05885 18.1266L5.96096 18.7447ZM7.29792 11.2758L2.37112 7.6963L1.19555 9.31434L6.12235 12.8939L7.29792 11.2758ZM2.07723 8.60081H8.16709V6.60081H2.07723V8.60081ZM9.59367 7.56434L11.4755 1.77254L9.57343 1.15451L7.69156 6.94631L9.59367 7.56434ZM8.16709 8.60081C8.81692 8.60081 9.39286 8.18237 9.59367 7.56434L7.69156 6.94631C7.75849 6.74029 7.95047 6.60081 8.16709 6.60081V8.60081ZM2.37112 7.6963C2.76299 7.98101 2.56159 8.60081 2.07723 8.60081V6.60081C0.624153 6.60081 0.019978 8.46023 1.19555 9.31434L2.37112 7.6963ZM7.84283 12.9529C8.04364 12.3348 7.82365 11.6578 7.29792 11.2758L6.12235 12.8939C5.94711 12.7665 5.87378 12.5409 5.94071 12.3349L7.84283 12.9529ZM5.19154 18.1857C5.5834 17.901 6.11063 18.284 5.96096 18.7447L4.05885 18.1266C3.60982 19.5086 5.19153 20.6578 6.36711 19.8037L5.19154 18.1857ZM11.8817 14.6061C11.356 14.2242 10.6441 14.2242 10.1183 14.6061L11.2939 16.2242C11.1187 16.3515 10.8814 16.3515 10.7061 16.2242L11.8817 14.6061ZM16.0391 18.7447C15.8894 18.284 16.4166 17.901 16.8085 18.1857L15.6329 19.8037C16.8085 20.6578 18.3902 19.5086 17.9412 18.1266L16.0391 18.7447ZM14.7021 11.2758C14.1764 11.6578 13.9564 12.3348 14.1572 12.9529L16.0593 12.3349C16.1262 12.5409 16.0529 12.7665 15.8777 12.8939L14.7021 11.2758ZM19.9228 8.60081C19.4384 8.60081 19.237 7.98101 19.6289 7.69631L20.8045 9.31434C21.98 8.46023 21.3759 6.60081 19.9228 6.60081V8.60081ZM12.4064 7.56434C12.6072 8.18237 13.1831 8.60081 13.8329 8.60081V6.60081C14.0495 6.60081 14.2415 6.74029 14.3085 6.94631L12.4064 7.56434ZM12.4266 1.15451C11.9776 -0.227453 10.0225 -0.227462 9.57343 1.15451L11.4755 1.77254C11.3259 2.2332 10.6742 2.23319 10.5245 1.77254L12.4266 1.15451Z"
+                                                fill="#E9204F" />
+                                        </svg>
+                                    </label>
+                                </div>
+
+                                <div class="star-rating__score">
+                                    <p id="testimonial-star">
+                                        <span class="star-rating__number"></span> / 5
+                                    </p>
+                                    <p class="star-rating__result">Super</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button id="comment-form-submit" type="submit" class="g-btn-fill w-100">Göndər</button>
+                    </form>
+                    <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'partials/apply-modal.html' %}
+
+
+    <main>
+        <section class="banner">
+            <div class="g-container h-100">
+                <div class="banner__content">
+                    <h1 class="banner__title"></h1>
+                    <p class="banner__text">
+                        Uzun illərin təcrübəsinə əsaslanaraq rəqəmsal marketinq və brendinq çərçivəsində bir çox fərqli
+                        sahələrdə fərqli markalara xidmət etmişik.
+                    </p>
+                    <button class="g-btn-fill" data-bs-toggle="modal" data-bs-target="#applyModal">
+                        Müraciət edin
+                    </button>
+                </div>
+            </div>
+            <img src="{% static 'assets/svg/Vector (1).svg' %}" class="banner__decor" alt="">
+        </section>
+
+        {% if about_us %}
+        <section class="section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
+                            <p>
+                                {{about_us.title}}
+                            </p>
+                            <h2>
+                                {% trans 'Niyə biz?' %}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10">
+                        <div class="row g-4">
+                            {% for info in about_us.about_us_info.all %}
+                            <div class="col-6 col-lg-3">
+                                <div class="info-box">
+                                    <img src="{{info.icon.url}}" class="info-box__icon" alt="">
+                                    <img src="{{info.icon.url}}" class="info-box__icon--mob" alt="">
+                                    <h3 class="info-box__title">{{info.title}}</h3>
+                                    <p class="info-box__text">
+                                        {{info.description|safe}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="certifed section-gap">
+            <div class="g-container position-relative">
+                <div class="row d-none d-md-flex">
+                    <div class="col-lg-2">
+                        <p class="certifed__title">
+                            CERTIFIED BY
+                        </p>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="loading-gif">
+                            <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
+                        </div>
+                        <div class="overflow-hidden d-none loading-item">
+                            <div id="certifed__slide-desktop" class="certifed__slide">
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
+                                </div>
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                                </div>
+
+                                <div class="certifed__item">
+                                    <img src="{% static 'assets/img/Group.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading-gif d-md-none">
+                    <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
+                </div>
+                <div class="loading-item d-none">
+                    <div id="certifed__slide-mobile" class="overflow-hidden d-md-none">
+                        <div class="certifed__slide">
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
+                            </div>
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Yandex.Metrica-Logo.wine 1.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google-analytics.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Semrush_logo 1.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google-ads.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/logos_google.png' %}" alt="">
+                            </div>
+    
+                            <div class="certifed__item">
+                                <img src="{% static 'assets/img/Group.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% if services %}
+        <section class="section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
+                            <p>
+                                {% trans 'XİDMƏTLƏR' %}
+                            </p>
+                            <h2>
+                                {% trans 'Nə təklif edirik?' %}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-10">
+                        <div class="row g-4">
+                            {% for service in services %}
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <a href="{% url 'service:service-detail' service.slug %}" class="offer">
+                                    <img src="{{service.icon.url}}" class="offer__icon" alt="">
+                                    <h4 class="offer__title">{{service.title}}</h4>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if services_categories and projects %}
+        <section class="portfolio section-gap d-none d-md-block">
+            <div class="g-container">
+                <div class="row align-items-center">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-xl-column justify-content-center justify-content-xl-start">
+                            <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
+                                <p>{% trans 'PORTFOLİO' %}</p>
+                                <h2>{% trans 'İşlərimiz' %}</h2>
+                            </div>
+                            <div class="portfolio__links d-none d-xl-flex">
+                                {% for category in services_categories %}
+                                {% if not forloop.first and not forloop.last %}
+                                <a href="" class="portfolio__main-link">
+                                    <img src="{% static 'assets/svg/right.svg' %}" alt="">{{category.title}}
+                                </a>
+                                {% else %}
+                                <a href="{% url 'portfolio:portfolio' %}?service={{category.slug}}" class="portfolio__link">{{category.title}}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'portfolio:portfolio' %}" class="g-btn d-none d-xl-flex">Hamısı</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-10">
+                        <div class="portfolio__cards">
+                            {% for project in projects %}
+                            <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="portfolio__card">
+                                <img src="{{project.cover_image.url}}" alt="">
+                            </a>
+                            {% endfor %}
+                            <a href="{% url 'portfolio:portfolio' %}" class="portfolio-card-add">
+                                <div class="portfolio-card-add__content">
+                                    <p>{% trans 'daha <br> çox' %}</p>
+                                    <div class="portfolio-card-add__link">
+                                        <img src="{% static 'assets/svg/Vector 108.svg' %}" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if services_categories_for_mobile %}
+        <section class="mob-portfolio section-gap d-md-none">
+            <div class="g-container">
+                <div class="section-title text-center text-xl-start mb-3 mb-xl-0">
+                    <p>{% trans 'PORTFOLİO' %}</p>
+                    <h2>{% trans 'İşlərimiz' %}</h2>
+                </div>
+
+                <ul class="nav nav-tabs categories-tab">
+                    {% for category in services_categories_for_mobile %}
+                    <li class="categories-tab__item">
+                        <button class="active" data-bs-toggle="tab" data-bs-target="#{{category.title}}">
+                            {{category.title}}
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                {% for category in services_categories_for_mobile %}
+                <div id="{{category.title}}" class="tab-pane fade show active swiper mob-portfolio__slide">
+                    <div class="swiper-wrapper">
+                        {% for project in category.projects.all %}
+                        <div class="swiper-slide">
+                            <a href="{% url 'portfolio:portfolio-detail' project.slug %}" class="mob-portfolio__img">
+                                <img src="{{project.cover_image.url}}" alt="">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="our-clients section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <p class="our-clients__title">
+                            {% trans 'OUR CLIENTS' %}
+                        </p>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="loading-gif">
+                            <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
+                        </div>
+
+                        <div class="our-clients__slide loading-item d-none">
+                            <div class="overflow-hidden">
+                                <div id="clients__slide-desktop" class="our-clients__slide">
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                    </div>
+
+                                    <div class="our-clients__item">
+                                        <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mob-our-clients section-gap">
+            <div class="g-container">
+                <div class="loading-gif d-md-none">
+                    <img src="{% static 'assets/img/ZZ5H.gif' %}" alt="">
+                </div>
+                <div class="loading-item d-none">
+                    <div class="our-clients__slide mb-4">
+                        <div class="overflow-hidden">
+                            <div id="clients__slide-mobile" class="our-clients__slide">
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="our-clients__slide">
+                        <div class="overflow-hidden">
+                            <div id="clients__slide-mobile2" class="our-clients__slide">
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector.png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (1).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (2).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (3).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (4).png' %}" alt="">
+                                </div>
+    
+                                <div class="our-clients__item">
+                                    <img src="{% static 'assets/img/Vector (5).png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        {% if testimonials.count > 0 %}
+        <section class="clients-comments section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title text-center text-xl-start">
+                                <p>{% trans 'RƏYLƏR' %}</p>
+                                <h2>{% trans 'Müştəri fikirləri' %}</h2>
+                            </div>
+                            <button class="g-btn comment-btn-desktop" data-bs-toggle="modal"
+                                data-bs-target="#commentModal">{% trans 'Rəy bildir' %}</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-10">
+                        <div class="clients-comments__wrapper">
+                            <div class="swiper clients-comments__slide">
+                                <div class="swiper-wrapper">
+                                    {% for testimonial in testimonials %}
+                                    <div class="swiper-slide">
+                                        <div class="clients-comments__box">
+                                            <p class="clients-comments__name">
+                                                {{testimonial.full_name}}
+                                            </p>
+                                            <span class="clients-comments__position">
+                                                <b>{{testimonial.company_name}}</b> | {{testimonial.position}}
+                                            </span>
+                                            <p class="clients-comments__text">
+                                                {{testimonial.comment|safe}}
+                                            </p>
+                                            <div class="clients-comments__rating">
+                                                {% generate_testimonial_list testimonial.star as testimonial_list %}
+                                                {% for star in testimonial_list %}
+                                                {% if star %}
+                                                <img src="{% static 'assets/svg/Star 2.svg' %}" alt="">
+                                                {% else %}
+                                                <img src="{% static 'assets/svg/Star 2 (1).svg' %}" alt="">
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="swiper-button-next custom-next-btn clients-comments-next-btn">
+                                <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="swiper-button-prev custom-prev-btn clients-comments-prev-btn">
+                                <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="g-btn-fill comment-btn-mob" data-bs-toggle="modal"
+                            data-bs-target="#commentModal">{% trans 'Rəy bildir' %}</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if blogs.count > 0 %}
+        <section class="blogs section-gap">
+            <div class="g-container">
+                <div class="row">
+                    <div class="col-xl-2">
+                        <div class="d-flex flex-column">
+                            <div class="section-title text-center text-xl-start">
+                                <p>BLOQLAR</p>
+                                <h2>Marketing bloqları</h2>
+                            </div>
+                            <a href="{% url 'blog:blogs' %}" class="g-btn">Hamısı</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-10">
+                        <div class="blogs__wrapper">
+                            <div class="swiper blogs__slide">
+                                <div class="swiper-wrapper">
+                                    {% for blog in blogs %}
+                                    <div class="swiper-slide">
+                                        <div class="blogs__box">
+                                            <a href="" class="blogs__link">{{blog.title}}</a>
+                                            <span class="blogs__date">{{blog.created_at|date:"d F, Y"}}</span>
+                                            <p class="blogs__text">
+                                                {{blog.body|truncatechars:100|safe|striptags}}    
+                                            </p>
+                                            <a href="{% url 'blog:blog-detail' blog.slug %}" class="blogs__read-more">
+                                                {% trans 'Daha çox' %}
+                                                <img src="{% static 'assets/svg/Vector 106.svg' %}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="swiper-button-next custom-next-btn blogs-next-btn">
+                                <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M1.48768 1.56665L5.421 5.27211C5.84005 5.66689 5.84005 6.33308 5.421 6.72786L1.48767 10.4333"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="swiper-button-prev custom-prev-btn blogs-prev-btn">
+                                <svg width="7" height="12" viewBox="0 0 7 12" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.29177 1.56665L1.35845 5.27211C0.939395 5.66689 0.939396 6.33308 1.35845 6.72786L5.29177 10.4333"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+{% endblock content %}
+
+{% block js %}
+<!-- Additional js -->
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.4.0/dist/index.umd.js"></script>
+    <script src="{% static 'js/typeit.js' %}"></script>
+    <script src="{% static 'js/rating.js' %}"></script>
+    <script src="{% static 'js/slides/comments-slide.js' %}"></script>
+    <script src="{% static 'js/slides/blogs-slide.js' %}"></script>
+    <script src="{% static 'js/slides/mob-portfolio-slide.js' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+    <script src="{% static 'js/loading.js' %}"></script>
+    
+    <script>
+        function certifedMobile(boxWidth, time) {
+            const boxElement = $('#certifed__slide-mobile .certifed__item');
+            const boxLength = boxElement.length;
+            const wrapperWidth = boxWidth * boxLength;
+            const windowWidth = $(window).width();
+            
+            boxElement.parent().css('left', '-' + boxWidth + 'px');
+            boxElement.css('width', boxWidth + 'px');
+            
+            gsap.set("#certifed__slide-mobile .certifed__item", {
+                x: (i) => i * boxWidth
+            });
+
+            gsap.to("#certifed__slide-mobile .certifed__item", {
+                duration: time,
+                ease: "none",
+                x: "-=" + wrapperWidth,
+                modifiers: {
+                    x: gsap.utils.unitize(
+                        function (x) {
+                            return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+                        }
+                        )
+                    },
+                    repeat: -1
+                });
+            }
+            
+            function certifedDesktop(boxWidth, time) {
+                const boxElement = $('#certifed__slide-desktop .certifed__item');
+                const boxLength = boxElement.length;
+                const wrapperWidth = boxWidth * boxLength;
+                const windowWidth = $(window).width();
+                
+                boxElement.parent().css('left', '-' + boxWidth + 'px');
+                boxElement.css('width', boxWidth + 'px');
+
+            gsap.set("#certifed__slide-desktop .certifed__item", {
+                x: (i) => i * boxWidth
+            });
+            
+            gsap.to("#certifed__slide-desktop .certifed__item", {
+                duration: time,
+                ease: "none",
+                x: "-=" + wrapperWidth,
+                modifiers: {
+                    x: gsap.utils.unitize(
+                        function (x) {
+                            return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+                        }
+                        )
+                    },
+                    repeat: -1
+                });
+            }
+            
+            function clientsDesktop(boxWidth, time) {
+                const boxElement = $('#clients__slide-desktop .our-clients__item');
+                const boxLength = boxElement.length;
+                const wrapperWidth = boxWidth * boxLength;
+            const windowWidth = $(window).width();
+
+            boxElement.parent().css('left', '-' + boxWidth + 'px');
+            boxElement.css('width', boxWidth + 'px');
+            
+            gsap.set("#clients__slide-desktop .our-clients__item", {
+                x: (i) => i * boxWidth
+            });
+            
+            gsap.to("#clients__slide-desktop .our-clients__item", {
+                duration: time,
+                ease: "none",
+                x: "-=" + wrapperWidth,
+                modifiers: {
+                    x: gsap.utils.unitize(
+                        function (x) {
+                            return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+                        }
+                        )
+                    },
+                    repeat: -1
+                });
+            }
+
+            function clientsMobile(boxWidth, time) {
+                const boxElement = $('#clients__slide-mobile .our-clients__item');
+                const boxLength = boxElement.length;
+                const wrapperWidth = boxWidth * boxLength;
+                const windowWidth = $(window).width();
+                
+                boxElement.parent().css('left', '-' + boxWidth + 'px');
+                boxElement.css('width', boxWidth + 'px');
+                
+                gsap.set("#clients__slide-mobile .our-clients__item", {
+                    x: (i) => i * boxWidth
+                });
+                
+            gsap.to("#clients__slide-mobile .our-clients__item", {
+                duration: time,
+                ease: "none",
+                x: "-=" + wrapperWidth,
+                modifiers: {
+                    x: gsap.utils.unitize(
+                        function (x) {
+                            return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+                        }
+                        )
+                    },
+                    repeat: -1
+                });
+            }
+            
+            function clientsMobile2(boxWidth, time) {
+                const boxElement = $('#clients__slide-mobile2 .our-clients__item');
+                const boxLength = boxElement.length;
+                const wrapperWidth = boxWidth * boxLength;
+                const windowWidth = $(window).width();
+                
+                boxElement.parent().css('left', '-' + boxWidth + 'px');
+                boxElement.css('width', boxWidth + 'px');
+                
+                gsap.set("#clients__slide-mobile2 .our-clients__item", {
+                    x: (i) => i * boxWidth
+                });
+                
+                gsap.to("#clients__slide-mobile2 .our-clients__item", {
+                    duration: time,
+                    ease: "none",
+                    x: "+=" + wrapperWidth,
+                    modifiers: {
+                        x: gsap.utils.unitize(
+                            function (x) {
+                                return parseFloat(x + windowWidth + boxWidth) % wrapperWidth
+                            }
+                            )
+                        },
+                        repeat: -1
+                    });
+                }
+                
+                if (window.innerWidth > 768) {
+                    certifedDesktop(200, 27)
+        } else {
+            certifedMobile(130, 27)
+        }
+        
+        if (window.innerWidth > 991) {
+            clientsDesktop(200, 27)
+        } else {
+            clientsMobile(130, 27)
+            clientsMobile2(130, 27)
+        }
+        
+        window.onresize = () => {
+            if (window.innerWidth > 768) {
+                certifedDesktop(200, 27)
+            } else {
+                certifedMobile(130, 27)
+            }
+            
+            if (window.innerWidth > 991) {
+                clientsDesktop(200, 27)
+            } else {
+                clientsMobile(130, 27)
+                clientsMobile2(130, 27)
+            }
+        }
+        </script>
+
+
+
+    <script>
+        testimonial = document.getElementById("comment-form");
+        const TestimonialLogic = {
+            testimonialManager(data) {
+                fetch('/api/testimonial', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": testimonial.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'company_name': data.company_name,
+                        'position': data.position,
+                        'comment': data.comment,
+                        'star': data.star,
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                    });
+            }
+        }
+        testimonial_submit = document.getElementById('comment-form-submit');
+        testimonial_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            data = {
+                'position': testimonial.position.value,
+                'full_name': testimonial.full_name.value,
+                'company_name': testimonial.company_name.value,
+                'comment': testimonial.message.value,
+                'star': document.querySelector('input[name="rating"]:checked').value,
+            }
+            TestimonialLogic.testimonialManager(data);
+        });
+    </script>
+{% endblock js %}

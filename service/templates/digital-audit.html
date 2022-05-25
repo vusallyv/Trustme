@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static get_phone_prefixes i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+{% get_phone_prefixes as phone_prefixes %}
+
+
+    <main>
+        <div class="section blog-detail pt-4 pt-sm-5 mb-sm-5 mb-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-3 mb-sm-4">
+                    <li class="g-breadcrumb__item">
+                        {% trans 'Ana səhifə' %}
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {{digital_audit.title}}
+                        </a>
+                    </li>
+                </ul>
+                <div class="row g-3 gx-lg-5">
+                    <div class="col-lg-8">
+                        <div class="section-title mb-3">
+                            <h2>{{digital_audit.title}}</h2>
+                        </div>
+                        <div class="g-text">
+                            {{digital_audit.full_description|safe}}
+                        </div>
+                        <div class="accordion" id="accordionCategory">
+                            {% for category in digital_audit.categories.all %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading{{accordion.id}}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{accordion.id}}"  aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"  aria-controls="collapse{{accordion.id}}">
+                                        {{accordion.question}}
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse{{accordion.id}}" class="accordion-collapse collapse {% if forloop.first %}show {% endif %}"
+                                    aria-labelledby="heading{{accordion.id}}" >
+                                    <div class="accordion-body">
+                                        {{accordion.answer|safe}}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="apply-box">
+                            <p class="blog-detail__subtitle mb-4 pb-1">
+                                {% trans 'Müraciət et' %}
+                            </p>
+                            <form action="" method="post" id="digital-audit-apply-form">
+                                {% csrf_token %}
+                                <div class="alert alert-danger d-none" id="digital-audit-non_field_errors-error" ></div>
+                                <div class="g-input-group">
+                                    <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                    <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                                    <div class="form-text mb-4 text-danger text-small" id='full_name-error'></div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
+                                    <div class="d-flex align-items-center">
+                                        <select id="phone_prefix" class="prefix" name="states[]" style="min-width: 85px;">
+                                            {% for val, prefix in phone_prefixes %}
+                                            <option value="{{val}}">{{prefix}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                                    </div>
+                                    <div class="form-text mb-4 text-danger text-small" id='phone-error'></div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                    <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
+                                    <div class="form-text mb-4 text-danger text-small" id='email-error'></div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="website">Vebsayt</label>
+                                    <input id="website" type="url" placeholder="{% trans 'Vebsayt URL' %} daxil edin">
+                                    <div class="form-text mb-4 text-danger text-small" id='site_link-error'></div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="Facebook">Facebook</label>
+                                    <input id="Facebook" type="url" placeholder="Facebook URL daxil edin">
+                                    <div class="form-text mb-4 text-danger text-small" id='facebook_link-error'></div>
+                                </div>
+                                <div class="g-input-group">
+                                    <label for="Instagram">Instagram</label>
+                                    <input id="Instagram" type="url" placeholder="Instagram URL daxil edin">
+                                    <div class="form-text text-danger text-small" id='instagram_link-error'></div>
+                                </div>
+
+                                <button id="digital-audit-apply-form-submit" type="submit" class="g-btn-fill w-100">Göndər</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock content %}
+
+{% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+
+<script>
+    digital_audit_apply_form = document.getElementById("digital-audit-apply-form");
+    const ApplyForServiceLogic = {
+        async applyForServiceManager(data) {
+            let response = await fetch('/api/applicant', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    "X-CSRFToken": digital_audit_apply_form.csrfmiddlewaretoken.value,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'full_name': data.full_name,
+                    'email': data.email,
+                    'phone': data.phone,
+                    'phone_prefix': data.phone_prefix,
+                    'site_link': data.site_link,
+                    'facebook_link': data.facebook_link,
+                    'instagram_link': data.instagram_link,
+                })
+            })
+            let response_data = await response.json();
+            let status = await response.ok;
+            if (status) {
+                digital_audit_apply_form.reset()
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).text('');
+                }
+            } else {
+                if ('digital-audit-apply-non_field_errors' in response_data) {
+                    $('#digital-audit-non_field_errors-error').addClass('d-block')
+                    $('#digital-audit-non_field_errors-error').removeClass('d-none')
+                } else {
+                    $('#digital-audit-non_field_errors-error').addClass('d-none')
+                }
+            
+                $('#digital-audit-apply-form .form-text').text('')
+                for (let field in response_data) {
+                    let id = `#${field}-error`;
+                    $(id).text(response_data[field][0]);
+                }
+            }
+
+        }
+    }
+    digital_audit_apply_form_submit = document.getElementById('digital-audit-apply-form-submit');
+    digital_audit_apply_form_submit.addEventListener('click', function (e) {
+        e.preventDefault();
+        data = {
+            'email': digital_audit_apply_form.email.value,
+            'full_name': digital_audit_apply_form.full_name.value,
+            'phone': digital_audit_apply_form.phone.value,
+            'phone_prefix': digital_audit_apply_form.phone_prefix.value,
+            'site_link': digital_audit_apply_form.website.value,
+            'facebook_link': digital_audit_apply_form.Facebook.value,
+            'instagram_link': digital_audit_apply_form.Instagram.value,
+        }
+        ApplyForServiceLogic.applyForServiceManager(data);
+    });
+</script>
+{% endblock js %}

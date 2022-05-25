@@ -1,0 +1,46 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/css/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'styles/css/select2/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/css/main.min.css' %}">
+
+    {% block css %}
+    {% endblock css %}
+
+    <title>{% block title %}{% endblock title %}</title>
+
+</head>
+
+<body>
+
+{% include 'partials/navbar.html' %}
+
+
+{% block content %}
+{% endblock content %}
+
+
+{% include 'partials/footer.html' %}
+
+
+<script src="{% static 'js/min/jquery.min.js' %}"></script>
+<script src="{% static 'js/min/bootstrap.bundle.min.js' %}"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="{% static 'js/min/select2.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% block js %}
+{% endblock js %}
+
+
+</body>
+
+</html>

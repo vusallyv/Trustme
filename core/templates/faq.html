@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+
+    <main>
+        <section class="faq mb-sm-5 mb-3 pt-sm-5 pt-4">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            {% trans 'FAQ' %}
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="faq__wrapper">
+                    <ul class="dashboard">
+                        <li class="dashboard__item">
+                            <a href="{% url 'core:faq' %}" class="dashboard__link {% if not request.GET.service %}  dashboard__link--active {% endif %}">
+                                <img src="{% static 'assets/svg/copy1.svg' %}" alt=""> Hamısı
+                            </a>
+                        </li>
+                        {% for service in services %}
+                        <li class="dashboard__item">
+                            <a href="?service={{ service.slug }}" class="dashboard__link {% if request.GET.service == service.slug %}dashboard__link--active{% endif %}">
+                                <img src="{{service.icon.url}}" alt="">{{service.title}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <ul class="categories-tab">
+                        <li class="categories-tab__item {% if not request.GET.service %}  categories-tab__item--active {% endif %}">
+                            <a href="{% url 'core:faq' %}">
+                                {% trans 'Hamısı' %}
+                            </a>
+                        </li>
+                        {% for service in services %}
+                        <li class="categories-tab__item {% if request.GET.service == service.slug %}categories-tab__item--active{% endif %}">
+                            <a href="?service={{ service.slug }}">
+                                {{service.title}}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="w-100 ps-lg-4 ms-lg-2">
+                        <div class="accordion" id="accordionCategory">
+                            {% for category in categories %}
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading{{category.id}}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{category.id}}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{category.id}}">
+                                        {{category.question}}
+                                        <img src="{% static 'assets/svg/acc-icon.svg' %}" alt="">
+                                    </button>
+                                </div>
+                                <div id="collapse{{category.id}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                                    aria-labelledby="heading{{category.id}}" >
+                                    <div class="accordion-body">
+                                        {{category.answer|safe}}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock content %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static get_phone_prefixes i18n %}
+{% block css %}
+{% endblock css %}
+{% block title %}{{title}}{% endblock title %}
+{% block content %}
+{% get_phone_prefixes as phone_prefixes %}
+
+    <main>
+        <section class="contact pt-4 pt-sm-5">
+            <img src="{% static 'assets/svg/mob-decor.svg' %}" class="mob-navbar__decor" alt="">
+            <div class="g-container">
+                <ul class="g-breadcrumb mb-md-4 pb-3">
+                    <li class="g-breadcrumb__item">
+                        Ana səhifə
+                    </li>
+                    <li class="g-breadcrumb__item g-breadcrumb__item--active">
+                        <a href="">
+                            Əlaqə
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="row">
+                    <div class="section-title text-center mb-3 mb-md-5">
+                        <p>ƏLAQƏ</p>
+                        <h2>Bizimlə əlaqə</h2>
+                    </div>
+                    <div class="col-xl-10 m-auto">
+                        <form action="" class="w-100" method="post" id="contactform">
+                            {% csrf_token %}
+                            <div class="alert alert-danger d-none" id="contactform-non_field_errors-error" ></div>
+                            <div class="row g-4 justify-content-end">
+                                <div class="col-md-6">
+                                    <div class="g-input-group">
+                                        <label for="full_name">{% trans 'Ad və soyad' %} <span>*</span></label>
+                                        <input id="full_name" type="text" placeholder="{% trans 'Ad və soyadınızı daxil edin' %}">
+                                        <div class="form-text mb-4 text-danger text-small d-none" id='full_name-error'></div>
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="company_name">{% trans 'Şirkət adı' %} <span>*</span></label>
+                                        <input id="company_name" type="text"
+                                            placeholder="{% trans 'Şirkətinizin adını daxil edin' %}">
+                                        <div class="form-text mb-4 text-danger text-small d-none" id='company_name-error'></div>
+                                    </div>
+                                    <div class="g-input-group">
+                                        <label for="email">{% trans 'Email' %} <span>*</span></label>
+                                        <input id="email" type="email" placeholder="{% trans 'Email ünvanınızı daxil edin' %}">
+                                        <div class="form-text mb-4 text-danger text-small d-none" id='email-error'></div>
+                                    </div>
+                                    <div class="g-input-group mb-0">
+                                        <label for="phone">{% trans 'Əlaqə nömrəsi' %} <span>*</span></label>
+                                        <div class="d-flex align-items-center">
+                                            <select class="prefix" id="phone_prefix" name="states[]" style="min-width: 85px;">
+                                                {% for val, prefix in phone_prefixes %}
+                                                <option value="{{val}}">{{prefix}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <input class="w-100 ms-3" id="phone" type="text" placeholder="(_ _ _)_ _ _ _ _ _">
+                                        </div>
+                                        <div class="form-text mb-4 text-danger text-small d-none" id='phone-error'></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="g-input-group mb-0">
+                                        <label for="message">Mesaj <span>*</span></label>
+                                        <textarea id="message" name="" placeholder="Mesajınızı yazın" cols="30"
+                                            rows="10"></textarea>
+                                    </div>
+                                    <div class="form-text mb-4 text-danger text-small d-none" id='message-error'></div>
+                                    <button type="submit" id="contact-submit" class="g-btn w-100 bg-white">Göndər</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+{% endblock content %}
+{% block js %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script src="{% static 'js/apply-form.js' %}"></script>
+    <script>
+        contactform = document.getElementById('contactform');
+        const ContactLogic = {
+            async contactManager(data) {
+                let response = await fetch('/api/applicant', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        "X-CSRFToken": contactform.csrfmiddlewaretoken.value,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        'full_name': data.full_name,
+                        'company_name': data.company_name,
+                        'email': data.email,
+                        'phone': data.phone,
+                        'phone_prefix': data.phone_prefix,
+                        'message': data.message,
+                    })
+                })
+                let response_data = await response.json();
+                let status = await response.ok;
+                if (status) {
+                    contactform.reset()
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).text('');
+                        $(id).addClass('d-none');
+                        $(id).removeClass('d-block');
+                    }
+                } else {
+                    if ('contactform-non_field_errors' in response_data) {
+                        $('#contactform-non_field_errors-error').addClass('d-block')
+                        $('#contactform-non_field_errors-error').removeClass('d-none')
+                    } else {
+                        $('#contactform-non_field_errors-error').addClass('d-none')
+                    }
+                
+                    $('#contactform .form-text').text('')
+                    for (let field in response_data) {
+                        let id = `#${field}-error`;
+                        $(id).addClass('d-block');
+                        $(id).removeClass('d-none');
+                        $(id).text(response_data[field][0]);
+                    }
+                }
+
+            }
+        }
+        contact_submit = document.getElementById('contact-submit');
+        contact_submit.addEventListener('click', function (e) {
+            e.preventDefault();
+            data = {
+                'email': contactform.email.value,
+                'full_name': contactform.full_name.value,
+                'company_name': contactform.company_name.value,
+                'phone': contactform.phone.value,
+                'message': contactform.message.value,
+                'phone_prefix': contactform.phone_prefix.value,
+            }
+            ContactLogic.contactManager(data);
+        });
+    </script>
+{% endblock js %}
